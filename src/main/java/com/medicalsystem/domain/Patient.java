@@ -1,24 +1,27 @@
 package com.medicalsystem.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * @author Kamil Komenda
  */
 @Entity
-public class Patient implements Serializable {
-    private static final long serialVersionUID = 2284040482222162898L;
+public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "patient_id")
     private int patientId;
+
     @Column(columnDefinition = "VARCHAR(50) NOT NULL")
     private String name;
+
     @Column(columnDefinition = "VARCHAR(50) NOT NULL")
     private String surname;
+
     @Column(columnDefinition = "VARCHAR(1) NOT NULL")
     private String sex;
+
     @Column(columnDefinition = "INTEGER NOT NULL")
     private int age;
 
@@ -30,10 +33,6 @@ public class Patient implements Serializable {
     }
 
     public Patient() {
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public int getPatientId() {
