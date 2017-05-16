@@ -24,6 +24,15 @@ public class Comorbidities {
     @JoinColumn(name = "disease_description_id")
     private DiseaseDescription diseaseDescription;
 
+    public Comorbidities(Patient patient, Disease disease, DiseaseDescription diseaseDescription) {
+        this.patient = patient;
+        this.disease = disease;
+        this.diseaseDescription = diseaseDescription;
+    }
+
+    public Comorbidities() {
+    }
+
     public int getId() {
         return id;
     }

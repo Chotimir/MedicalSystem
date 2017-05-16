@@ -20,7 +20,7 @@ public class PatientController {
     private PatientService patientService;
 
     @RequestMapping(value = "/patients", method = RequestMethod.GET)
-    public List<?> patients() {
+    public List<?> getPatients() {
         return patientService.listAll();
     }
 

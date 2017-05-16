@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * @author Kamil Komenda
  */
+
 @Service
 public class PatientServiceImpl implements PatientService {
 
@@ -19,7 +20,7 @@ public class PatientServiceImpl implements PatientService {
     private PatientRepository patientRepository;
 
     @Override
-    public List<Patient> listAll() {
+    public List<?> listAll() {
         List<Patient> products = new ArrayList<>();
         patientRepository.findAll().forEach(products::add);
         return products;

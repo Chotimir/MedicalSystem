@@ -20,6 +20,14 @@ public class DiseaseDescription {
     @Column(name = "name_complication_description", columnDefinition = "VARCHAR(50)")
     private int complicationDescription;
 
+    public DiseaseDescription(Disease disease, int complicationDescription) {
+        this.disease = disease;
+        this.complicationDescription = complicationDescription;
+    }
+
+    public DiseaseDescription() {
+    }
+
     public int getDiseaseDescriptionId() {
         return diseaseDescriptionId;
     }

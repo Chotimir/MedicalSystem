@@ -16,6 +16,13 @@ public class Disease {
     @Column(name = "disease_name", columnDefinition = "VARCHAR(50)")
     private int diseaseName;
 
+    public Disease(int diseaseName) {
+        this.diseaseName = diseaseName;
+    }
+
+    public Disease() {
+    }
+
     public int getDiseaseId() {
         return diseaseId;
     }
