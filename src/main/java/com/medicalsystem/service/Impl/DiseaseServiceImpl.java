@@ -1,8 +1,8 @@
-package com.medicalsystem.services.Impl;
+package com.medicalsystem.service.Impl;
 
-import com.medicalsystem.domain.Disease;
-import com.medicalsystem.repositories.DiseaseRepository;
-import com.medicalsystem.services.DiseaseService;
+import com.medicalsystem.model.Disease;
+import com.medicalsystem.repository.DiseaseRepository;
+import com.medicalsystem.service.DiseaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

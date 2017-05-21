@@ -1,8 +1,8 @@
-package com.medicalsystem.services.Impl;
+package com.medicalsystem.service.Impl;
 
-import com.medicalsystem.domain.Comorbidities;
-import com.medicalsystem.repositories.ComorbiditiesRepository;
-import com.medicalsystem.services.ComorbiditiesService;
+import com.medicalsystem.model.Comorbidities;
+import com.medicalsystem.repository.ComorbiditiesRepository;
+import com.medicalsystem.service.ComorbiditiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

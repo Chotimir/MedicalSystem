@@ -1,6 +1,6 @@
-package com.medicalsystem.services;
+package com.medicalsystem.service;
 
-import com.medicalsystem.domain.Disease;
+import com.medicalsystem.model.Disease;
 
 /**
  * @author Kamil Komenda

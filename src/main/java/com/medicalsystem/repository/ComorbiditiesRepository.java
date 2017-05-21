@@ -1,6 +1,6 @@
-package com.medicalsystem.repositories;
+package com.medicalsystem.repository;
 
-import com.medicalsystem.domain.Comorbidities;
+import com.medicalsystem.model.Comorbidities;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -1,4 +1,4 @@
-package com.medicalsystem.services;
+package com.medicalsystem.service;
 
 import java.util.List;
 

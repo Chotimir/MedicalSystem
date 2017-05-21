@@ -1,6 +1,6 @@
-package com.medicalsystem.repositories;
+package com.medicalsystem.repository;
 
-import com.medicalsystem.domain.Patient;
+import com.medicalsystem.model.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

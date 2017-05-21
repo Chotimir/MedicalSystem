@@ -1,6 +1,6 @@
-package com.medicalsystem.services;
+package com.medicalsystem.service;
 
-import com.medicalsystem.domain.Comorbidities;
+import com.medicalsystem.model.Comorbidities;
 
 /**
  * @author Kamil Komenda

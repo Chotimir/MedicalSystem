@@ -1,7 +1,7 @@
-package com.medicalsystem.controllers;
+package com.medicalsystem.controller;
 
-import com.medicalsystem.domain.Patient;
-import com.medicalsystem.services.PatientService;
+import com.medicalsystem.model.Patient;
+import com.medicalsystem.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

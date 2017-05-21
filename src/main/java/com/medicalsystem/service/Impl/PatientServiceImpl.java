@@ -1,8 +1,8 @@
-package com.medicalsystem.services.Impl;
+package com.medicalsystem.service.Impl;
 
-import com.medicalsystem.domain.Patient;
-import com.medicalsystem.repositories.PatientRepository;
-import com.medicalsystem.services.PatientService;
+import com.medicalsystem.model.Patient;
+import com.medicalsystem.repository.PatientRepository;
+import com.medicalsystem.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
