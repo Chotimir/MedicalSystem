@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "choroby_s")
@@ -17,5 +18,9 @@ public class Disease {
     @Column(name = "nazwa_choroby", columnDefinition = "varchar(50)", nullable = false)
     @Getter @Setter
     private String name;
+
+    @ManyToMany(mappedBy = "diseases")
+    @Getter @Setter
+    private List<Patient> patients;
 
 }

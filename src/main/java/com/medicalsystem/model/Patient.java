@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "dane_osobowe")
@@ -29,5 +30,14 @@ public class Patient {
     @Column(name = "wiek", nullable = false)
     @Getter @Setter
     private int age;
+
+    @ManyToMany
+    @JoinTable(
+            name = "choroby_wspolistniejace",
+            joinColumns = @JoinColumn(name = "id_pacjenta", referencedColumnName = "id_pacjenta"),
+            inverseJoinColumns = @JoinColumn(name = "id_choroby", referencedColumnName = "id_choroby")
+    )
+    @Getter @Setter
+    private List<Disease> diseases;
 
 }
