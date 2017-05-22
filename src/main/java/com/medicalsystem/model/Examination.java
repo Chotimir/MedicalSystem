@@ -16,7 +16,7 @@ public class Examination {
 
     @Column(name = "nazwa_badania", columnDefinition = "varchar(50)", nullable = false)
     @Getter @Setter
-    private String examinationName;
+    private String name;
 
     @Column(name = "jednostka", columnDefinition = "varchar(10)", nullable = false)
     @Getter @Setter

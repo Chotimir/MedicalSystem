@@ -12,10 +12,10 @@ public class OperationMode {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "tryb_zabiegu")
     @Getter @Setter
-    private int operationMode;
+    private int id;
 
     @Column(name = "nazwa_trybu_zabiegu", columnDefinition = "varchar(50)", nullable = false)
     @Getter @Setter
-    private String operationModeName;
+    private String name;
 
 }

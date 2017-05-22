@@ -16,6 +16,6 @@ public class Complication {
 
     @Column(name = "nazwa_powiklania", columnDefinition = "varchar(50)", nullable = false)
     @Getter @Setter
-    private String complicationName;
+    private String name;
 
 }
