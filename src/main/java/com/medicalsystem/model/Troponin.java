@@ -23,7 +23,7 @@ public class Troponin {
     @Getter @Setter
     private float tnt;
 
-    @Column(name = "tnt_ultra", nullable = false)
+    @Column(name = "tnl_ultra", nullable = false)
     @Getter @Setter
     private float tnlUltra;
 

@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Anesthetic {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "lek_znieczulajace")
+    @Column(name = "lek_znieczulajacy")
     @Getter @Setter
     private int id;
 
