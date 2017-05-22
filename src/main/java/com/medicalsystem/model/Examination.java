@@ -19,6 +19,7 @@ public class Examination {
     private String examinationName;
 
     @Column(name = "jednostka", columnDefinition = "varchar(10)", nullable = false)
+    @Getter @Setter
     private String unit;
 
 }
