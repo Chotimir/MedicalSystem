@@ -96,4 +96,13 @@ public class Admission {
     @Getter @Setter
     private List<Troponin> troponins;
 
+    @ManyToMany
+    @JoinTable(
+            name = "leki_stosowane_przed_zabiegiem",
+            joinColumns = @JoinColumn(name = "id_przyjecia", referencedColumnName = "id_przyjecia"),
+            inverseJoinColumns = @JoinColumn(name = "id_leku", referencedColumnName = "id_leku")
+    )
+    @Getter @Setter
+    private List<Medicament> medicaments;
+
 }
