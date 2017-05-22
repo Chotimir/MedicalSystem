@@ -1,9 +1,8 @@
 package com.medicalsystem.model;
 
-
 public class Troponin {
 
-    private int admissionId;
+    private Admission admission;
     private float tnt;
     private float tnlUltra;
     private float tnl;
