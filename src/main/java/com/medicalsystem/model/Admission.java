@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "przyjecie")
@@ -82,5 +83,9 @@ public class Admission {
     @Column(name = "uwagi", columnDefinition = "text", nullable = false)
     @Getter @Setter
     private String comments;
+
+    @OneToMany(mappedBy = "admission")
+    @Getter @Setter
+    private List<Examination> examinations;
 
 }
