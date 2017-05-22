@@ -92,4 +92,8 @@ public class Admission {
     @Getter @Setter
     private List<Revisit> revisits;
 
+    @OneToMany(mappedBy = "admission")
+    @Getter @Setter
+    private List<Troponin> troponins;
+
 }
