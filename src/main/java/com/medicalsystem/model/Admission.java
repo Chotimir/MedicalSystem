@@ -105,4 +105,13 @@ public class Admission {
     @Getter @Setter
     private List<Medicament> medicaments;
 
+    @ManyToMany
+    @JoinTable(
+            name = "rodzaj_zabiegu",
+            joinColumns = @JoinColumn(name = "id_przyjecia", referencedColumnName = "id_przyjecia"),
+            inverseJoinColumns = @JoinColumn(name = "rodzaj_zabiegu", referencedColumnName = "id_rodzaju_zabiegu")
+    )
+    @Getter @Setter
+    private List<OperationType> operationTypes;
+
 }
