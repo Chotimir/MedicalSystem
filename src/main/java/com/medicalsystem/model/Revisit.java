@@ -26,7 +26,7 @@ public class Revisit {
 
     @Column(name = "data_ponownego_przyjecia", nullable = false)
     @Getter @Setter
-    private Date revisitDate;
+    private Date date;
 
     @OneToOne
     @JoinColumn(name = "przyczyna_ponownego_przyjecia")

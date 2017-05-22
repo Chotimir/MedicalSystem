@@ -88,4 +88,8 @@ public class Admission {
     @Getter @Setter
     private List<Examination> examinations;
 
+    @OneToMany(mappedBy = "admission")
+    @Getter @Setter
+    private List<Revisit> revisits;
+
 }
