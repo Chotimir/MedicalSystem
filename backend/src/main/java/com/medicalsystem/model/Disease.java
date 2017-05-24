@@ -19,6 +19,10 @@ public class Disease {
     @Getter @Setter
     private String name;
 
+    @OneToMany(mappedBy = "disease")
+    @Getter @Setter
+    private List<DiseaseDescription> descriptions;
+
     public Disease() {}
 
     public Disease(int id, String name) {
