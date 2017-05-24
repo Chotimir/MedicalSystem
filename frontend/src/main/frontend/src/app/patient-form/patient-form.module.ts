@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { PatientFormComponent } from './patient-form.component';
 import { TranslateModule } from '@ngx-translate/core';
 
+import {PatientFormRoutingModule} from "./patient-form-routing.module";
+
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule.forChild()
+    TranslateModule,
+    PatientFormRoutingModule
   ],
   declarations: [PatientFormComponent]
 })

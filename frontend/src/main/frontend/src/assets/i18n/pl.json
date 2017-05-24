@@ -1,7 +1,8 @@
 {
-	"Female": "Kobieta",
-	"First name": "Imię",
-	"Last name": "Nazwisko",
-	"Male": "Mężczyzna",
-	"Sex": "Płeć"
+  "PATIENT": "Pacjent",
+	"FEMALE": "Kobieta",
+	"FIRST NAME": "Imię",
+	"LAST NAME": "Nazwisko",
+	"MALE": "Mężczyzna",
+	"SEX": "Płeć"
 }
