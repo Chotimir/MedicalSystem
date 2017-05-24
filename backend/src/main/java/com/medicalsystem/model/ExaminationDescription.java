@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "badania_s")
 public class ExaminationDescription {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name = "id_badania")
     @Getter @Setter
     private int id;
@@ -22,4 +22,11 @@ public class ExaminationDescription {
     @Getter @Setter
     private String unit;
 
+    public ExaminationDescription() {}
+
+    public ExaminationDescription(int id, String name, String unit) {
+        this.id = id;
+        this.name = name;
+        this.unit = unit;
+    }
 }
