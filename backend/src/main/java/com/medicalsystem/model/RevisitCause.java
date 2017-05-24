@@ -9,13 +9,20 @@ import javax.persistence.*;
 @Table(name = "przyczyna_ponownego_przyjecia_s")
 public class RevisitCause {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name = "przyczyna_ponownego_przyjecia")
     @Getter @Setter
     private int id;
 
-    @Column(name = "nazwa_przyczyny", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "nazwa_przyczyny", columnDefinition = "varchar(70)", nullable = false)
     @Getter @Setter
     private String name;
+
+    public RevisitCause() {}
+
+    public RevisitCause(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
 }

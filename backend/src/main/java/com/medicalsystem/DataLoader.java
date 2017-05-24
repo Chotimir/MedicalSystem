@@ -22,9 +22,10 @@ public class DataLoader implements ApplicationRunner {
     private final ComplicationService complicationService;
     private final ComplicationDescriptionService complicationDescriptionService;
     private final ReoperationService reoperationService;
+    private final RevisitCauseService revisitCauseService;
 
     @Autowired
-    public DataLoader(OperationTypeService operationTypeService, AnesthesiaService anesthesiaService, AnestheticService anestheticService, OperationModeService operationModeService, SmokingService smokingService, DiseaseService diseaseService, DiseaseDescriptionService diseaseDescriptionService, ExaminationDescriptionService examinationDescriptionService, MedicamentService medicamentService, ComplicationService complicationService, ComplicationDescriptionService complicationDescriptionService, ReoperationService reoperationService) {
+    public DataLoader(OperationTypeService operationTypeService, AnesthesiaService anesthesiaService, AnestheticService anestheticService, OperationModeService operationModeService, SmokingService smokingService, DiseaseService diseaseService, DiseaseDescriptionService diseaseDescriptionService, ExaminationDescriptionService examinationDescriptionService, MedicamentService medicamentService, ComplicationService complicationService, ComplicationDescriptionService complicationDescriptionService, ReoperationService reoperationService, RevisitCauseService revisitCauseService) {
         this.operationTypeService = operationTypeService;
         this.anesthesiaService = anesthesiaService;
         this.anestheticService = anestheticService;
@@ -37,6 +38,7 @@ public class DataLoader implements ApplicationRunner {
         this.complicationService = complicationService;
         this.complicationDescriptionService = complicationDescriptionService;
         this.reoperationService = reoperationService;
+        this.revisitCauseService = revisitCauseService;
     }
 
     @Override
@@ -312,5 +314,11 @@ public class DataLoader implements ApplicationRunner {
         reoperationService.saveOrUpdate(new Reoperation(6, "z powodu niedokrwienia jelit"));
         reoperationService.saveOrUpdate(new Reoperation(7, "z powodu wytrzewienia"));
         reoperationService.saveOrUpdate(new Reoperation(8, "laparotomia zwiadowcza"));
+
+
+        // przyczyna_ponownego_przyjecia_s
+        revisitCauseService.saveOrUpdate(new RevisitCause(1, "zakażenie miejsca operowanego"));
+        revisitCauseService.saveOrUpdate(new RevisitCause(2, "niedrożność protezy i niedokrwienie kończyn dolnych"));
+        revisitCauseService.saveOrUpdate(new RevisitCause(3, "inne"));
     }
 }
