@@ -9,12 +9,12 @@ import javax.persistence.*;
 @Table(name = "opis_powiklania_s")
 public class ComplicationDescription {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name = "id_opis_powiklania")
     @Getter @Setter
     private int id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_powiklania", nullable = false)
     @Getter @Setter
     private Complication complication;
@@ -23,4 +23,11 @@ public class ComplicationDescription {
     @Getter @Setter
     private String description;
 
+    public ComplicationDescription() {}
+
+    public ComplicationDescription(int id, Complication complication, String description) {
+        this.id = id;
+        this.complication = complication;
+        this.description = description;
+    }
 }

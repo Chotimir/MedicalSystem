@@ -4,12 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "powiklania_s")
 public class Complication {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name = "id_powiklania")
     @Getter @Setter
     private int id;
@@ -18,4 +19,14 @@ public class Complication {
     @Getter @Setter
     private String name;
 
+    @OneToMany(mappedBy = "complication")
+    @Getter @Setter
+    private List<ComplicationDescription> descriptions;
+
+    public Complication() {}
+
+    public Complication(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
