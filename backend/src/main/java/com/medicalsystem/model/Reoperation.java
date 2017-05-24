@@ -9,13 +9,19 @@ import javax.persistence.*;
 @Table(name = "reoperacja_s")
 public class Reoperation {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name = "reoperacja")
     @Getter @Setter
     private int id;
 
-    @Column(name = "nazwa_reoperacji", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "nazwa_reoperacji", columnDefinition = "varchar(100)", nullable = false)
     @Getter @Setter
     private String name;
 
+    public Reoperation() {}
+
+    public Reoperation(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

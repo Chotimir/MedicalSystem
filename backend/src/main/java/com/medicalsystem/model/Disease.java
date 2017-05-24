@@ -19,7 +19,7 @@ public class Disease {
     @Getter @Setter
     private String name;
 
-    @OneToMany(mappedBy = "disease")
+    @OneToMany(mappedBy = "disease", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Getter @Setter
     private List<DiseaseDescription> descriptions;
 

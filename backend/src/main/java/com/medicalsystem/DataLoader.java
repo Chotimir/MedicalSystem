@@ -21,9 +21,10 @@ public class DataLoader implements ApplicationRunner {
     private final MedicamentService medicamentService;
     private final ComplicationService complicationService;
     private final ComplicationDescriptionService complicationDescriptionService;
+    private final ReoperationService reoperationService;
 
     @Autowired
-    public DataLoader(OperationTypeService operationTypeService, AnesthesiaService anesthesiaService, AnestheticService anestheticService, OperationModeService operationModeService, SmokingService smokingService, DiseaseService diseaseService, DiseaseDescriptionService diseaseDescriptionService, ExaminationDescriptionService examinationDescriptionService, MedicamentService medicamentService, ComplicationService complicationService, ComplicationDescriptionService complicationDescriptionService) {
+    public DataLoader(OperationTypeService operationTypeService, AnesthesiaService anesthesiaService, AnestheticService anestheticService, OperationModeService operationModeService, SmokingService smokingService, DiseaseService diseaseService, DiseaseDescriptionService diseaseDescriptionService, ExaminationDescriptionService examinationDescriptionService, MedicamentService medicamentService, ComplicationService complicationService, ComplicationDescriptionService complicationDescriptionService, ReoperationService reoperationService) {
         this.operationTypeService = operationTypeService;
         this.anesthesiaService = anesthesiaService;
         this.anestheticService = anestheticService;
@@ -35,6 +36,7 @@ public class DataLoader implements ApplicationRunner {
         this.medicamentService = medicamentService;
         this.complicationService = complicationService;
         this.complicationDescriptionService = complicationDescriptionService;
+        this.reoperationService = reoperationService;
     }
 
     @Override
@@ -298,5 +300,17 @@ public class DataLoader implements ApplicationRunner {
         complicationDescriptionService.saveOrUpdate(new ComplicationDescription(65, complications[29], "tak"));
         complicationDescriptionService.saveOrUpdate(new ComplicationDescription(66, complications[29], "brak danych"));
         complicationDescriptionService.saveOrUpdate(new ComplicationDescription(67, complications[29], "nie dotyczy"));
+
+
+        // reoperacja_s
+        reoperationService.saveOrUpdate(new Reoperation(0, "nie"));
+        reoperationService.saveOrUpdate(new Reoperation(1, "z powodu krwawienia z rany"));
+        reoperationService.saveOrUpdate(new Reoperation(2, "z powodu niedrożności wszczepionej protezy i niedokrwienia kończyn/kończyny dolnej"));
+        reoperationService.saveOrUpdate(new Reoperation(3, "z powodu zakażenia"));
+        reoperationService.saveOrUpdate(new Reoperation(4, "z powodu niedokrwienia kończyn dolnych"));
+        reoperationService.saveOrUpdate(new Reoperation(5, "amputacja z powodu niedokrwienia kończyn dolnych"));
+        reoperationService.saveOrUpdate(new Reoperation(6, "z powodu niedokrwienia jelit"));
+        reoperationService.saveOrUpdate(new Reoperation(7, "z powodu wytrzewienia"));
+        reoperationService.saveOrUpdate(new Reoperation(8, "laparotomia zwiadowcza"));
     }
 }

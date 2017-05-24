@@ -19,7 +19,7 @@ public class Complication {
     @Getter @Setter
     private String name;
 
-    @OneToMany(mappedBy = "complication")
+    @OneToMany(mappedBy = "complication", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Getter @Setter
     private List<ComplicationDescription> descriptions;
 
