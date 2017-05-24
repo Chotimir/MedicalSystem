@@ -25,7 +25,13 @@ public class DataLoader implements ApplicationRunner {
     private final RevisitCauseService revisitCauseService;
 
     @Autowired
-    public DataLoader(OperationTypeService operationTypeService, AnesthesiaService anesthesiaService, AnestheticService anestheticService, OperationModeService operationModeService, SmokingService smokingService, DiseaseService diseaseService, DiseaseDescriptionService diseaseDescriptionService, ExaminationDescriptionService examinationDescriptionService, MedicamentService medicamentService, ComplicationService complicationService, ComplicationDescriptionService complicationDescriptionService, ReoperationService reoperationService, RevisitCauseService revisitCauseService) {
+    public DataLoader(OperationTypeService operationTypeService, AnesthesiaService anesthesiaService,
+                      AnestheticService anestheticService, OperationModeService operationModeService,
+                      SmokingService smokingService, DiseaseService diseaseService,
+                      DiseaseDescriptionService diseaseDescriptionService,
+                      ExaminationDescriptionService examinationDescriptionService, MedicamentService medicamentService,
+                      ComplicationService complicationService, ComplicationDescriptionService complicationDescriptionService,
+                      ReoperationService reoperationService, RevisitCauseService revisitCauseService) {
         this.operationTypeService = operationTypeService;
         this.anesthesiaService = anesthesiaService;
         this.anestheticService = anestheticService;
