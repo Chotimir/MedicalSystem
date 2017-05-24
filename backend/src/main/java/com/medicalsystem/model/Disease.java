@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "choroby_s")
 public class Disease {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name = "id_choroby")
     @Getter @Setter
     private int id;
@@ -19,8 +19,10 @@ public class Disease {
     @Getter @Setter
     private String name;
 
-    @ManyToMany(mappedBy = "diseases")
-    @Getter @Setter
-    private List<Patient> patients;
+    public Disease() {}
 
+    public Disease(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

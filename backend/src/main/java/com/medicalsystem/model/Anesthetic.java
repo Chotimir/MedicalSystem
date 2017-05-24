@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "lek_znieczulajacy_s")
 public class Anesthetic {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name = "lek_znieczulajacy")
     @Getter @Setter
     private int id;
@@ -18,4 +18,10 @@ public class Anesthetic {
     @Getter @Setter
     private String name;
 
+    public Anesthetic() {}
+
+    public Anesthetic(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
