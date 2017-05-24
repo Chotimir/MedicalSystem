@@ -1,11 +1,14 @@
 package com.medicalsystem.speadsheet;
 
+import com.medicalsystem.model.Admission;
 import com.medicalsystem.model.Patient;
+import com.medicalsystem.util.DateUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 
 public class MSExcelImporter {
 
@@ -47,6 +50,25 @@ public class MSExcelImporter {
         patient.setAge(age);
 
         return patient;
+    }
+
+    private Admission createAdmission(Row row) {
+        Admission admission = new Admission();
+
+        // set admission date
+        String admissionDateStr = row.getCell(5).getStringCellValue();
+        Date admissionDate = DateUtils.fromExcelString(admissionDateStr);
+        admission.setAdmissionDate(admissionDate);
+
+        // set operation date
+        String operationDateStr = row.getCell(6).getStringCellValue();
+        Date operationDate = DateUtils.fromExcelString(operationDateStr);
+        admission.setOperationDate(operationDate);
+
+
+
+        return admission;
+
     }
 
     private Sheet getSheet(String spreadsheetFilePath) {
