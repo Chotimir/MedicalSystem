@@ -18,9 +18,10 @@ public class DataLoader implements ApplicationRunner {
     private final DiseaseService diseaseService;
     private final DiseaseDescriptionService diseaseDescriptionService;
     private final ExaminationDescriptionService examinationDescriptionService;
+    private final MedicamentService medicamentService;
 
     @Autowired
-    public DataLoader(OperationTypeService operationTypeService, AnesthesiaService anesthesiaService, AnestheticService anestheticService, OperationModeService operationModeService, SmokingService smokingService, DiseaseService diseaseService, DiseaseDescriptionService diseaseDescriptionService, ExaminationDescriptionService examinationDescriptionService) {
+    public DataLoader(OperationTypeService operationTypeService, AnesthesiaService anesthesiaService, AnestheticService anestheticService, OperationModeService operationModeService, SmokingService smokingService, DiseaseService diseaseService, DiseaseDescriptionService diseaseDescriptionService, ExaminationDescriptionService examinationDescriptionService, MedicamentService medicamentService) {
         this.operationTypeService = operationTypeService;
         this.anesthesiaService = anesthesiaService;
         this.anestheticService = anestheticService;
@@ -29,6 +30,7 @@ public class DataLoader implements ApplicationRunner {
         this.diseaseService = diseaseService;
         this.diseaseDescriptionService = diseaseDescriptionService;
         this.examinationDescriptionService = examinationDescriptionService;
+        this.medicamentService = medicamentService;
     }
 
     @Override
@@ -138,5 +140,20 @@ public class DataLoader implements ApplicationRunner {
         examinationDescriptionService.saveOrUpdate(new ExaminationDescription(4, "Hb", "g/dl"));
         examinationDescriptionService.saveOrUpdate(new ExaminationDescription(5, "WBC", "tys/ul"));
         examinationDescriptionService.saveOrUpdate(new ExaminationDescription(6, "fibrynogen", "g/l"));
+
+
+        // leki_s
+        medicamentService.saveOrUpdate(new Medicament(1, "Aspiryna"));
+        medicamentService.saveOrUpdate(new Medicament(2, "Statyna"));
+        medicamentService.saveOrUpdate(new Medicament(3, "ACE-I"));
+        medicamentService.saveOrUpdate(new Medicament(4, "ARB"));
+        medicamentService.saveOrUpdate(new Medicament(5, "β-bloker"));
+        medicamentService.saveOrUpdate(new Medicament(6, "Ca-bloker"));
+        medicamentService.saveOrUpdate(new Medicament(7, "werapamil, dilitiazem"));
+        medicamentService.saveOrUpdate(new Medicament(8, "Diuretyk"));
+        medicamentService.saveOrUpdate(new Medicament(9, "Doustne antykoagulanty"));
+        medicamentService.saveOrUpdate(new Medicament(10, "HDCz"));
+        medicamentService.saveOrUpdate(new Medicament(11, "klopidogrel"));
+        medicamentService.saveOrUpdate(new Medicament(12, "fibrat"));
     }
 }
