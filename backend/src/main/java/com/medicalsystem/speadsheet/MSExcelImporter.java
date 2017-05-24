@@ -23,7 +23,7 @@ public class MSExcelImporter {
     }
 
     private void insertRow(Row row) {
-
+        // tu tworzysz obiekty z jednego rzedu z excela, robisz powiazania i zapisujesz do bazy
     }
 
     private Patient createPatient(Row row) {
