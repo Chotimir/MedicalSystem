@@ -2,17 +2,18 @@
   <h1>Patient {{ID}}</h1>
   <form>
     <div class="form-group">
-      <label for="firstName">Imię</label>
+      <label for="firstName" translate>First name</label>
       <input type="text" class="form-control" id="firstName" required>
     </div>
     <div class="form-group">
-      <label for="lastName">Last Name</label>
+      <label for="lastName" translate>Last name</label>
       <input type="text" class="form-control" id="lastName" required>
     </div>
     <div class="form-group">
-      <label for="sex">Hero Power</label>
+      <label for="sex" translate>Sex</label>
       <select class="form-control" id="sex" required>
-        <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+        <option translate>Female</option>
+        <option translate>Male</option>
       </select>
     </div>
     <button type="submit">Submit</button>
