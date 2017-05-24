@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PatientFormComponent } from './patient-form/patient-form.component';
+import { PatientFormComponent } from './patient-form.component';
 
 @NgModule({
   imports: [
