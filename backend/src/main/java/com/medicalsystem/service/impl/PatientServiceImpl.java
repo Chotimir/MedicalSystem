@@ -11,8 +11,12 @@ import java.util.List;
 @Service
 public class PatientServiceImpl implements PatientService {
 
+    private final PatientRepository patientRepository;
+
     @Autowired
-    private PatientRepository patientRepository;
+    public PatientServiceImpl(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
+    }
 
     @Override
     public List<Patient> listAll() {

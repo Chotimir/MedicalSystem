@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "rodzaj_zabiegu_s")
 public class OperationType {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name = "id_rodzaju_zabiegu")
     @Getter @Setter
     private int id;
@@ -18,4 +18,10 @@ public class OperationType {
     @Getter @Setter
     private String name;
 
+    public OperationType() {}
+
+    public OperationType(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
