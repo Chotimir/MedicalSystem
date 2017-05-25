@@ -4,6 +4,7 @@ import com.medicalsystem.model.*;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ObjectFromExcelFactory {
     public static Patient createPatient(Row row) {
@@ -39,8 +40,8 @@ public class ObjectFromExcelFactory {
 
         admission.setMaxAneurysmSize((int) row.getCell(13).getNumericCellValue());
 
-        //imageExamination
-        //aneurysmLocation
+        admission.setImageExamination(1);
+        admission.setAneurysmLocation(1);
 
         //!!!!!
         Smoking smoking = new Smoking((int) row.getCell(14).getNumericCellValue(), "");
@@ -62,6 +63,7 @@ public class ObjectFromExcelFactory {
         //revisits
         //troponins
         //leki_stosowane_przed_zabiegiem
+//        List<Medicament> medicaments =
         //rodzaj_zabiegu
 
         return admission;
@@ -84,17 +86,17 @@ public class ObjectFromExcelFactory {
         return anesthetic;
     }
 
-    public static Complication createComplication(Row row) {
-        Complication complication = new Complication();
-
-
-        return complication;
-    }
-
-    public static ComplicationDescription createComplicationDescription(Row row) {
-        ComplicationDescription complicationDescription = new ComplicationDescription();
-        return complicationDescription;
-    }
+//    public static Complication createComplication(Row row) {
+//        Complication complication = new Complication();
+//
+//
+//        return complication;
+//    }
+//
+//    public static ComplicationDescription createComplicationDescription(Row row) {
+//        ComplicationDescription complicationDescription = new ComplicationDescription();
+//        return complicationDescription;
+//    }
 
     public static Disease createDisease(Row row) {
         Disease disease = new Disease();
@@ -108,27 +110,25 @@ public class ObjectFromExcelFactory {
 
     public static Examination createExamination(Row row) {
         Examination examination = new Examination();
+        examination.setResult(1.0f); //brak w excelu
         return examination;
     }
 
-    public static ExaminationDescription createExaminationDescription(Row row) {
-        ExaminationDescription examinationDescription = new ExaminationDescription();
-        return examinationDescription;
-    }
+//    public static ExaminationDescription createExaminationDescription(Row row) {
+//        ExaminationDescription examinationDescription = new ExaminationDescription();
+//        return examinationDescription;
+//    }
 
-    public static Medicament createMedicament(Row row) {
-        Medicament medicament = new Medicament();
-
-        return medicament;
-    }
+//    public static Medicament createMedicament(Row row) {
+//        Medicament medicament = new Medicament();
+//
+//        return medicament;
+//    }
 
     public static Operation createOperation(Row row) {
         Operation operation = new Operation();
-        OperationMode operationMode = new OperationMode();
-        operationMode.setId((int) row.getCell(10).getNumericCellValue());
-        operationMode.setName("");
 
-        operation.setOperationMode(operationMode);
+
 
         //anesthesia cell 8
         //anesthetic cell 10
@@ -136,8 +136,9 @@ public class ObjectFromExcelFactory {
         operation.setDuration((int) row.getCell(48).getNumericCellValue());
 
         operation.setAortaClottingTime((int) row.getCell(49).getNumericCellValue());
-
-        operation.setNoradrenaline((row.getCell(51).getBooleanCellValue()));
+        int numericCellValue = (int) row.getCell(51).getNumericCellValue();
+        Boolean nora = Boolean.valueOf(String.valueOf(numericCellValue));
+        operation.setNoradrenaline(nora);
         operation.setAdrenaline((row.getCell(52).getBooleanCellValue()));
         operation.setDopamine((row.getCell(53).getBooleanCellValue()));
         operation.setDobutamine((row.getCell(54).getBooleanCellValue()));
@@ -150,6 +151,7 @@ public class ObjectFromExcelFactory {
         operation.setExtendedVentilation((row.getCell(62).getBooleanCellValue()));
         operation.setVentilatorDays((int) row.getCell(63).getNumericCellValue());
 
+
         //"powiklania_operacja"
         //complications
 
@@ -158,7 +160,7 @@ public class ObjectFromExcelFactory {
 
     public static OperationMode createOperationMode(Row row) {
         OperationMode operationMode = new OperationMode();
-        operationMode.setId((int) row.getCell(10).getNumericCellValue());
+//        operationMode.setId((int) row.getCell(10).getNumericCellValue());
         //nazwa trybu
 
         return operationMode;
@@ -182,8 +184,6 @@ public class ObjectFromExcelFactory {
 
     public static Revisit createRevisit(Row row) {
         //id ponownej wizity
-        //id przyjecia
-
         Revisit revisit = new Revisit();
         revisit.setControlVisit((int) row.getCell(100).getNumericCellValue());
 
@@ -192,7 +192,7 @@ public class ObjectFromExcelFactory {
         try {
             date = new Date(dateCellValue.getYear(), dateCellValue.getMonth(), dateCellValue.getDay());
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         revisit.setDate(date);
 
@@ -207,17 +207,14 @@ public class ObjectFromExcelFactory {
         return revisitCause;
     }
 
-    public static Smoking createSmoking(Row row) {
-        //!!!!!
-        Smoking smoking = new Smoking((int) row.getCell(14).getNumericCellValue(), "");
-        return smoking;
-    }
+//    public static Smoking createSmoking(Row row) {
+//        //!!!!!
+//        Smoking smoking = new Smoking((int) row.getCell(14).getNumericCellValue(), "");
+//        return smoking;
+//    }
 
     public static Troponin createTroponin(Row row) {
         Troponin troponin = new Troponin();
-        //set id
-        //set addmission
-
         troponin.setTnt((float) row.getCell(66).getNumericCellValue());
         troponin.setTnlUltra((float) row.getCell(67).getNumericCellValue());
         troponin.setTnl((float) row.getCell(68).getNumericCellValue());

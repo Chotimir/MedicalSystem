@@ -2,6 +2,7 @@ package com.medicalsystem.controller;
 
 import com.medicalsystem.ObjectFromExcelFactory;
 import com.medicalsystem.excel.ExcelParser;
+import com.medicalsystem.model.*;
 import com.medicalsystem.service.*;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -9,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 //This is just a temporary controller for tests (I know, it looks awful)
 @RestController
@@ -81,30 +84,121 @@ public class ImportFromExcelController {
         Iterator<Row> rowIterator = sheet.iterator();
         rowIterator.next();
         rowIterator.next();
-        while (rowIterator.hasNext()) {
+        int i = 0;
+        while (rowIterator.hasNext() && i < 5){
             insertRow(rowIterator.next());
+            i++;
         }
     }
 
     private void insertRow(Row row) {
+        Operation operation1 = ObjectFromExcelFactory.createOperation(row);
+        operation1.setOperationMode(operationModeService.getById(1));
+        operation1.setAnesthesia(anesthesiaService.getById(1));
+        operation1.setAnesthetic(anestheticService.getById(1));
+        List<Complication> complications = new ArrayList<>();
+        complications.add(complicationService.getById(1));
+        operation1.setComplications(complications);
+        operationService.saveOrUpdate(operation1);
         patientService.saveOrUpdate(ObjectFromExcelFactory.createPatient(row));
-//        admissionService.saveOrUpdate(ObjectFromExcelFactory.createAdmission(row));
-//        anesthesiaService.saveOrUpdate(ObjectFromExcelFactory.createAnesthesia(row));
-//        anestheticService.saveOrUpdate(ObjectFromExcelFactory.createAnesthetic(row));
+
+        Admission admission = ObjectFromExcelFactory.createAdmission(row);
+        List<Medicament> medicaments = new ArrayList<>(2);
+        medicaments.add(medicamentService.getById(1));
+        medicaments.add(medicamentService.getById(2));
+        admission.setMedicaments(medicaments);
+
+        List<OperationType> operationTypes = new ArrayList<>(2);
+        operationTypes.add(operationTypeService.getById(1));
+        operationTypes.add(operationTypeService.getById(2));
+        admission.setOperationTypes(operationTypes);
+
+        List<Troponin> troponins = new ArrayList<>(2);
+        troponins.add(troponinService.getById(1));
+        troponins.add(troponinService.getById(2));
+        admission.setTroponins(troponins);
+
+        List<Revisit> revisits = new ArrayList<>(2);
+        revisits.add(revisitService.getById(admission.getId()));
+        revisits.add(revisitService.getById(admission.getId()));
+        admission.setRevisits(revisits);
+
+        List<Examination> examinations = new ArrayList<>(2);
+        examinations.add(examinationService.getById(admission.getId()));
+        admission.setExaminations(examinations);
+
+        admission.setSmoking(smokingService.getById((int) row.getCell(14).getNumericCellValue()));
+
+        Reoperation reoperation = reoperationService.getById(1);
+        admission.setReopration(reoperation);
+
+        Patient patient = patientService.getById(0);
+        admission.setPatient(patient);
+
+        Operation operation = operationService.getById(0);
+        admission.setOperation(operation);
+
+        admissionService.saveOrUpdate(admission);
+
+
+
+        anesthesiaService.saveOrUpdate(anesthesiaService.getById((int) row.getCell(8).getNumericCellValue()));
+
+
+        anestheticService.saveOrUpdate(anestheticService.getById((int) row.getCell(9).getNumericCellValue()));
+
+
+
+
 //        complicationService.saveOrUpdate(ObjectFromExcelFactory.createComplication(row));
 //        complicationDescriptionService.saveOrUpdate(ObjectFromExcelFactory.createComplicationDescription(row));
 //        diseaseService.saveOrUpdate(ObjectFromExcelFactory.createDisease(row));
 //        diseaseDescriptionService.saveOrUpdate(ObjectFromExcelFactory.createDiseaseDescription(row));
-//        examinationService.saveOrUpdate(ObjectFromExcelFactory.createExamination(row));
-//        examinationDescriptionService.saveOrUpdate(ObjectFromExcelFactory.createExaminationDescription(row));
-//        medicamentService.saveOrUpdate(ObjectFromExcelFactory.createMedicament(row));
-//        operationService.saveOrUpdate(ObjectFromExcelFactory.createOperation(row));
-//        operationModeService.saveOrUpdate(ObjectFromExcelFactory.createOperationMode(row));
-//        operationTypeService.saveOrUpdate(ObjectFromExcelFactory.createOperationType(row));
+
+
+
+
+        Examination examination = ObjectFromExcelFactory.createExamination(row);
+        Admission admission3 = admissionService.getById(examination.getId());
+        examination.setAdmission(admission3);
+        ExaminationDescription examinationDescription = examinationDescriptionService.getById(3);
+        examination.setDescription(examinationDescription);
+        examinationService.saveOrUpdate(examination);
+
+//        examinationDescriptionService.saveOrUpdate(ObjectFromExcelFactory.createExaminationDescription(row)); already exist
+//        medicamentService.saveOrUpdate(ObjectFromExcelFactory.createMedicament(row)); already exist
+
+
+
+
+
+
+
+        operationModeService.saveOrUpdate(operationModeService.getById((int) row.getCell(10).getNumericCellValue()));
+
+//        operationTypeService.saveOrUpdate(ObjectFromExcelFactory.createOperationType(row));already exist
 //        reoperationService.saveOrUpdate(ObjectFromExcelFactory.createReoperation(row));
-//        revisitService.saveOrUpdate(ObjectFromExcelFactory.createRevisit(row));
+
+
+
+        Revisit revisit = ObjectFromExcelFactory.createRevisit(row);
+        Admission admission1 = admissionService.getById(revisit.getId());
+        revisit.setAdmission(admission1);
+        revisitService.saveOrUpdate(revisit);
+
 //        revisitCauseService.saveOrUpdate(ObjectFromExcelFactory.createRevisitCause(row));
 //        smokingService.saveOrUpdate(ObjectFromExcelFactory.createSmoking(row));
-//        troponinService.saveOrUpdate(ObjectFromExcelFactory.createTroponin(row));
+
+
+
+        smokingService.saveOrUpdate(smokingService.getById((int) row.getCell(14).getNumericCellValue()));
+
+
+
+
+        Troponin troponin = ObjectFromExcelFactory.createTroponin(row);
+        Admission admission2 = admissionService.getById(troponin.getId());
+        troponin.setAdmission(admission2);
+        troponinService.saveOrUpdate(troponin);
     }
 }
