@@ -81,15 +81,30 @@ public class ImportFromExcelController {
         Iterator<Row> rowIterator = sheet.iterator();
         rowIterator.next();
         rowIterator.next();
-        int i = 1;
-        while (rowIterator.hasNext()) { //bo od 32 jest data spieprzona, to-do
+        while (rowIterator.hasNext()) {
             insertRow(rowIterator.next());
-            i++;
         }
     }
 
     private void insertRow(Row row) {
         patientService.saveOrUpdate(ObjectFromExcelFactory.createPatient(row));
 //        admissionService.saveOrUpdate(ObjectFromExcelFactory.createAdmission(row));
+//        anesthesiaService.saveOrUpdate(ObjectFromExcelFactory.createAnesthesia(row));
+//        anestheticService.saveOrUpdate(ObjectFromExcelFactory.createAnesthetic(row));
+//        complicationService.saveOrUpdate(ObjectFromExcelFactory.createComplication(row));
+//        complicationDescriptionService.saveOrUpdate(ObjectFromExcelFactory.createComplicationDescription(row));
+//        diseaseService.saveOrUpdate(ObjectFromExcelFactory.createDisease(row));
+//        diseaseDescriptionService.saveOrUpdate(ObjectFromExcelFactory.createDiseaseDescription(row));
+//        examinationService.saveOrUpdate(ObjectFromExcelFactory.createExamination(row));
+//        examinationDescriptionService.saveOrUpdate(ObjectFromExcelFactory.createExaminationDescription(row));
+//        medicamentService.saveOrUpdate(ObjectFromExcelFactory.createMedicament(row));
+//        operationService.saveOrUpdate(ObjectFromExcelFactory.createOperation(row));
+//        operationModeService.saveOrUpdate(ObjectFromExcelFactory.createOperationMode(row));
+//        operationTypeService.saveOrUpdate(ObjectFromExcelFactory.createOperationType(row));
+//        reoperationService.saveOrUpdate(ObjectFromExcelFactory.createReoperation(row));
+//        revisitService.saveOrUpdate(ObjectFromExcelFactory.createRevisit(row));
+//        revisitCauseService.saveOrUpdate(ObjectFromExcelFactory.createRevisitCause(row));
+//        smokingService.saveOrUpdate(ObjectFromExcelFactory.createSmoking(row));
+//        troponinService.saveOrUpdate(ObjectFromExcelFactory.createTroponin(row));
     }
 }
