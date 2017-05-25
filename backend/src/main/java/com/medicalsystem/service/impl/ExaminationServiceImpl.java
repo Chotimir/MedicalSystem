@@ -4,9 +4,11 @@ import com.medicalsystem.model.Examination;
 import com.medicalsystem.repository.ExaminationRepository;
 import com.medicalsystem.service.ExaminationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ExaminationServiceImpl implements ExaminationService {
 
     private final ExaminationRepository examinationRepository;

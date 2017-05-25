@@ -69,7 +69,7 @@ public class Admission {
 
     @Column(name = "p_possu", nullable = false)
     @Getter @Setter
-    private int pPossu;
+    private double pPossu;
 
     @Column(name = "utrata_przytomnosci", nullable = false)
     @Getter @Setter

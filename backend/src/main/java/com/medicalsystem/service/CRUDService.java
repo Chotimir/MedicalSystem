@@ -7,7 +7,7 @@ public interface CRUDService<T> {
 
     T getById(Integer id);
 
-    T saveOrUpdate(T t);
+    T saveOrUpdate(T modelObject);
 
     void delete(Integer id);
 }
