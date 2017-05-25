@@ -1,8 +1,9 @@
 {
-  "PATIENT": "Patient",
 	"FEMALE": "Female",
-	"FIRST NAME": "First Name",
-	"LAST NAME": "Last Name",
+	"FIRST NAME": "First name",
+	"LAST NAME": "Last name",
 	"MALE": "Male",
+	"PATIENT": "Patient",
+	"PERSONAL DATA": "Personal data",
 	"SEX": "Sex"
 }
