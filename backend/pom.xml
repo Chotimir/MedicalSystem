@@ -8,7 +8,7 @@
 
 	<parent>
 		<groupId>medicalsystem</groupId>
-		<artifactId>parent</artifactId>
+		<artifactId>MedicalSystem</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
