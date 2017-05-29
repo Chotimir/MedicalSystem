@@ -1,3 +1,25 @@
-<p>
-  home works!
-</p>
+<div class="container-fluid top">
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+    <a class="navbar-brand" href="#">Medical System</a>
+    <div class="collapse navbar-collapse center">
+      <ul class="nav navbar-nav" routerLinkActive="active">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="search" translate>Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="import" translate>Import</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="admin" translate>Admin</a>
+        </li>
+      </ul>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="auth" translate>Logout</a>
+      </li>
+    </ul>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>

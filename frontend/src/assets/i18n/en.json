@@ -1,9 +1,19 @@
 {
-	"FEMALE": "Female",
-	"FIRST NAME": "First name",
-	"LAST NAME": "Last name",
-	"MALE": "Male",
-	"PATIENT": "Patient",
-	"PERSONAL DATA": "Personal data",
-	"SEX": "Sex"
+	"Admin": "",
+	"Cancel": "",
+	"Email": "",
+	"Female": "",
+	"First Name": "",
+	"Import": "",
+	"Last Name": "",
+	"Login": "",
+	"Logout": "",
+	"Male": "",
+	"Password": "",
+	"Register": "",
+	"Repeat Password": "",
+	"Search": "",
+	"Sex": "",
+	"Submit": "",
+	"Username": ""
 }

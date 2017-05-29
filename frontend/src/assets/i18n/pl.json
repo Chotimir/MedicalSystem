@@ -1,9 +1,19 @@
 {
-	"FEMALE": "Kobieta",
-	"FIRST NAME": "Imię",
-	"LAST NAME": "Nazwisko",
-	"MALE": "Mężczyzna",
-	"PATIENT": "Pacjent",
-	"PERSONAL DATA": "Dane osobowe",
-	"SEX": "Płeć"
+	"Admin": "Administracja",
+	"Cancel": "Anuluj",
+	"Email": "Email",
+	"Female": "Kobieta",
+	"First Name": "Imię",
+	"Import": "Import",
+	"Last Name": "Nazwisko",
+	"Login": "Zaloguj",
+	"Logout": "Wyloguj",
+	"Male": "Mężczyzna",
+	"Password": "Hasło",
+	"Register": "Zarejestruj",
+	"Repeat Password": "Powtórz hasło",
+	"Search": "Wyszukiwanie",
+	"Sex": "Płeć",
+	"Submit": "Zapisz",
+	"Username": "Nazwa użytkownika"
 }

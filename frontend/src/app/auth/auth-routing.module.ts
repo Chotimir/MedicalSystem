@@ -10,7 +10,7 @@ export const routes: Routes = [
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'registration', component: RegistrationComponent },
-      { path: 'home', redirectTo: '/home/feed', pathMatch: 'full'},
+      { path: 'home', redirectTo: '/home/search', pathMatch: 'full'},
       { path: '', redirectTo: 'login', pathMatch: 'full'},
       { path: '**', redirectTo: 'login', pathMatch: 'full'},
     ]}
