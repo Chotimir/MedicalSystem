@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
+
+.navbar-collapse.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 992px){
+  .navbar li {
+    margin-left : 10px;
+    margin-right : 10px;
+  }
+}
+
+.nav-item {
+  text-align: center;
+}
+
+.container-fluid, .container {
+  background-color: #e3f2fd;
+  padding: 0;
+}
+
+.container-fluid.top {
+  height: 100vh;
+}
+
+.container {
+  margin-top: 20px;
+}
