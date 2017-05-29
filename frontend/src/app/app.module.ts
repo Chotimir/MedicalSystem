@@ -5,10 +5,10 @@ import { HttpModule, Http } from '@angular/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { AppRoutingModule }   from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { PatientFormModule } from "./patient-form/patient-form.module";
+import { PatientFormModule } from './patient-form/patient-form.module';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
