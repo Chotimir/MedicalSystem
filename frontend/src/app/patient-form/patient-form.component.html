@@ -25,11 +25,13 @@
     </div>
   </nav>
 
-  <div class="container">
-    <div class="container center">
-      <button type="button" class="btn btn-success" translate>Save Patient Data</button>
-      <button type="button" class="btn btn-danger" translate>Exit Without Saving</button>
+  <div class="container-fluid flex">
+    <div>
+      <button type="button" class="btn btn-success vertical" translate>Save Patient Data</button>
+      <button type="button" class="btn btn-danger vertical" translate>Exit Without Saving</button>
     </div>
-    <router-outlet></router-outlet>
+    <div class="container-fluid center">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

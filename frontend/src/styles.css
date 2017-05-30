@@ -27,15 +27,23 @@
   height: 100vh;
 }
 
-.container.center {
+.container-fluid.flex {
   display: flex;
-  align-items: center;
+  margin-top: 20px;
+}
+
+.container-fluid.center {
   justify-content: center;
 }
 
 .btn {
-  margin-right: 20px;
-  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 12px;
+}
+
+.btn.vertical {
+  display: block;
+  width: 200px;
 }
 
 body {
