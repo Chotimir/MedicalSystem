@@ -10,7 +10,7 @@ public class ObjectFromExcelFactory {
     public static Patient createPatient(Row row) {
         Patient patient = new Patient();
 
-        patient.setId((int) row.getCell(0).getNumericCellValue());
+//        patient.setId((int) row.getCell(0).getNumericCellValue());
         patient.setLastName(row.getCell(1).getStringCellValue());
         patient.setFirstName(row.getCell(2).getStringCellValue());
         patient.setSex(row.getCell(3).getStringCellValue().charAt(0));
@@ -139,16 +139,28 @@ public class ObjectFromExcelFactory {
         int numericCellValue = (int) row.getCell(51).getNumericCellValue();
         Boolean nora = Boolean.valueOf(String.valueOf(numericCellValue));
         operation.setNoradrenaline(nora);
-        operation.setAdrenaline((row.getCell(52).getBooleanCellValue()));
-        operation.setDopamine((row.getCell(53).getBooleanCellValue()));
-        operation.setDobutamine((row.getCell(54).getBooleanCellValue()));
-        operation.setEphedrine((row.getCell(55).getBooleanCellValue()));
+//        operation.setAdrenaline((row.getCell(52).getBooleanCellValue()));
+//        operation.setDopamine((row.getCell(53).getBooleanCellValue()));
+//        operation.setDobutamine((row.getCell(54).getBooleanCellValue()));
+//        operation.setEphedrine((row.getCell(55).getBooleanCellValue()));
+//        operation.setBloodLost((int) row.getCell(56).getNumericCellValue());
+//        operation.setUrineExpelled((int) row.getCell(57).getNumericCellValue());
+//        operation.setPackedCellsTransfused((int) row.getCell(58).getNumericCellValue());
+//        operation.setIcuTime((int) row.getCell(59).getNumericCellValue());
+//        operation.setHospitalTime((int) row.getCell(60).getNumericCellValue());
+//        operation.setExtendedVentilation((row.getCell(62).getBooleanCellValue()));
+//        operation.setVentilatorDays((int) row.getCell(63).getNumericCellValue());
+
+        operation.setAdrenaline(true);
+        operation.setDopamine(true);
+        operation.setDobutamine(true);
+        operation.setEphedrine(true);
         operation.setBloodLost((int) row.getCell(56).getNumericCellValue());
         operation.setUrineExpelled((int) row.getCell(57).getNumericCellValue());
         operation.setPackedCellsTransfused((int) row.getCell(58).getNumericCellValue());
         operation.setIcuTime((int) row.getCell(59).getNumericCellValue());
         operation.setHospitalTime((int) row.getCell(60).getNumericCellValue());
-        operation.setExtendedVentilation((row.getCell(62).getBooleanCellValue()));
+        operation.setExtendedVentilation(true);
         operation.setVentilatorDays((int) row.getCell(63).getNumericCellValue());
 
 

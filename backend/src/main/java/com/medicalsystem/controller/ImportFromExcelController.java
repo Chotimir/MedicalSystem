@@ -132,10 +132,10 @@ public class ImportFromExcelController {
         Reoperation reoperation = reoperationService.getById(1);
         admission.setReopration(reoperation);
 
-        Patient patient = patientService.getById(0);
+        Patient patient = patientService.getById(2);
         admission.setPatient(patient);
 
-        Operation operation = operationService.getById(0);
+        Operation operation = operationService.getById(1);
         admission.setOperation(operation);
 
         admissionService.saveOrUpdate(admission);
@@ -159,7 +159,8 @@ public class ImportFromExcelController {
 
 
         Examination examination = ObjectFromExcelFactory.createExamination(row);
-        Admission admission3 = admissionService.getById(examination.getId());
+//        Admission admission3 = admissionService.getById(3);
+        Admission admission3 = admissionService.getById(3);
         examination.setAdmission(admission3);
         ExaminationDescription examinationDescription = examinationDescriptionService.getById(3);
         examination.setDescription(examinationDescription);
@@ -182,7 +183,8 @@ public class ImportFromExcelController {
 
 
         Revisit revisit = ObjectFromExcelFactory.createRevisit(row);
-        Admission admission1 = admissionService.getById(revisit.getId());
+//        Admission admission1 = admissionService.getById(revisit.getId());
+        Admission admission1 = admissionService.getById(3);
         revisit.setAdmission(admission1);
         revisitService.saveOrUpdate(revisit);
 
@@ -197,7 +199,7 @@ public class ImportFromExcelController {
 
 
         Troponin troponin = ObjectFromExcelFactory.createTroponin(row);
-        Admission admission2 = admissionService.getById(troponin.getId());
+        Admission admission2 = admissionService.getById(3);
         troponin.setAdmission(admission2);
         troponinService.saveOrUpdate(troponin);
     }

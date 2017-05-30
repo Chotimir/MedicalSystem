@@ -98,7 +98,7 @@ public class DataLoader implements ApplicationRunner {
                 new Disease(7, "CHF"),
                 new Disease(8, "DM"),
                 new Disease(9, "COPD"),
-                new Disease(10, "EKG przyjęciowe")
+                new Disease(10, "EKG przyjęciowe"),
 				new Disease(11, "Wstrząs przy przyjęciu")
         };
 
