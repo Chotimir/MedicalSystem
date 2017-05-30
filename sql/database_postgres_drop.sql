@@ -6,6 +6,8 @@ ALTER TABLE "przyjecie" DROP CONSTRAINT IF EXISTS "przyjecie_fk2";
 
 ALTER TABLE "przyjecie" DROP CONSTRAINT IF EXISTS "przyjecie_fk3";
 
+ALTER TABLE "przyjecie" DROP CONSTRAINT IF EXISTS "przyjecie_fk4";
+
 ALTER TABLE "rodzaj_zabiegu" DROP CONSTRAINT IF EXISTS "rodzaj_zabiegu_fk0";
 
 ALTER TABLE "rodzaj_zabiegu" DROP CONSTRAINT IF EXISTS "rodzaj_zabiegu_fk1";
@@ -41,6 +43,10 @@ ALTER TABLE "ponowna_wizyta" DROP CONSTRAINT IF EXISTS "ponowna_wizyta_fk1";
 ALTER TABLE "opis_choroby_s" DROP CONSTRAINT IF EXISTS "opis_choroby_s_fk0";
 
 ALTER TABLE "opis_powiklania_s" DROP CONSTRAINT IF EXISTS "opis_powiklania_s_fk0";
+
+ALTER TABLE "reoperacja" DROP CONSTRAINT IF EXISTS "reoperacja_fk0";
+
+ALTER TABLE "reoperacja" DROP CONSTRAINT IF EXISTS "reoperacja_fk1";
 
 DROP TABLE IF EXISTS "dane_osobowe";
 
@@ -78,6 +84,8 @@ DROP TABLE IF EXISTS "znieczulenie_s";
 
 DROP TABLE IF EXISTS "palenie_tytoniu_s";
 
+DROP TABLE IF EXISTS "reoperacja";
+
 DROP TABLE IF EXISTS "reoperacja_s";
 
 DROP TABLE IF EXISTS "ponowna_wizyta";
@@ -88,3 +96,6 @@ DROP TABLE IF EXISTS "opis_choroby_s";
 
 DROP TABLE IF EXISTS "opis_powiklania_s";
 
+DROP TABLE IF EXISTS "badanie_obrazowe_s";
+
+DROP TABLE IF EXISTS "lokalizacja_tetniaka_s";

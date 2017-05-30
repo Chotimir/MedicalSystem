@@ -98,7 +98,8 @@ public class DataLoader implements ApplicationRunner {
                 new Disease(7, "CHF"),
                 new Disease(8, "DM"),
                 new Disease(9, "COPD"),
-                new Disease(10, "EKG przymęciowe")
+                new Disease(10, "EKG przyjęciowe")
+				new Disease(11, "Wstrząs przy przyjęciu")
         };
 
         for (Disease disease : diseases) {
@@ -145,6 +146,9 @@ public class DataLoader implements ApplicationRunner {
         diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(26, diseases[9], "AF + obecność VE"));
         diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(27, diseases[9], "rytm z rozrusznika"));
         diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(28, diseases[9], "AF + rytm z rozrusznika"));
+		//wstrzas
+		diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(29, diseases[10], "nie"));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(30, diseases[10], "tak"));
 
 
         // badania_s

@@ -35,7 +35,18 @@ INSERT INTO "tryb_zabiegu_s" (tryb_zabiegu, nazwa_trybu_zabiegu) VALUES
 
 -- Tetniak?
 -- Badanie obrazowe na podstawie ktorego okreslono srednice tetniaka
+DELETE FROM "badanie_obrazowe_s" (id_badania_obrazowego, nazwa_badania_obrazowego) VALUES
+  ('1', 'angio-TK'),
+  ('2', 'USG'),
+  ('3', 'z protokołu operacyjnego');
+
 -- Lokalizacja tetniaka
+DELETE FROM "lokalizacja_tetniaka_s";
+INSERT INTO "lokalizacja_tetniaka_s" (id_lokalizacji_tetniaka, nazwa_lokalizacji_tetniaka) VALUES
+  ('1', 'Suprarenal'),
+  ('2', 'Pararenal'),
+  ('3', 'Juxtarenal')
+  ('4', 'Infrarenal');
 
 -- Palenie tytoniu
 DELETE FROM "palenie_tytoniu_s";
@@ -60,7 +71,8 @@ INSERT INTO "choroby_s" (id_choroby, nazwa_choroby) VALUES
   ('7', 'CHF'), -- przewlekla niewydolnosc krazenia
   ('8', 'DM'), -- cukrzyca
   ('9', 'COPD'), -- przewlekla obturacyjna choroba pluc
-  ('10', 'EKG przymęciowe'); -- EKG przy przyjęciu
+  ('10', 'EKG przyjęciowe'), -- EKG przy przyjęciu
+  ('11', 'Wstrząs'); -- Wstrząs przy przyjęciu
 
 DELETE FROM "opis_choroby_s";
 INSERT INTO "opis_choroby_s" (id_opis_choroby, id_choroby, nazwa_opis_powiklania, wartosc_w_excelu) VALUES
@@ -91,7 +103,9 @@ INSERT INTO "opis_choroby_s" (id_opis_choroby, id_choroby, nazwa_opis_powiklania
   ('25', '10', 'rytm zatokowy + obecność VE', '3'),
   ('26', '10', 'AF + obecność VE', '4'),
   ('27', '10', 'rytm z rozrusznika', '5'),
-  ('28', '10', 'AF + rytm z rozrusznika', '6');
+  ('28', '10', 'AF + rytm z rozrusznika', '6'),
+  ('29', '11', 'nie', '0'), -- wstrząs
+  ('30', '11', 'tak', '1');
 
 -- Badania
 DELETE FROM "badania_s";
