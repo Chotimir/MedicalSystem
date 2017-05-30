@@ -1,21 +1,35 @@
 <div class="container-fluid top">
   <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
-    <a class="navbar-brand" href="#">Medical System</a>
+    <a class="navbar-brand" href="#" translate [translateParams]="{value: 12345}">Patient</a>
     <div class="collapse navbar-collapse center">
       <ul class="nav navbar-nav" routerLinkActive="active">
         <li class="nav-item">
-          <a class="nav-link" routerLink="login" translate>Login</a>
+          <a class="nav-link" routerLink="personalData" translate>Personal Data</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="registration" translate>Register</a>
+          <a class="nav-link" routerLink="admission" translate>Admission</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="tests" translate>Tests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="comorbidities" translate>Comorbidities</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="operation" translate>Operation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="complications" translate>Complications</a>
         </li>
       </ul>
     </div>
   </nav>
 
-  <form>
+  <div class="container">
+    <div class="container center">
+      <button type="button" class="btn btn-success" translate>Save Patient Data</button>
+      <button type="button" class="btn btn-danger" translate>Exit Without Saving</button>
+    </div>
     <router-outlet></router-outlet>
-    <button type="submit" class="btn btn-success" translate>Submit</button>
-    <button type="button" class="btn btn-danger" translate>Cancel</button>
-  </form>
+  </div>
 </div>

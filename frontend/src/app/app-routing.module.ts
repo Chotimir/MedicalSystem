@@ -5,7 +5,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: "./home/home.module#HomeModule" },
   { path: 'auth', loadChildren: "./auth/auth.module#AuthModule" },
   { path: 'patientForm', loadChildren: "./patient-form/patient-form.module#PatientFormModule" },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'patientForm', pathMatch: 'full' },
   { path: '**', redirectTo: 'auth', pathMatch: 'full' }
 ];
 

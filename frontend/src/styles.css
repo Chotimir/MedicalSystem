@@ -30,3 +30,14 @@
 .container {
   margin-top: 20px;
 }
+
+.container.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  margin-right: 20px;
+  margin-top: 10px;
+}
