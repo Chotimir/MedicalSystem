@@ -1,3 +1,76 @@
-<p>
-  admission works!
-</p>
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="admissionDate" translate>Admission Date</label>
+      <input type="date" class="form-control" id="admissionDate" required>
+    </div>
+    <div class="form-group">
+      <label for="operationDate" translate>Operation Date</label>
+      <input type="date" class="form-control" id="operationDate" required>
+    </div>
+    <div class="form-group">
+      <label for="aorticAneurysmSymptoms" translate>Aortic Aneurysm Symptoms</label>
+      <select class="form-control" id="aorticAneurysmSymptoms" required>
+        <option hidden disabled selected value></option>
+        <option translate>Yes</option>
+        <option translate>No</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="aorticAneurysmSize" translate>Aortic Aneurysm Size</label>
+      <input type="number" class="form-control" id="aorticAneurysmSize" required>
+    </div>
+    <div class="form-group">
+      <label for="iliacArteryAneurysmMaxSize" translate>Iliac Artery Aneurysm Max Size</label>
+      <input type="number" class="form-control" id="iliacArteryAneurysmMaxSize" required>
+    </div>
+    <div class="form-group">
+      <label for="imagingExamination" translate>Imaging Examination</label>
+      <input type="number" class="form-control" id="imagingExamination" required>
+    </div>
+    <div class="form-group">
+      <label for="aneurysmLocalization" translate>Aneurysm Localization</label>
+      <input type="number" class="form-control" id="aneurysmLocalization" required>
+    </div>
+    <div class="form-group">
+      <label for="smoking" translate>Smoking</label>
+      <select class="form-control" id="smoking" required>
+        <option hidden disabled selected value></option>
+        <option>TODO</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="ASA" translate>ASA</label>
+      <select class="form-control" id="ASA" required>
+        <option hidden disabled selected value></option>
+        <option>TODO</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="RCRI" translate>Revised Cardiac Risk Index</label>
+      <select class="form-control" id="RCRI" required>
+        <option hidden disabled selected value></option>
+        <option>TODO</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="pPossum" translate>P-POSSUM</label>
+      <select class="form-control" id="pPossum" required>
+        <option hidden disabled selected value></option>
+        <option>TODO</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="unconsciousness" translate>Unconsciousness</label>
+      <select class="form-control" id="unconsciousness" required>
+        <option hidden disabled selected value></option>
+        <option translate>Yes</option>
+        <option translate>No</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="comments" translate>Comments</label>
+      <input type="text" class="form-control" id="comments" required>
+    </div>
+  </form>
+</div>

@@ -27,10 +27,6 @@
   height: 100vh;
 }
 
-.container {
-  margin-top: 20px;
-}
-
 .container.center {
   display: flex;
   align-items: center;
@@ -40,4 +36,8 @@
 .btn {
   margin-right: 20px;
   margin-top: 10px;
+}
+
+body {
+  background-color: #e3f2fd;
 }
