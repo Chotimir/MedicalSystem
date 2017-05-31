@@ -1,6 +1,7 @@
 package com.medicalsystem;
 
 import com.medicalsystem.model.*;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.sql.Date;
@@ -11,12 +12,18 @@ public class ObjectFromExcelFactory {
         Patient patient = new Patient();
 
 //        patient.setId((int) row.getCell(0).getNumericCellValue());
-        patient.setLastName(row.getCell(1).getStringCellValue());
-        patient.setFirstName(row.getCell(2).getStringCellValue());
-        patient.setSex(row.getCell(3).getStringCellValue().charAt(0));
-        patient.setAge((int) row.getCell(4).getNumericCellValue());
 
-        //choroby wspolistniejace
+        Cell lastNameCell = row.getCell(1);
+        patient.setLastName((lastNameCell == null) ? "" : lastNameCell.getStringCellValue());
+
+        Cell firstNameCell = row.getCell(2);
+        patient.setFirstName((firstNameCell == null) ? "" : firstNameCell.getStringCellValue());
+
+        Cell sexCell = row.getCell(3);
+        patient.setSex((sexCell == null) ? 'x' : sexCell.getStringCellValue().charAt(0));
+
+        Cell ageCell = row.getCell(4);
+        patient.setAge((ageCell == null) ? -1 : (int) row.getCell(4).getNumericCellValue());
 
         return patient;
     }
@@ -127,9 +134,6 @@ public class ObjectFromExcelFactory {
 
     public static Operation createOperation(Row row) {
         Operation operation = new Operation();
-
-
-
         //anesthesia cell 8
         //anesthetic cell 10
 
@@ -139,29 +143,39 @@ public class ObjectFromExcelFactory {
         int numericCellValue = (int) row.getCell(51).getNumericCellValue();
         Boolean nora = Boolean.valueOf(String.valueOf(numericCellValue));
         operation.setNoradrenaline(nora);
-//        operation.setAdrenaline((row.getCell(52).getBooleanCellValue()));
-//        operation.setDopamine((row.getCell(53).getBooleanCellValue()));
-//        operation.setDobutamine((row.getCell(54).getBooleanCellValue()));
-//        operation.setEphedrine((row.getCell(55).getBooleanCellValue()));
-//        operation.setBloodLost((int) row.getCell(56).getNumericCellValue());
-//        operation.setUrineExpelled((int) row.getCell(57).getNumericCellValue());
-//        operation.setPackedCellsTransfused((int) row.getCell(58).getNumericCellValue());
-//        operation.setIcuTime((int) row.getCell(59).getNumericCellValue());
-//        operation.setHospitalTime((int) row.getCell(60).getNumericCellValue());
-//        operation.setExtendedVentilation((row.getCell(62).getBooleanCellValue()));
-//        operation.setVentilatorDays((int) row.getCell(63).getNumericCellValue());
 
-        operation.setAdrenaline(true);
-        operation.setDopamine(true);
-        operation.setDobutamine(true);
-        operation.setEphedrine(true);
+        Cell adrenaline = row.getCell(52);
+        if (adrenaline != null) {
+            operation.setAdrenaline((adrenaline.getNumericCellValue() == 1) ? true : false);
+        }
+
+        Cell dopamine = row.getCell(53);
+        if (dopamine != null) {
+            operation.setDopamine((dopamine.getNumericCellValue() == 1) ? true : false);
+        }
+
+        Cell dobutamine = row.getCell(54);
+        if (dobutamine != null) {
+            operation.setDobutamine((dobutamine.getNumericCellValue() == 1) ? true : false);
+        }
+
+        Cell ephedrine = row.getCell(55);
+        if (ephedrine != null) {
+            operation.setEphedrine((ephedrine.getNumericCellValue() == 1) ? true : false);
+        }
+
+        Cell extendedVentilation = row.getCell(62);
+        if (extendedVentilation != null) {
+            operation.setExtendedVentilation((extendedVentilation.getNumericCellValue() == 1) ? true : false);
+        }
+
         operation.setBloodLost((int) row.getCell(56).getNumericCellValue());
         operation.setUrineExpelled((int) row.getCell(57).getNumericCellValue());
         operation.setPackedCellsTransfused((int) row.getCell(58).getNumericCellValue());
         operation.setIcuTime((int) row.getCell(59).getNumericCellValue());
         operation.setHospitalTime((int) row.getCell(60).getNumericCellValue());
-        operation.setExtendedVentilation(true);
         operation.setVentilatorDays((int) row.getCell(63).getNumericCellValue());
+
 
 
         //"powiklania_operacja"
