@@ -1,9 +1,13 @@
-<div class="container flex center">
+<div class="container">
   <form>
-    <label class="custom-control custom-checkbox" *ngFor="let comorbidity of comorbidities">
-      <input [checked]="comorbidity.value" type="checkbox" class="custom-control-input" name={{comorbidity.name}}>
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">{{comorbidity.name}}</span>
-    </label>
+    <div class="form-group" *ngFor="let comorbidity of comorbidities">
+      <label for={{comorbidity.name}}>{{comorbidity.name}}</label>
+      <select class="form-control" id={{comorbidity.name}} onchange="setSelected(this.id, this.selected)">
+        <option hidden disabled selected value></option>
+        <option *ngFor="let value of comorbidity.values">
+          {{value}}
+        </option>
+      </select>
+    </div>
   </form>
 </div>

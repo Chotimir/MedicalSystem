@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { PatientFormModule } from './patient-form/patient-form.module';
-import { ComorbiditiesServiceComponent } from './services/comorbidities-service/comorbidities-service.component';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -18,7 +17,6 @@ export function HttpLoaderFactory(http: Http) {
 @NgModule({
   declarations: [
     AppComponent,
-    ComorbiditiesServiceComponent
   ],
   imports: [
     AppRoutingModule,

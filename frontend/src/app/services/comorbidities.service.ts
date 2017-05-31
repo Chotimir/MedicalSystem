@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-import { BooleanField } from "../model/boolean-field";
+import {SelectField} from "../model/select-field";
 
-const mockdata: BooleanField[] = [
-  { name: "choroba 1", value: false },
-  { name: "choroba 2", value: true },
-  { name: "choroba 3", value: false },
-  { name: "choroba 4", value: false },
-  { name: "choroba 5", value: true }
+const mockdata: SelectField[] = [
+  { name: "choroba 1", values: ["tak", "nie", "nwm"], selected: null},
+  { name: "choroba 2", values: ["tak", "nie", "nwm"], selected: null },
+  { name: "choroba 3", values: ["tak", "nie", "nwm"], selected: "tak" },
+  { name: "choroba 4", values: ["tak", "nie", "nwm"], selected: "nie" },
+  { name: "choroba 5", values: ["tak", "nie", "nwm"], selected: "nwm" }
 ];
 
 @Injectable()
@@ -19,7 +19,7 @@ export class ComorbiditiesService {
 
   constructor(private http: Http) { }
 
-  getComorbidities(): Promise<BooleanField[]> {
+  getComorbidities(): Promise<SelectField[]> {
     return Promise.resolve(mockdata);
     /*
     return this.http.get(this.comorbiditiesUrl).toPromise()
