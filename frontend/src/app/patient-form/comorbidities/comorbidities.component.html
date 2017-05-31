@@ -1,9 +1,9 @@
 <div class="container flex center">
   <form>
-    <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+    <label class="custom-control custom-checkbox" *ngFor="let comorbidity of comorbidities">
+      <input [checked]="comorbidity.value" type="checkbox" class="custom-control-input" name={{comorbidity.name}}>
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Choroba 1</span>
+      <span class="custom-control-description">{{comorbidity.name}}</span>
     </label>
   </form>
 </div>

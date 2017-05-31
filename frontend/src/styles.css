@@ -43,9 +43,12 @@
   margin-left: 12px;
 }
 
-.btn.vertical {
-  display: block;
+.btn {
   width: 200px;
+}
+
+.vertical {
+  display: block;
 }
 
 body {
@@ -53,5 +56,16 @@ body {
 }
 
 .custom-control-indicator {
-  background-color: #e3f2fd;
+   background-color: #e3f2fd;
+}
+
+.custom-control-input:focus~.custom-control-indicator {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.custom-checkbox {
+  margin-right: 60px;
+  margin-left: 60px;
+  margin-bottom: 20px;
 }
