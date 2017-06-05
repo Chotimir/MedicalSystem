@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
     <a class="navbar-brand" href="#" translate [translateParams]="{value: 12345}">Patient</a>
     <div class="collapse navbar-collapse center">
       <ul class="nav navbar-nav" routerLinkActive="active">
@@ -23,15 +23,14 @@
         </li>
       </ul>
     </div>
+    <ul class="nav navbar-nav">
+      <li class="nav-item wide">
+        <a class="nav-link" routerLink="auth" translate>Save and exit</a>
+      </li>
+    </ul>
   </nav>
 
-  <div class="container-fluid top-margin flex">
-    <div>
-      <button type="button" class="btn btn-success vertical" translate>Save Patient Data</button>
-      <button type="button" class="btn btn-danger vertical" translate>Exit Without Saving</button>
-    </div>
-    <div class="container-fluid center">
-      <router-outlet></router-outlet>
-    </div>
+  <div class="container-fluid top-margin">
+    <router-outlet></router-outlet>
   </div>
 </div>

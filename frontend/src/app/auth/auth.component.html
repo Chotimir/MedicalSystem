@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
     <a class="navbar-brand" href="#" translate>App Name</a>
-    <div class="collapse navbar-collapse center">
+    <div class="collapse navbar-collapse center no-right-nav">
       <ul class="nav navbar-nav" routerLinkActive="active">
         <li class="nav-item">
           <a class="nav-link" routerLink="login" translate>Login</a>
@@ -13,5 +13,7 @@
     </div>
   </nav>
 
-  <router-outlet></router-outlet>
+  <div class="container-fluid top-margin">
+    <router-outlet></router-outlet>
+  </div>
 </div>

@@ -1,21 +1,32 @@
-<div class="container">
-  <form>
-    <div class="form-group">
-      <label for="email" translate>Email</label>
+<form>
+  <div class="form-group row col-12">
+    <label for="email" class="col-form-label col-3 offset-1" translate>Email</label>
+    <div class="col-4">
       <input type="email" class="form-control" id="email" required>
     </div>
-    <div class="form-group">
-      <label for="username" translate>Username</label>
+  </div>
+  <div class="form-group row col-12">
+    <label for="username" class="col-form-label col-3 offset-1" translate>Username</label>
+    <div class="col-4">
       <input type="text" class="form-control" id="username" required>
     </div>
-    <div class="form-group">
-      <label for="password" translate>Password</label>
+  </div>
+  <div class="form-group row col-12">
+    <label for="password" class="col-form-label col-3 offset-1" translate>Password</label>
+    <div class="col-4">
       <input type="password" class="form-control" id="password">
     </div>
-    <div class="form-group">
-      <label for="repeatPassword" translate>Repeat Password</label>
+  </div>
+  <div class="form-group row col-12">
+    <label for="repeatPassword" class="col-form-label col-3 offset-1" translate>Repeat Password</label>
+    <div class="col-4">
       <input type="password" class="form-control" id="repeatPassword">
     </div>
-    <button type="submit" class="btn btn-success" translate>Register</button>
-  </form>
-</div>
+  </div>
+
+  <div class="offset-4 col-4">
+    <div class="container-fluid flex center">
+      <button type="submit" class="btn btn-success" translate>Register</button>
+    </div>
+  </div>
+</form>
