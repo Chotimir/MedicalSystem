@@ -19,7 +19,7 @@ public class ExcelParser {
     }
 
     private static XSSFSheet transformExcelFile(String filePath) throws IOException {
-        FileInputStream file = new FileInputStream(new File("C:\\Users\\Kamil\\SkyDrive\\Studia Semestr 6\\7 inzynierka\\baza.xlsx"));
+        FileInputStream file = new FileInputStream(new File(filePath));
 
         XSSFWorkbook workbook = new XSSFWorkbook(file);
 

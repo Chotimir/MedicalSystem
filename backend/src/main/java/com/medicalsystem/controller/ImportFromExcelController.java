@@ -77,7 +77,7 @@ public class ImportFromExcelController {
 
 
     private void configureRows() {
-        XSSFSheet sheet = ExcelParser.parseExcelFile("path");
+        XSSFSheet sheet = ExcelParser.parseExcelFile("C:\\Users\\Kamil\\SkyDrive\\Studia Semestr 6\\7 inzynierka\\baza.xlsx");
         if (sheet == null) {
             return;
         }
@@ -85,7 +85,7 @@ public class ImportFromExcelController {
         rowIterator.next();
         rowIterator.next();
         int i = 0;
-        while (rowIterator.hasNext() && i < 5){
+        while (rowIterator.hasNext() && i < 2){
             insertRow(rowIterator.next());
             i++;
         }
@@ -132,7 +132,7 @@ public class ImportFromExcelController {
         Reoperation reoperation = reoperationService.getById(1);
         admission.setReopration(reoperation);
 
-        Patient patient = patientService.getById(2);
+        Patient patient = patientService.getById(1);
         admission.setPatient(patient);
 
         Operation operation = operationService.getById(1);
@@ -160,7 +160,7 @@ public class ImportFromExcelController {
 
         Examination examination = ObjectFromExcelFactory.createExamination(row);
 //        Admission admission3 = admissionService.getById(3);
-        Admission admission3 = admissionService.getById(3);
+        Admission admission3 = admissionService.getById(1);
         examination.setAdmission(admission3);
         ExaminationDescription examinationDescription = examinationDescriptionService.getById(3);
         examination.setDescription(examinationDescription);
@@ -184,7 +184,7 @@ public class ImportFromExcelController {
 
         Revisit revisit = ObjectFromExcelFactory.createRevisit(row);
 //        Admission admission1 = admissionService.getById(revisit.getId());
-        Admission admission1 = admissionService.getById(3);
+        Admission admission1 = admissionService.getById(1);
         revisit.setAdmission(admission1);
         revisitService.saveOrUpdate(revisit);
 
@@ -199,7 +199,7 @@ public class ImportFromExcelController {
 
 
         Troponin troponin = ObjectFromExcelFactory.createTroponin(row);
-        Admission admission2 = admissionService.getById(3);
+        Admission admission2 = admissionService.getById(1);
         troponin.setAdmission(admission2);
         troponinService.saveOrUpdate(troponin);
     }

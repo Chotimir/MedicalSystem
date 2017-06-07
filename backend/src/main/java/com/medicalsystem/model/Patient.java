@@ -10,7 +10,8 @@ import java.util.List;
 @Table(name = "dane_osobowe")
 public class Patient {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     @Column(name = "id_pacjenta")
     @Getter @Setter
     private int id;

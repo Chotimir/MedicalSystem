@@ -10,7 +10,7 @@ import java.sql.Date;
 @Table(name = "ponowna_wizyta")
 public class Revisit {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ponownej_wizyty")
     @Getter @Setter
     private int id;

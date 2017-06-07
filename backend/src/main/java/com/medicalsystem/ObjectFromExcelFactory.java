@@ -5,13 +5,13 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.sql.Date;
-import java.util.List;
 
 public class ObjectFromExcelFactory {
     public static Patient createPatient(Row row) {
         Patient patient = new Patient();
 
-//        patient.setId((int) row.getCell(0).getNumericCellValue());
+        Cell patientIdCell = row.getCell(0);
+        patient.setId((patientIdCell == null) ? -1 : (int) patientIdCell.getNumericCellValue());
 
         Cell lastNameCell = row.getCell(1);
         patient.setLastName((lastNameCell == null) ? "" : lastNameCell.getStringCellValue());
@@ -31,36 +31,42 @@ public class ObjectFromExcelFactory {
     public static Admission createAdmission(Row row) {
         Admission admission = new Admission();
 
-        java.util.Date dateCellValue = row.getCell(5).getDateCellValue();
-        Date admissionDate = new Date(dateCellValue.getYear(), dateCellValue.getMonth(), dateCellValue.getDay());
+        java.util.Date admissionDateCell = row.getCell(5).getDateCellValue();
+        Date admissionDate = new Date(admissionDateCell.getYear(), admissionDateCell.getMonth(), admissionDateCell.getDay());
         admission.setAdmissionDate(admissionDate);
 
-        dateCellValue = row.getCell(6).getDateCellValue();
-        Date operationDate = new Date(dateCellValue.getYear(), dateCellValue.getMonth(), dateCellValue.getDay());
+        java.util.Date operationDateCell = row.getCell(6).getDateCellValue();
+        Date operationDate = new Date(operationDateCell.getYear(), operationDateCell.getMonth(), operationDateCell.getDay());
         admission.setOperationDate(operationDate);
 
-        admission.setComments(row.getCell(104).getStringCellValue());
+        Cell commentsCell = row.getCell(104);
+        admission.setComments((commentsCell == null) ? "" : commentsCell.getStringCellValue());
 
-        admission.setAaSymptoms((int) row.getCell(11).getNumericCellValue());
+        Cell aaSymptomsCell = row.getCell(11);
+        admission.setAaSymptoms((aaSymptomsCell == null) ? -1 : (int) aaSymptomsCell.getNumericCellValue());
 
-        admission.setAaSize((int) row.getCell(12).getNumericCellValue());
+        Cell aaSizeCell = row.getCell(12);
+        admission.setAaSize((aaSizeCell == null) ? -1 : (int) aaSizeCell.getNumericCellValue());
 
-        admission.setMaxAneurysmSize((int) row.getCell(13).getNumericCellValue());
+        Cell maxAneurysmSizeCell = row.getCell(13);
+        admission.setMaxAneurysmSize((maxAneurysmSizeCell == null) ? -1 : (int) maxAneurysmSizeCell.getNumericCellValue());
 
-        admission.setImageExamination(1);
-        admission.setAneurysmLocation(1);
+        admission.setImageExamination(1); //brak danych
+        admission.setAneurysmLocation(1); //brak danych
 
-        //!!!!!
-        Smoking smoking = new Smoking((int) row.getCell(14).getNumericCellValue(), "");
-        admission.setSmoking(smoking);
+        admission.setSmoking(createSmoking(row));
 
-        admission.setAsaScale((int) row.getCell(15).getNumericCellValue());
+        Cell asaScaleCell = row.getCell(15);
+        admission.setAsaScale((asaScaleCell == null) ? -1 : (int) asaScaleCell.getNumericCellValue());
 
-        admission.setLeeRcri((int) row.getCell(28).getNumericCellValue());
+        Cell leeRcriCell = row.getCell(28);
+        admission.setLeeRcri((leeRcriCell == null) ? -1 : (int) leeRcriCell.getNumericCellValue());
 
-        admission.setPPossu(row.getCell(29).getNumericCellValue());
+        Cell pPossuCell = row.getCell(29);
+        admission.setPPossu((pPossuCell == null) ? -1 : (int) pPossuCell.getNumericCellValue());
 
-        admission.setFaint((int) row.getCell(16).getNumericCellValue());
+        Cell faintCell = row.getCell(16);
+        admission.setFaint((faintCell == null) ? -1 : (int) faintCell.getNumericCellValue());
 
         //!!!!!!!!!!!
         Reoperation reoperation = new Reoperation((int) row.getCell(95).getNumericCellValue(), "");
@@ -75,6 +81,22 @@ public class ObjectFromExcelFactory {
 
         return admission;
     }
+
+    public static Smoking createSmoking(Row row) {
+        //!!!!!
+        Smoking smoking = new Smoking();
+
+        Cell smokingIdCell = row.getCell(14);
+        smoking.setId((smokingIdCell == null) ? -1 : (int) smokingIdCell.getNumericCellValue());
+        smoking.setText("");
+
+        return smoking;
+    }
+
+//    public static Reoperation createReoperation(Row row) {
+//        Reoperation reoperation = new Reoperation();
+//    }
+
 
     public static Anesthesia createAnesthesia(Row row) {
         Anesthesia anesthesia = new Anesthesia();
@@ -233,11 +255,7 @@ public class ObjectFromExcelFactory {
         return revisitCause;
     }
 
-//    public static Smoking createSmoking(Row row) {
-//        //!!!!!
-//        Smoking smoking = new Smoking((int) row.getCell(14).getNumericCellValue(), "");
-//        return smoking;
-//    }
+
 
     public static Troponin createTroponin(Row row) {
         Troponin troponin = new Troponin();
