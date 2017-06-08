@@ -1,13 +1,73 @@
 package com.medicalsystem;
 
 import com.medicalsystem.model.*;
+import com.medicalsystem.service.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+@Component
 public class ObjectFromExcelFactory {
-    public static Patient createPatient(Row row) {
+
+    private AdmissionService admissionService;
+    private AnesthesiaService anesthesiaService;
+    private AnestheticService anestheticService;
+    private ComplicationDescriptionService complicationDescriptionService;
+    private ComplicationService complicationService;
+    private DiseaseDescriptionService diseaseDescriptionService;
+    private DiseaseService diseaseService;
+    private ExaminationDescriptionService examinationDescriptionService;
+    private ExaminationService examinationService;
+    private MedicamentService medicamentService;
+    private OperationModeService operationModeService;
+    private OperationService operationService;
+    private OperationTypeService operationTypeService;
+    private PatientService patientService;
+    private ReoperationService reoperationService;
+    private RevisitCauseService revisitCauseService;
+    private RevisitService revisitService;
+    private SmokingService smokingService;
+    private TroponinService troponinService;
+
+    @Autowired
+    public ObjectFromExcelFactory(AdmissionService admissionService, AnesthesiaService anesthesiaService,
+                                     AnestheticService anestheticService, ComplicationDescriptionService
+                                             complicationDescriptionService, ComplicationService complicationService,
+                                     DiseaseDescriptionService diseaseDescriptionService, DiseaseService diseaseService,
+                                     ExaminationDescriptionService examinationDescriptionService, ExaminationService examinationService,
+                                     MedicamentService medicamentService, OperationModeService operationModeService,
+                                     OperationService operationService, OperationTypeService operationTypeService,
+                                     PatientService patientService, ReoperationService reoperationService,
+                                     RevisitCauseService revisitCauseService, RevisitService revisitService,
+                                     SmokingService smokingService, TroponinService troponinService) {
+        this.admissionService = admissionService;
+        this.anesthesiaService = anesthesiaService;
+        this.anestheticService = anestheticService;
+        this.complicationDescriptionService = complicationDescriptionService;
+        this.complicationService = complicationService;
+        this.diseaseDescriptionService = diseaseDescriptionService;
+        this.diseaseService = diseaseService;
+        this.examinationDescriptionService = examinationDescriptionService;
+        this.examinationService = examinationService;
+        this.medicamentService = medicamentService;
+        this.operationModeService = operationModeService;
+        this.operationService = operationService;
+        this.operationTypeService = operationTypeService;
+        this.patientService = patientService;
+        this.reoperationService = reoperationService;
+        this.revisitCauseService = revisitCauseService;
+        this.revisitService = revisitService;
+        this.smokingService = smokingService;
+        this.troponinService = troponinService;
+    }
+
+    //DONE
+    public Patient createPatient(Row row) {
         Patient patient = new Patient();
 
         Cell patientIdCell = row.getCell(0);
@@ -28,8 +88,20 @@ public class ObjectFromExcelFactory {
         return patient;
     }
 
-    public static Admission createAdmission(Row row) {
+    public Patient getPatientWithKey(Row row) {
+        Cell patientCell = row.getCell(0);
+        if (patientCell != null) {
+            return patientService.getById((int) patientCell.getNumericCellValue());
+        }
+        return new Patient();
+    }
+
+    public Admission createAdmission(Row row) {
         Admission admission = new Admission();
+
+        admission.setPatient(getPatientWithKey(row));
+
+        admission.setOperation(createOperation(row));
 
         java.util.Date admissionDateCell = row.getCell(5).getDateCellValue();
         Date admissionDate = new Date(admissionDateCell.getYear(), admissionDateCell.getMonth(), admissionDateCell.getDay());
@@ -39,11 +111,9 @@ public class ObjectFromExcelFactory {
         Date operationDate = new Date(operationDateCell.getYear(), operationDateCell.getMonth(), operationDateCell.getDay());
         admission.setOperationDate(operationDate);
 
-        Cell commentsCell = row.getCell(104);
-        admission.setComments((commentsCell == null) ? "" : commentsCell.getStringCellValue());
-
         Cell aaSymptomsCell = row.getCell(11);
         admission.setAaSymptoms((aaSymptomsCell == null) ? -1 : (int) aaSymptomsCell.getNumericCellValue());
+
 
         Cell aaSizeCell = row.getCell(12);
         admission.setAaSize((aaSizeCell == null) ? -1 : (int) aaSizeCell.getNumericCellValue());
@@ -54,7 +124,7 @@ public class ObjectFromExcelFactory {
         admission.setImageExamination(1); //brak danych
         admission.setAneurysmLocation(1); //brak danych
 
-        admission.setSmoking(createSmoking(row));
+        admission.setSmoking(getSmokingWithKey(row));
 
         Cell asaScaleCell = row.getCell(15);
         admission.setAsaScale((asaScaleCell == null) ? -1 : (int) asaScaleCell.getNumericCellValue());
@@ -68,9 +138,10 @@ public class ObjectFromExcelFactory {
         Cell faintCell = row.getCell(16);
         admission.setFaint((faintCell == null) ? -1 : (int) faintCell.getNumericCellValue());
 
-        //!!!!!!!!!!!
-        Reoperation reoperation = new Reoperation((int) row.getCell(95).getNumericCellValue(), "");
-        admission.setReopration(reoperation);
+        admission.setReopration(getReoperationWithKey(row));
+
+        Cell commentsCell = row.getCell(104);
+        admission.setComments((commentsCell == null) ? "" : commentsCell.getStringCellValue());
 
         //examinations
         //revisits
@@ -82,15 +153,20 @@ public class ObjectFromExcelFactory {
         return admission;
     }
 
-    public static Smoking createSmoking(Row row) {
-        //!!!!!
-        Smoking smoking = new Smoking();
+    public Smoking getSmokingWithKey(Row row) {
+        Cell smokingCell = row.getCell(14);
+        if (smokingCell != null) {
+            return smokingService.getById((int) smokingCell.getNumericCellValue());
+        }
+        return new Smoking(); //to do - remove "nullable = false" from domain classes
+    }
 
-        Cell smokingIdCell = row.getCell(14);
-        smoking.setId((smokingIdCell == null) ? -1 : (int) smokingIdCell.getNumericCellValue());
-        smoking.setText("");
-
-        return smoking;
+    public Reoperation getReoperationWithKey(Row row) {
+        Cell reoperationCell = row.getCell(95);
+        if (reoperationCell != null) {
+            return reoperationService.getById((int) reoperationCell.getNumericCellValue());
+        }
+        return new Reoperation();
     }
 
 //    public static Reoperation createReoperation(Row row) {
@@ -115,17 +191,7 @@ public class ObjectFromExcelFactory {
         return anesthetic;
     }
 
-//    public static Complication createComplication(Row row) {
-//        Complication complication = new Complication();
-//
-//
-//        return complication;
-//    }
-//
-//    public static ComplicationDescription createComplicationDescription(Row row) {
-//        ComplicationDescription complicationDescription = new ComplicationDescription();
-//        return complicationDescription;
-//    }
+
 
     public static Disease createDisease(Row row) {
         Disease disease = new Disease();
@@ -154,17 +220,25 @@ public class ObjectFromExcelFactory {
 //        return medicament;
 //    }
 
-    public static Operation createOperation(Row row) {
+
+    //DONE
+    public Operation createOperation(Row row) {
         Operation operation = new Operation();
-        //anesthesia cell 8
-        //anesthetic cell 10
 
-        operation.setDuration((int) row.getCell(48).getNumericCellValue());
+        operation.setOperationMode(getOperationModeWithKey(row));
+        operation.setAnesthesia(getAnesthesiaWithKey(row));
+        operation.setAnesthetic(getAnestheticWithKey(row));
 
-        operation.setAortaClottingTime((int) row.getCell(49).getNumericCellValue());
-        int numericCellValue = (int) row.getCell(51).getNumericCellValue();
-        Boolean nora = Boolean.valueOf(String.valueOf(numericCellValue));
-        operation.setNoradrenaline(nora);
+        Cell durationCell = row.getCell(48);
+        operation.setDuration((durationCell == null) ? -1 : (int) durationCell.getNumericCellValue());
+
+        Cell aortaClottingTimeCell = row.getCell(49);
+        operation.setAortaClottingTime((aortaClottingTimeCell == null) ? -1 : (int) aortaClottingTimeCell.getNumericCellValue());
+
+        Cell noradrenalineCell = row.getCell(51);
+        if (noradrenalineCell != null) {
+            operation.setNoradrenaline((noradrenalineCell.getNumericCellValue() == 1) ? true : false);
+        }
 
         Cell adrenaline = row.getCell(52);
         if (adrenaline != null) {
@@ -186,24 +260,64 @@ public class ObjectFromExcelFactory {
             operation.setEphedrine((ephedrine.getNumericCellValue() == 1) ? true : false);
         }
 
-        Cell extendedVentilation = row.getCell(62);
-        if (extendedVentilation != null) {
-            operation.setExtendedVentilation((extendedVentilation.getNumericCellValue() == 1) ? true : false);
-        }
 
         operation.setBloodLost((int) row.getCell(56).getNumericCellValue());
         operation.setUrineExpelled((int) row.getCell(57).getNumericCellValue());
         operation.setPackedCellsTransfused((int) row.getCell(58).getNumericCellValue());
         operation.setIcuTime((int) row.getCell(59).getNumericCellValue());
         operation.setHospitalTime((int) row.getCell(60).getNumericCellValue());
+
+        Cell extendedVentilation = row.getCell(62);
+        if (extendedVentilation != null) {
+            operation.setExtendedVentilation((extendedVentilation.getNumericCellValue() == 1) ? true : false);
+        }
+
         operation.setVentilatorDays((int) row.getCell(63).getNumericCellValue());
 
-
-
-        //"powiklania_operacja"
-        //complications
+        List<Complication> complications = getComplicationList(row);
+        operation.setComplications(complications);
 
         return operation;
+    }
+
+    public Anesthesia getAnesthesiaWithKey(Row row) {
+        Cell anesthesiaCell = row.getCell(8);
+        if (anesthesiaCell != null) {
+            return anesthesiaService.getById((int) anesthesiaCell.getNumericCellValue());
+        }
+        return new Anesthesia();
+    }
+
+    public Anesthetic getAnestheticWithKey(Row row) {
+        Cell anestheticCell = row.getCell(9);
+        if (anestheticCell != null) {
+            return anestheticService.getById((int) anestheticCell.getNumericCellValue());
+        }
+        return new Anesthetic();
+
+    }
+
+    public List<Complication> getComplicationList(Row row) {
+        List<Complication> complications = new ArrayList<>(30);
+        for (int i = 0; i < 30; i++) {
+            Complication complication = complicationService.getById(i);
+            ComplicationDescription complicationDescription = getComplicationDescriptionWithKey(row);
+            complication.setDescription(complicationDescription);
+        }
+        return complications;
+    }
+
+    public ComplicationDescription getComplicationDescriptionWithKey(Row row) {
+        return complicationDescriptionService.getById(0); //to do, po dodaniu tabel slownikowych
+
+    }
+
+    public OperationMode getOperationModeWithKey(Row row) {
+        Cell operationModeCell = row.getCell(10);
+        if (operationModeCell != null) {
+            return operationModeService.getById((int) operationModeCell.getNumericCellValue());
+        }
+        return new OperationMode();
     }
 
     public static OperationMode createOperationMode(Row row) {

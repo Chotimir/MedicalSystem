@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "powiklania_s")
@@ -21,7 +20,7 @@ public class Complication {
 
     @OneToMany(mappedBy = "complication", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Getter @Setter
-    private List<ComplicationDescription> descriptions;
+    private ComplicationDescription description;
 
     public Complication() {}
 
