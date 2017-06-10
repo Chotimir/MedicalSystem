@@ -14,7 +14,7 @@ public class Smoking {
     @Getter @Setter
     private int id;
 
-    @Column(name = "wartosc_tekstowa", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "wartosc_tekstowa", columnDefinition = "varchar(50)")
     @Getter @Setter
     private String text;
 

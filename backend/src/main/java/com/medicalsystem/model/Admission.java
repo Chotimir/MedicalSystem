@@ -17,70 +17,70 @@ public class Admission {
     private int id;
 
     @OneToOne
-    @JoinColumn(name = "id_pacjenta", nullable = false)
+    @JoinColumn(name = "id_pacjenta")
     @Getter @Setter
     private Patient patient;
 
     @OneToOne
-    @JoinColumn(name = "id_operacji", nullable = false)
+    @JoinColumn(name = "id_operacji")
     @Getter @Setter
     private Operation operation;
 
-    @Column(name = "data_przyjecia", nullable = false)
+    @Column(name = "data_przyjecia")
     @Getter @Setter
     private Date admissionDate;
 
-    @Column(name = "data_zabiegu", nullable = false)
+    @Column(name = "data_zabiegu")
     @Getter @Setter
     private Date operationDate;
 
-    @Column(name = "objawy_aa", nullable = false)
+    @Column(name = "objawy_aa")
     @Getter @Setter
     private int aaSymptoms;
 
-    @Column(name = "wymiary_aa", nullable = false)
+    @Column(name = "wymiary_aa")
     @Getter @Setter
     private int aaSize;
 
-    @Column(name = "maks_wymiary_tetniaka", nullable = false)
+    @Column(name = "maks_wymiary_tetniaka")
     @Getter @Setter
     private int maxAneurysmSize;
 
-    @Column(name = "badanie_obrazowe", nullable = false)
+    @Column(name = "badanie_obrazowe")
     @Getter @Setter
     private int imageExamination;
 
-    @Column(name = "lokalizacja_tetniaka", nullable = false)
+    @Column(name = "lokalizacja_tetniaka")
     @Getter @Setter
     private int aneurysmLocation;
 
     @ManyToOne
-    @JoinColumn(name = "palenie_tytoniu", nullable = false)
+    @JoinColumn(name = "palenie_tytoniu")
     @Getter @Setter
     private Smoking smoking;
 
-    @Column(name = "skala_asa", nullable = false)
+    @Column(name = "skala_asa")
     @Getter @Setter
     private int asaScale;
 
-    @Column(name = "lee_rcri", nullable = false)
+    @Column(name = "lee_rcri")
     @Getter @Setter
     private int leeRcri;
 
-    @Column(name = "p_possu", nullable = false)
+    @Column(name = "p_possu")
     @Getter @Setter
     private double pPossu;
 
-    @Column(name = "utrata_przytomnosci", nullable = false)
+    @Column(name = "utrata_przytomnosci")
     @Getter @Setter
     private int faint;
 
     @ManyToOne
-    @JoinColumn(name = "reoperacja", nullable = false)
+    @JoinColumn(name = "reoperacja")
     @Getter @Setter
     private Reoperation reopration;
 
-    @Column(name = "uwagi", columnDefinition = "text", nullable = false)
+    @Column(name = "uwagi", columnDefinition = "text")
     @Getter @Setter
     private String comments;
 

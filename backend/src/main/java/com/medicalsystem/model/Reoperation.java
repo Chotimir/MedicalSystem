@@ -14,7 +14,7 @@ public class Reoperation {
     @Getter @Setter
     private int id;
 
-    @Column(name = "nazwa_reoperacji", columnDefinition = "varchar(100)", nullable = false)
+    @Column(name = "nazwa_reoperacji", columnDefinition = "varchar(100)")
     @Getter @Setter
     private String name;
 

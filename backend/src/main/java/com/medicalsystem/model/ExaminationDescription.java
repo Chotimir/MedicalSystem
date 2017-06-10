@@ -14,11 +14,11 @@ public class ExaminationDescription {
     @Getter @Setter
     private int id;
 
-    @Column(name = "nazwa_badania", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "nazwa_badania", columnDefinition = "varchar(50)")
     @Getter @Setter
     private String name;
 
-    @Column(name = "jednostka", columnDefinition = "varchar(10)", nullable = false)
+    @Column(name = "jednostka", columnDefinition = "varchar(10)")
     @Getter @Setter
     private String unit;
 

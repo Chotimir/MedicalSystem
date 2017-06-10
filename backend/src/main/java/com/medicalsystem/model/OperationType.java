@@ -14,7 +14,7 @@ public class OperationType {
     @Getter @Setter
     private int id;
 
-    @Column(name = "nazwa_rodzaju_zabiegu", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "nazwa_rodzaju_zabiegu", columnDefinition = "varchar(50)")
     @Getter @Setter
     private String name;
 

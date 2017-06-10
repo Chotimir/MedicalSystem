@@ -15,11 +15,11 @@ public class ComplicationDescription {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_powiklania", nullable = false)
+    @JoinColumn(name = "id_powiklania")
     @Getter @Setter
     private Complication complication;
 
-    @Column(name = "nazwa_opis_powiklania", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "nazwa_opis_powiklania", columnDefinition = "varchar(50)")
     @Getter @Setter
     private String description;
 

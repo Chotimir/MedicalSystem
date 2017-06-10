@@ -16,19 +16,19 @@ public class Patient {
     @Getter @Setter
     private int id;
 
-    @Column(name = "imie", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "imie", columnDefinition = "varchar(50)")
     @Getter @Setter
     private String firstName;
 
-    @Column(name = "nazwisko", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "nazwisko", columnDefinition = "varchar(50)")
     @Getter @Setter
     private String lastName;
 
-    @Column(name = "plec", columnDefinition = "varchar(1)", nullable = false)
+    @Column(name = "plec", columnDefinition = "varchar(1)")
     @Getter @Setter
     private char sex;
 
-    @Column(name = "wiek", nullable = false)
+    @Column(name = "wiek")
     @Getter @Setter
     private int age;
 

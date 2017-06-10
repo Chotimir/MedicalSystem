@@ -14,7 +14,7 @@ public class RevisitCause {
     @Getter @Setter
     private int id;
 
-    @Column(name = "nazwa_przyczyny", columnDefinition = "varchar(70)", nullable = false)
+    @Column(name = "nazwa_przyczyny", columnDefinition = "varchar(70)")
     @Getter @Setter
     private String name;
 

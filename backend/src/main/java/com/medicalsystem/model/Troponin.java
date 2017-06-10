@@ -15,27 +15,27 @@ public class Troponin {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_przyjecia", nullable = false)
+    @JoinColumn(name = "id_przyjecia")
     @Getter @Setter
     private Admission admission;
 
-    @Column(name = "tnt", nullable = false)
+    @Column(name = "tnt")
     @Getter @Setter
     private float tnt;
 
-    @Column(name = "tnl_ultra", nullable = false)
+    @Column(name = "tnl_ultra")
     @Getter @Setter
     private float tnlUltra;
 
-    @Column(name = "tnl", nullable = false)
+    @Column(name = "tnl")
     @Getter @Setter
     private float tnl;
 
-    @Column(name = "tnt_doba", nullable = false)
+    @Column(name = "tnt_doba")
     @Getter @Setter
     private float tntDay;
 
-    @Column(name = "tnl_doba", nullable = false)
+    @Column(name = "tnl_doba")
     @Getter @Setter
     private float tnlDay;
 

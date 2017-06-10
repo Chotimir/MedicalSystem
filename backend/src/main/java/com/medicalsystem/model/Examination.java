@@ -15,16 +15,16 @@ public class Examination {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_przyjecia", nullable = false)
+    @JoinColumn(name = "id_przyjecia")
     @Getter @Setter
     private Admission admission;
 
     @OneToOne
-    @JoinColumn(name = "id_badania", nullable = false)
+    @JoinColumn(name = "id_badania")
     @Getter @Setter
     private ExaminationDescription description;
 
-    @Column(name = "wynik_badania", nullable = false)
+    @Column(name = "wynik_badania")
     @Getter @Setter
     private float result;
 

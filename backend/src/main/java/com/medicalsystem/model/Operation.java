@@ -16,57 +16,57 @@ public class Operation {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "tryb_zabiegu", nullable = false)
+    @JoinColumn(name = "tryb_zabiegu")
     @Getter @Setter
     private OperationMode operationMode;
 
     @ManyToOne
-    @JoinColumn(name = "znieczulenie", nullable = false)
+    @JoinColumn(name = "znieczulenie")
     @Getter @Setter
     private Anesthesia anesthesia;
 
     @ManyToOne
-    @JoinColumn(name = "lek_znieczulajacy", nullable = false)
+    @JoinColumn(name = "lek_znieczulajacy")
     @Getter @Setter
     private Anesthetic anesthetic;
 
-    @Column(name = "czas_trwania", nullable = false)
+    @Column(name = "czas_trwania")
     @Getter @Setter
     private int duration;
 
-    @Column(name = "czas_klemacji_aorty", nullable = false)
+    @Column(name = "czas_klemacji_aorty")
     @Getter @Setter
     private int aortaClottingTime;
 
-    @Column(name = "noradrenalina", nullable = false)
+    @Column(name = "noradrenalina")
     @Getter @Setter
     private boolean noradrenaline;
 
-    @Column(name = "adrenalina", nullable = false)
+    @Column(name = "adrenalina")
     @Getter @Setter
     private boolean adrenaline;
 
-    @Column(name = "dopamina", nullable = false)
+    @Column(name = "dopamina")
     @Getter @Setter
     private boolean dopamine;
 
-    @Column(name = "dobutamina", nullable = false)
+    @Column(name = "dobutamina")
     @Getter @Setter
     private boolean dobutamine;
 
-    @Column(name = "efedryna", nullable = false)
+    @Column(name = "efedryna")
     @Getter @Setter
     private boolean ephedrine;
 
-    @Column(name = "utracona_krew", nullable = false)
+    @Column(name = "utracona_krew")
     @Getter @Setter
     private int bloodLost;
 
-    @Column(name = "wydalony_mocz", nullable = false)
+    @Column(name = "wydalony_mocz")
     @Getter @Setter
     private int urineExpelled;
 
-    @Column(name = "przetoczony_kkcz", nullable = false)
+    @Column(name = "przetoczony_kkcz")
     @Getter @Setter
     private int packedCellsTransfused;
 

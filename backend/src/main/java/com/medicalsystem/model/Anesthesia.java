@@ -14,7 +14,7 @@ public class Anesthesia {
     @Getter @Setter
     private int id;
 
-    @Column(name = "nazwa_znieczulenia", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "nazwa_znieczulenia", columnDefinition = "varchar(50)")
     @Getter @Setter
     private String name;
 

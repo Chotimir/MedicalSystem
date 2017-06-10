@@ -15,11 +15,11 @@ public class DiseaseDescription {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_choroby", nullable = false)
+    @JoinColumn(name = "id_choroby")
     @Getter @Setter
     private Disease disease;
 
-    @Column(name = "nazwa_opis_choroby", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "nazwa_opis_choroby", columnDefinition = "varchar(50)")
     @Getter @Setter
     private String description;
 
