@@ -1,4 +1,4 @@
-package com.medicalsystem;
+package com.medicalsystem.excel;
 
 import com.medicalsystem.model.*;
 import com.medicalsystem.service.*;
@@ -66,7 +66,6 @@ public class ObjectFromExcelFactory {
         this.troponinService = troponinService;
     }
 
-    //DONE
     public Patient createPatient(Row row) {
         Patient patient = new Patient();
 
@@ -85,9 +84,25 @@ public class ObjectFromExcelFactory {
         Cell ageCell = row.getCell(4);
         patient.setAge((ageCell == null) ? -1 : (int) row.getCell(4).getNumericCellValue());
 
+//        patient.setDiseases(getDiseaseListWithKey(row));
+
         return patient;
     }
 
+//    public List<Disease> getDiseaseListWithKey(Row row) {
+//        List<Disease> diseases = new ArrayList<>();
+//        for (int excelCellNumber = 17, diseaseCount = 1; excelCellNumber < 28; excelCellNumber++, diseaseCount++) {
+//            Cell diseaseCell = row.getCell(excelCellNumber);
+//            if (diseaseCell != null) {
+//                Disease disease = new Disease();
+//            }
+//        }
+//    }
+
+    public static DiseaseDescription createDiseaseDescription(Row row) {
+        DiseaseDescription diseaseDescription = new DiseaseDescription();
+        return diseaseDescription;
+    }
     public Patient getPatientWithKey(Row row) {
         Cell patientCell = row.getCell(0);
         if (patientCell != null) {
@@ -114,15 +129,14 @@ public class ObjectFromExcelFactory {
         Cell aaSymptomsCell = row.getCell(11);
         admission.setAaSymptoms((aaSymptomsCell == null) ? -1 : (int) aaSymptomsCell.getNumericCellValue());
 
-
         Cell aaSizeCell = row.getCell(12);
         admission.setAaSize((aaSizeCell == null) ? -1 : (int) aaSizeCell.getNumericCellValue());
 
         Cell maxAneurysmSizeCell = row.getCell(13);
         admission.setMaxAneurysmSize((maxAneurysmSizeCell == null) ? -1 : (int) maxAneurysmSizeCell.getNumericCellValue());
 
-        admission.setImageExamination(1); //brak danych
-        admission.setAneurysmLocation(1); //brak danych
+        admission.setImageExamination(1); //brak danych w excelu
+        admission.setAneurysmLocation(1); //brak danych w excelu
 
         admission.setSmoking(getSmokingWithKey(row));
 
@@ -143,14 +157,48 @@ public class ObjectFromExcelFactory {
         Cell commentsCell = row.getCell(104);
         admission.setComments((commentsCell == null) ? "" : commentsCell.getStringCellValue());
 
-        //examinations
-        //revisits
-        //troponins
-        //leki_stosowane_przed_zabiegiem
-//        List<Medicament> medicaments =
-        //rodzaj_zabiegu
+        admissionService.saveOrUpdate(admission); //because I need an ID in next method calls
+
+        admission.setExaminations(getExaminationListWithKey(row, admission));
+        admission.setRevisits(getRevisitListWithKey(row, admission));
+        admission.setTroponins(getTroponinListWithKey(row, admission));
+        admission.setMedicaments(getMedicamentListWithKey(row));
+        admission.setOperationTypes(getOperationTypeListWithKey(row));
 
         return admission;
+    }
+
+    public List<Revisit> getRevisitListWithKey(Row row, Admission admission) {
+        List<Revisit> revisits = new ArrayList<>();
+        revisits.add(getRevisitWithKey(row, admission));
+        return revisits;
+    }
+
+    public List<Examination> getExaminationListWithKey(Row row, Admission admission) {
+        List<Examination> examinations = new ArrayList<>();
+        for (int excelCellNumber = 30, examinationCount = 1; excelCellNumber < 36; excelCellNumber++, examinationCount++) {
+            Cell examinationCell = row.getCell(excelCellNumber);
+            if (examinationCell != null) {
+                Examination examination = new Examination();
+                examination.setDescription(examinationDescriptionService.getById(examinationCount));
+                examination.setResult((float) examinationCell.getNumericCellValue());
+                examination.setAdmission(admission);
+                examinations.add(examination);
+            }
+        }
+        return examinations;
+    }
+
+    public List<Medicament> getMedicamentListWithKey(Row row) {
+        List<Medicament> medicaments = new ArrayList<>();
+        for (int excelCellNumber = 36; excelCellNumber < 48; excelCellNumber++) {
+            Cell medicamentCell = row.getCell(excelCellNumber);
+            if (medicamentCell != null) {
+                Medicament medicament = medicamentService.getById(excelCellNumber);
+                medicaments.add(medicament);
+            }
+        }
+        return medicaments;
     }
 
     public Smoking getSmokingWithKey(Row row) {
@@ -169,59 +217,6 @@ public class ObjectFromExcelFactory {
         return new Reoperation();
     }
 
-//    public static Reoperation createReoperation(Row row) {
-//        Reoperation reoperation = new Reoperation();
-//    }
-
-
-    public static Anesthesia createAnesthesia(Row row) {
-        Anesthesia anesthesia = new Anesthesia();
-
-        //!!!!!!!!!!
-        anesthesia.setId((int) row.getCell(8).getNumericCellValue());
-//        anesthesia.setName((int) row.getCell().getNumericCellValue());
-        return anesthesia;
-    }
-
-    public static Anesthetic createAnesthetic(Row row) {
-        Anesthetic anesthetic = new Anesthetic();
-
-        anesthetic.setId((int) row.getCell(9).getNumericCellValue());
-        //nazwa_leku_znieczulajacego
-        return anesthetic;
-    }
-
-
-
-    public static Disease createDisease(Row row) {
-        Disease disease = new Disease();
-        return disease;
-    }
-
-    public static DiseaseDescription createDiseaseDescription(Row row) {
-        DiseaseDescription diseaseDescription = new DiseaseDescription();
-        return diseaseDescription;
-    }
-
-    public static Examination createExamination(Row row) {
-        Examination examination = new Examination();
-        examination.setResult(1.0f); //brak w excelu
-        return examination;
-    }
-
-//    public static ExaminationDescription createExaminationDescription(Row row) {
-//        ExaminationDescription examinationDescription = new ExaminationDescription();
-//        return examinationDescription;
-//    }
-
-//    public static Medicament createMedicament(Row row) {
-//        Medicament medicament = new Medicament();
-//
-//        return medicament;
-//    }
-
-
-    //DONE
     public Operation createOperation(Row row) {
         Operation operation = new Operation();
 
@@ -259,7 +254,6 @@ public class ObjectFromExcelFactory {
         if (ephedrine != null) {
             operation.setEphedrine((ephedrine.getNumericCellValue() == 1) ? true : false);
         }
-
 
         operation.setBloodLost((int) row.getCell(56).getNumericCellValue());
         operation.setUrineExpelled((int) row.getCell(57).getNumericCellValue());
@@ -320,68 +314,73 @@ public class ObjectFromExcelFactory {
         return new OperationMode();
     }
 
-    public static OperationMode createOperationMode(Row row) {
-        OperationMode operationMode = new OperationMode();
-//        operationMode.setId((int) row.getCell(10).getNumericCellValue());
-        //nazwa trybu
-
-        return operationMode;
-    }
-
-    public static OperationType createOperationType(Row row) {
-        OperationType operationType = new OperationType();
-        operationType.setId((int) row.getCell(7).getNumericCellValue());
-
-        //nazwa rodzaju zabiegu
-
-        return operationType;
-    }
-
-
-    public static Reoperation createReoperation(Row row) {
-        //!!!!!!!!!!! nazwa
-        Reoperation reoperation = new Reoperation((int) row.getCell(95).getNumericCellValue(), "");
-        return reoperation;
-    }
-
-    public static Revisit createRevisit(Row row) {
-        //id ponownej wizity
-        Revisit revisit = new Revisit();
-        revisit.setControlVisit((int) row.getCell(100).getNumericCellValue());
-
-        java.util.Date dateCellValue = row.getCell(102).getDateCellValue();
-        Date date = null;
-        try {
-            date = new Date(dateCellValue.getYear(), dateCellValue.getMonth(), dateCellValue.getDay());
-        } catch (Exception e) {
-            e.printStackTrace();
+    public List<OperationType> getOperationTypeListWithKey(Row row) {
+        //to analyse
+        List<OperationType> operationTypes = new ArrayList<>();
+        Cell operationTypeCell = row.getCell(7);
+        if (operationTypeCell != null) {
+            operationTypes.add(operationTypeService.getById((int) operationTypeCell.getNumericCellValue()));
+            return operationTypes;
         }
-        revisit.setDate(date);
+        operationTypes.add(new OperationType());
+        return operationTypes;
+    }
 
-        RevisitCause revisitCause = new RevisitCause((int) row.getCell(103).getNumericCellValue(), "");
-        revisit.setCause(revisitCause);
+    public Revisit getRevisitWithKey(Row row, Admission admission) {
+        Revisit revisit = new Revisit();
+
+        revisit.setAdmission(admission);
+
+        Cell controlVisitCell = row.getCell(100);
+        revisit.setControlVisit((controlVisitCell == null) ? -1 : (int) controlVisitCell.getNumericCellValue());
+
+        Cell dateCell = row.getCell(102);
+        if (dateCell != null) {
+            Date date = null;
+            java.util.Date dateCellValue = dateCell.getDateCellValue();
+            try {
+                date = new Date(dateCellValue.getYear(), dateCellValue.getMonth(), dateCellValue.getDay());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            revisit.setDate(date);
+        }
+
+        revisit.setCause(getRevisitCauseWithKey(row));
 
         return revisit;
     }
 
-    public static RevisitCause createRevisitCause(Row row) {
-        RevisitCause revisitCause = new RevisitCause((int) row.getCell(103).getNumericCellValue(), "");
-        return revisitCause;
+    public RevisitCause getRevisitCauseWithKey(Row row) {
+        Cell revisitCauseCell = row.getCell(103);
+        if (revisitCauseCell != null) {
+            return revisitCauseService.getById((int) revisitCauseCell.getNumericCellValue());
+        }
+        return new RevisitCause();
     }
 
-
-
-    public static Troponin createTroponin(Row row) {
+    public List<Troponin> getTroponinListWithKey(Row row, Admission admission) {
+        List<Troponin> troponins = new ArrayList<>();
         Troponin troponin = new Troponin();
-        troponin.setTnt((float) row.getCell(66).getNumericCellValue());
-        troponin.setTnlUltra((float) row.getCell(67).getNumericCellValue());
-        troponin.setTnl((float) row.getCell(68).getNumericCellValue());
-        troponin.setTntDay((float) row.getCell(69).getNumericCellValue());
-        troponin.setTnlDay((float) row.getCell(70).getNumericCellValue());
+        troponin.setAdmission(admission);
 
-        return troponin;
+
+        Cell tnTCell = row.getCell(66);
+        troponin.setTnt((tnTCell == null) ? -1 : (float) tnTCell.getNumericCellValue());
+
+        Cell tnlUltraCell = row.getCell(67);
+        troponin.setTnlUltra((tnlUltraCell == null) ? -1 : (float) tnlUltraCell.getNumericCellValue());
+
+        Cell tnlCell = row.getCell(66);
+        troponin.setTnl((tnlCell == null) ? -1 : (float) tnlCell.getNumericCellValue());
+
+        Cell tntDayCell = row.getCell(67);
+        troponin.setTntDay((tntDayCell == null) ? -1 : (float) tntDayCell.getNumericCellValue());
+
+        Cell tnlDayCell = row.getCell(66);
+        troponin.setTnl((tnlDayCell == null) ? -1 : (float) tnlDayCell.getNumericCellValue());
+
+        return troponins;
     }
-
-
 
 }

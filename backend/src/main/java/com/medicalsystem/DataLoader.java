@@ -89,17 +89,17 @@ public class DataLoader implements ApplicationRunner {
 
         // choroby_s
         Disease[] diseases = {
-                new Disease(1, "HT"),
-                new Disease(2, "CAD"),
-                new Disease(3, "CAD wysokiego ryzyka"),
-                new Disease(4, "MI/ACS przebyty"),
-                new Disease(5, "Stenoza aortalna"),
-                new Disease(6, "CVE przebyty"),
-                new Disease(7, "CHF"),
-                new Disease(8, "DM"),
-                new Disease(9, "COPD"),
-                new Disease(10, "EKG przyjęciowe"),
-				new Disease(11, "Wstrząs przy przyjęciu")
+                new Disease(1, "Wstrząs przy przyjęciu"),
+                new Disease(2, "HT"),
+                new Disease(3, "CAD"),
+                new Disease(4, "CAD wysokiego ryzyka"),
+                new Disease(5, "MI/ACS przebyty"),
+                new Disease(6, "Stenoza aortalna"),
+                new Disease(7, "CVE przebyty"),
+                new Disease(8, "CHF"),
+                new Disease(9, "DM"),
+                new Disease(10, "COPD"),
+                new Disease(11, "EKG przyjęciowe")
         };
 
         for (Disease disease : diseases) {
