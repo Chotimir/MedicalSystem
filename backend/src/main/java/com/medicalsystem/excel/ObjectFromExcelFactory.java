@@ -84,25 +84,28 @@ public class ObjectFromExcelFactory {
         Cell ageCell = row.getCell(4);
         patient.setAge((ageCell == null) ? -1 : (int) row.getCell(4).getNumericCellValue());
 
-//        patient.setDiseases(getDiseaseListWithKey(row));
+        patient.setDiseases(getDiseaseListWithKey(row)); //choroby wspolistniejace
 
         return patient;
     }
 
-//    public List<Disease> getDiseaseListWithKey(Row row) {
-//        List<Disease> diseases = new ArrayList<>();
-//        for (int excelCellNumber = 17, diseaseCount = 1; excelCellNumber < 28; excelCellNumber++, diseaseCount++) {
-//            Cell diseaseCell = row.getCell(excelCellNumber);
-//            if (diseaseCell != null) {
-//                Disease disease = new Disease();
-//            }
-//        }
-//    }
+    public List<Disease> getDiseaseListWithKey(Row row) {
+        List<Disease> diseases = new ArrayList<>();
+        for (int excelCellNumber = 17, diseaseCount = 1; excelCellNumber < 28; excelCellNumber++, diseaseCount++) {
+            Cell diseaseCell = row.getCell(excelCellNumber);
+            if (diseaseCell != null && diseaseCell.getNumericCellValue() == 1) { //to analyse
+                Disease disease = diseaseService.getById(diseaseCount);
+                diseases.add(disease);
+            }
+        }
+        return diseases;
+    }
 
     public static DiseaseDescription createDiseaseDescription(Row row) {
         DiseaseDescription diseaseDescription = new DiseaseDescription();
         return diseaseDescription;
     }
+
     public Patient getPatientWithKey(Row row) {
         Cell patientCell = row.getCell(0);
         if (patientCell != null) {
@@ -159,11 +162,13 @@ public class ObjectFromExcelFactory {
 
         admissionService.saveOrUpdate(admission); //because I need an ID in next method calls
 
+        admission.setMedicaments(getMedicamentListWithKey(row));
+        admission.setOperationTypes(getOperationTypeListWithKey(row));
+
+        //doesn't work, empty tables in db
         admission.setExaminations(getExaminationListWithKey(row, admission));
         admission.setRevisits(getRevisitListWithKey(row, admission));
         admission.setTroponins(getTroponinListWithKey(row, admission));
-        admission.setMedicaments(getMedicamentListWithKey(row));
-        admission.setOperationTypes(getOperationTypeListWithKey(row));
 
         return admission;
     }
@@ -191,10 +196,10 @@ public class ObjectFromExcelFactory {
 
     public List<Medicament> getMedicamentListWithKey(Row row) {
         List<Medicament> medicaments = new ArrayList<>();
-        for (int excelCellNumber = 36; excelCellNumber < 48; excelCellNumber++) {
+        for (int excelCellNumber = 36, medicamentCount = 1; excelCellNumber < 48; excelCellNumber++, medicamentCount++) {
             Cell medicamentCell = row.getCell(excelCellNumber);
-            if (medicamentCell != null) {
-                Medicament medicament = medicamentService.getById(excelCellNumber);
+            if (medicamentCell != null && medicamentCell.getNumericCellValue() == 1) {
+                Medicament medicament = medicamentService.getById(medicamentCount);
                 medicaments.add(medicament);
             }
         }
@@ -268,8 +273,9 @@ public class ObjectFromExcelFactory {
 
         operation.setVentilatorDays((int) row.getCell(63).getNumericCellValue());
 
-        List<Complication> complications = getComplicationList(row);
-        operation.setComplications(complications);
+//        List<Complication> complications = getComplicationList(row);
+//        operation.setComplications(complications);
+        operationService.saveOrUpdate(operation);
 
         return operation;
     }
@@ -291,18 +297,21 @@ public class ObjectFromExcelFactory {
 
     }
 
-    public List<Complication> getComplicationList(Row row) {
-        List<Complication> complications = new ArrayList<>(30);
-        for (int i = 0; i < 30; i++) {
-            Complication complication = complicationService.getById(i);
-            ComplicationDescription complicationDescription = getComplicationDescriptionWithKey(row);
-            complication.setDescription(complicationDescription);
-        }
-        return complications;
-    }
+    //add excel value in class
+//    public List<Complication> getComplicationList(Row row) {
+//        List<Complication> complications = new ArrayList<>(30);
+//        for (int i = 1; i < 31; i++) {
+//            Complication complication = complicationService.getById(i);
+//            List<ComplicationDescription> complicationDescription = getComplicationDescriptionWithKey(row);
+//             complication.setDescription(complicationDescription);
+//        }
+//        return complications;
+//    }
 
-    public ComplicationDescription getComplicationDescriptionWithKey(Row row) {
-        return complicationDescriptionService.getById(0); //to do, po dodaniu tabel slownikowych
+    public List<ComplicationDescription> getComplicationDescriptionWithKey(Row row) {
+        List<ComplicationDescription> complicationDescriptions = new ArrayList<>();
+        complicationDescriptions.add(complicationDescriptionService.getById(1));
+        return complicationDescriptions;
 
     }
 
@@ -315,7 +324,6 @@ public class ObjectFromExcelFactory {
     }
 
     public List<OperationType> getOperationTypeListWithKey(Row row) {
-        //to analyse
         List<OperationType> operationTypes = new ArrayList<>();
         Cell operationTypeCell = row.getCell(7);
         if (operationTypeCell != null) {
