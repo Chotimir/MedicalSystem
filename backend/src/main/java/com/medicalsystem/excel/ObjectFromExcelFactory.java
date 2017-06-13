@@ -2,6 +2,8 @@ package com.medicalsystem.excel;
 
 import com.medicalsystem.model.*;
 import com.medicalsystem.service.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ public class ObjectFromExcelFactory {
     private OperationModeService operationModeService;
     private OperationService operationService;
     private OperationTypeService operationTypeService;
+    @Getter @Setter
     private PatientService patientService;
     private ReoperationService reoperationService;
     private RevisitCauseService revisitCauseService;
