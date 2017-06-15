@@ -1,6 +1,6 @@
 package com.medicalsystem.service;
 
-import com.medicalsystem.model.RevisitCause;
+import com.medicalsystem.domain.RevisitCause;
 
 public interface RevisitCauseService extends CRUDService<RevisitCause> {
 }

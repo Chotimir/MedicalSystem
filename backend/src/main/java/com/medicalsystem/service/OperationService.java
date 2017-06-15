@@ -1,6 +1,6 @@
 package com.medicalsystem.service;
 
-import com.medicalsystem.model.Operation;
+import com.medicalsystem.domain.Operation;
 
 public interface OperationService extends CRUDService<Operation> {
 }

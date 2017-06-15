@@ -1,4 +1,4 @@
-package com.medicalsystem.model;
+package com.medicalsystem.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "dane_osobowe")
-public class Patient {
+public class Patient extends IdComparableEntity {
 
 //    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

@@ -1,6 +1,6 @@
 package com.medicalsystem.service;
 
-import com.medicalsystem.model.Anesthesia;
+import com.medicalsystem.domain.Anesthesia;
 
 public interface AnesthesiaService extends CRUDService<Anesthesia> {
 }

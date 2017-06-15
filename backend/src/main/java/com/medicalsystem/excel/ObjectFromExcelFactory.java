@@ -1,6 +1,6 @@
 package com.medicalsystem.excel;
 
-import com.medicalsystem.model.*;
+import com.medicalsystem.domain.*;
 import com.medicalsystem.service.*;
 import lombok.Getter;
 import lombok.Setter;

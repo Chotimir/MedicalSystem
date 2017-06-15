@@ -1,6 +1,6 @@
 package com.medicalsystem.service;
 
-import com.medicalsystem.model.Complication;
+import com.medicalsystem.domain.Complication;
 
 public interface ComplicationService extends CRUDService<Complication> {
 }

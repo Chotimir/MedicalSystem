@@ -1,6 +1,6 @@
 package com.medicalsystem.service;
 
-import com.medicalsystem.model.Troponin;
+import com.medicalsystem.domain.Troponin;
 
 public interface TroponinService extends CRUDService<Troponin> {
 }

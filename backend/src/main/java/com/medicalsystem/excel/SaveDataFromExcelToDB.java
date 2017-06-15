@@ -1,7 +1,7 @@
 package com.medicalsystem.excel;
 
-import com.medicalsystem.model.Admission;
-import com.medicalsystem.model.Patient;
+import com.medicalsystem.domain.Admission;
+import com.medicalsystem.domain.Patient;
 import com.medicalsystem.service.AdmissionService;
 import com.medicalsystem.service.PatientService;
 import org.apache.poi.ss.usermodel.Row;

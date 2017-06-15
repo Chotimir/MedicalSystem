@@ -1,6 +1,6 @@
 package com.medicalsystem;
 
-import com.medicalsystem.model.*;
+import com.medicalsystem.domain.*;
 import com.medicalsystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;

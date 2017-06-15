@@ -1,6 +1,6 @@
 package com.medicalsystem.service.impl;
 
-import com.medicalsystem.model.Reoperation;
+import com.medicalsystem.domain.Reoperation;
 import com.medicalsystem.repository.ReoperationRepository;
 import com.medicalsystem.service.ReoperationService;
 import org.springframework.beans.factory.annotation.Autowired;

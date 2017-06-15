@@ -1,4 +1,4 @@
-package com.medicalsystem.model;
+package com.medicalsystem.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "powiklania_s")
-public class Complication {
+public class Complication extends IdComparableEntity {
 
     @Id
     @Column(name = "id_powiklania")

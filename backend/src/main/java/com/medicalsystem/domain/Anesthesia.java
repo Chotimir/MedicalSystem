@@ -1,4 +1,4 @@
-package com.medicalsystem.model;
+package com.medicalsystem.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "znieczulenie_s")
-public class Anesthesia {
+public class Anesthesia extends IdComparableEntity {
 
     @Id
     @Column(name = "znieczulenie")

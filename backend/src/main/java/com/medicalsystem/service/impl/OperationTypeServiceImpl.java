@@ -1,6 +1,6 @@
 package com.medicalsystem.service.impl;
 
-import com.medicalsystem.model.OperationType;
+import com.medicalsystem.domain.OperationType;
 import com.medicalsystem.repository.OperationTypeRepository;
 import com.medicalsystem.service.OperationTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

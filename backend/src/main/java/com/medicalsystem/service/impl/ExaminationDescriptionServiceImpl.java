@@ -1,6 +1,6 @@
 package com.medicalsystem.service.impl;
 
-import com.medicalsystem.model.ExaminationDescription;
+import com.medicalsystem.domain.ExaminationDescription;
 import com.medicalsystem.repository.ExaminationDescriptionRepository;
 import com.medicalsystem.service.ExaminationDescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
