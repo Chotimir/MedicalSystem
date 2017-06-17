@@ -1,4 +1,4 @@
-import {AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 
 import {ComorbiditiesService} from "../../services/comorbidities.service";
 import {SelectField} from "../../model/select-field";
@@ -9,7 +9,7 @@ import {SelectField} from "../../model/select-field";
   styleUrls: ['./comorbidities.component.css'],
   providers: [ComorbiditiesService]
 })
-export class ComorbiditiesComponent implements OnInit, AfterViewChecked {
+export class ComorbiditiesComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   comorbidities: SelectField[];
 
@@ -33,6 +33,10 @@ export class ComorbiditiesComponent implements OnInit, AfterViewChecked {
         (<HTMLSelectElement>document.getElementById(c.name)).value = c.selected;
       });
     }
+  }
+
+  ngOnDestroy() {
+    this.comorbiditiesService.updateComorbidities(this.comorbidities);
   }
 
 }
