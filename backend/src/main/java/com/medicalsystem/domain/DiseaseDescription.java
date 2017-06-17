@@ -23,11 +23,16 @@ public class DiseaseDescription extends IdComparableEntity {
     @Getter @Setter
     private String description;
 
+    @Column(name = "wartosc_w_excelu")
+    @Getter @Setter
+    private int excelValue;
+
     public DiseaseDescription() {}
 
-    public DiseaseDescription(int id, Disease disease, String description) {
+    public DiseaseDescription(int id, Disease disease, String description, int excelValue) {
         this.id = id;
         this.disease = disease;
         this.description = description;
+        this.excelValue = excelValue;
     }
 }

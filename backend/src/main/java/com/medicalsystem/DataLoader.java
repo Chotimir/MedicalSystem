@@ -109,46 +109,46 @@ public class DataLoader implements ApplicationRunner {
 
         // opis_choroby_s
 		//wstrzas
-		diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(1, diseases[0], "nie"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(2, diseases[0], "tak"));
+		diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(1, diseases[0], "nie", 0));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(2, diseases[0], "tak", 1));
         // HT
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(3, diseases[1], "nie"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(4, diseases[1], "tak"));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(3, diseases[1], "nie", 0));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(4, diseases[1], "tak", 1));
         // CAD
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(5, diseases[2], "nie"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(6, diseases[2], "tak"));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(5, diseases[2], "nie", 0));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(6, diseases[2], "tak", 1));
         // CAD wysokiego ryzyka
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(7, diseases[3], "nie"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(8, diseases[3], "tak"));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(7, diseases[3], "nie", 0));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(8, diseases[3], "tak", 1));
         // MI/ACS
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(9, diseases[4], "nie"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(10, diseases[4], "tak"));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(9, diseases[4], "nie", 0));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(10, diseases[4], "tak", 1));
         // Stenoza aortalna
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(11, diseases[5], "brak"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(12, diseases[5], "łagodna"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(13, diseases[5], "umiarkowana"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(14, diseases[5], "ciężka"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(15, diseases[5], "sztuczna zastawka"));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(11, diseases[5], "brak", 0));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(12, diseases[5], "łagodna", 1));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(13, diseases[5], "umiarkowana", 2));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(14, diseases[5], "ciężka", 3));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(15, diseases[5], "sztuczna zastawka", 4));
         // CVE przebyty
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(16, diseases[6], "nie"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(17, diseases[6], "tak"));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(16, diseases[6], "nie", 0));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(17, diseases[6], "tak", 1));
         // CHF
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(18, diseases[7], "nie"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(19, diseases[7], "tak"));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(18, diseases[7], "nie", 0));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(19, diseases[7], "tak", 1));
         // DM
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(20, diseases[8], "nie"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(21, diseases[8], "tak"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(22, diseases[8], "w trakcie insulinoterapii"));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(20, diseases[8], "nie", 0));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(21, diseases[8], "tak", 1));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(22, diseases[8], "w trakcie insulinoterapii", 2));
         // COPD
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(23, diseases[9], "nie"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(24, diseases[9], "tak"));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(23, diseases[9], "nie", 0));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(24, diseases[9], "tak", 1));
         // EKG
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(25, diseases[10], "rytm zatokowy"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(26, diseases[10], "AF"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(27, diseases[10], "rytm zatokowy + obecność VE"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(28, diseases[10], "AF + obecność VE"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(29, diseases[10], "rytm z rozrusznika"));
-        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(30, diseases[10], "AF + rytm z rozrusznika"));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(25, diseases[10], "rytm zatokowy", 1));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(26, diseases[10], "AF", 2));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(27, diseases[10], "rytm zatokowy + obecność VE", 3));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(28, diseases[10], "AF + obecność VE", 4));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(29, diseases[10], "rytm z rozrusznika", 5));
+        diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(30, diseases[10], "AF + rytm z rozrusznika", 6));
 
 
         // badania_s
@@ -216,102 +216,102 @@ public class DataLoader implements ApplicationRunner {
 
         // opis_powiklania_s
         // MINS
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(1, complications[0], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(2, complications[0], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(1, complications[0], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(2, complications[0], "tak", 1));
         // MI
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(3, complications[1], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(4, complications[1], "NSTEMI ACS"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(5, complications[1], "STEMI"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(3, complications[1], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(4, complications[1], "NSTEMI ACS", 1));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(5, complications[1], "STEMI", 2));
         // Zmiany w EKG
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(6, complications[2], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(7, complications[2], "tak"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(8, complications[2], "nie wykonywano badania"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(6, complications[2], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(7, complications[2], "tak", 1));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(8, complications[2], "nie wykonywano badania", 2));
         // Nowe zaburzenia kurczliwosci
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(9, complications[3], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(10, complications[3], "tak"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(11, complications[3], "nie wykonywano badania"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(9, complications[3], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(10, complications[3], "tak", 1));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(11, complications[3], "nie wykonywano badania", 2));
         // dolegliwosci stenokardialne
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(12, complications[4], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(13, complications[4], "tak"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(14, complications[4], "brak danych (pacjent nieprzytomny)"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(12, complications[4], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(13, complications[4], "tak", 1));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(14, complications[4], "brak danych (pacjent nieprzytomny)", 2));
         // obrzek pluc
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(15, complications[5], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(16, complications[5], "tak"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(17, complications[5], "brak danych (pacjent nieprzytomny)"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(15, complications[5], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(16, complications[5], "tak", 1));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(17, complications[5], "brak danych (pacjent nieprzytomny)", 2));
         // Nowy epizod AF
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(18, complications[6], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(19, complications[6], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(18, complications[6], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(19, complications[6], "tak", 1));
         // Udar mozgu
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(20, complications[7], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(21, complications[7], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(20, complications[7], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(21, complications[7], "tak", 1));
         // Zapalenie pluc
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(22, complications[8], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(23, complications[8], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(22, complications[8], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(23, complications[8], "tak", 1));
         // Sepsa
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(24, complications[9], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(25, complications[9], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(24, complications[9], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(25, complications[9], "tak", 1));
         // Pooperacyjna niewydolnośc nerek(AKI)
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(26, complications[10], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(27, complications[10], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(26, complications[10], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(27, complications[10], "tak", 1));
         // Leczenie nerkozastępcze
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(28, complications[11], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(29, complications[11], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(28, complications[11], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(29, complications[11], "tak", 1));
         // Krwawienie z pp
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(30, complications[12], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(31, complications[12], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(30, complications[12], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(31, complications[12], "tak", 1));
         // Krwawienie z rany pooperacyjnej
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(32, complications[13], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(33, complications[13], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(32, complications[13], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(33, complications[13], "tak", 1));
         // Przetoczenie KKCz na OIT/naczyniówce
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(34, complications[14], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(35, complications[14], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(34, complications[14], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(35, complications[14], "tak", 1));
         // Zatorowość płucna
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(36, complications[15], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(37, complications[15], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(36, complications[15], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(37, complications[15], "tak", 1));
         // DVT
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(38, complications[16], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(39, complications[16], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(38, complications[16], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(39, complications[16], "tak", 1));
         // Zakrzepica żył powierzchownych
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(40, complications[17], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(41, complications[17], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(40, complications[17], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(41, complications[17], "tak", 1));
         // Niedokrwienie jelit
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(42, complications[18], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(43, complications[18], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(42, complications[18], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(43, complications[18], "tak", 1));
         // Zakażenie miejsca operowanego
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(44, complications[19], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(45, complications[19], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(44, complications[19], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(45, complications[19], "tak", 1));
         // Niedrożność protezy
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(46, complications[20], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(47, complications[20], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(46, complications[20], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(47, complications[20], "tak", 1));
         // Uszkodzenie watroby
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(48, complications[21], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(49, complications[21], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(48, complications[21], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(49, complications[21], "tak", 1));
         // Ostre zapalenie trzustki
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(50, complications[22], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(51, complications[22], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(50, complications[22], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(51, complications[22], "tak", 1));
         // Zakażenie C. difficile
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(52, complications[23], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(53, complications[23], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(52, complications[23], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(53, complications[23], "tak", 1));
         // Niedokrwienie kończyn dolnych
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(54, complications[24], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(55, complications[24], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(54, complications[24], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(55, complications[24], "tak", 1));
         // Niewydolność wielonarządowa
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(56, complications[25], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(57, complications[25], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(56, complications[25], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(57, complications[25], "tak", 1));
         // Zatrzymanie krążenia nie zakończone zgonem
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(58, complications[26], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(59, complications[26], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(58, complications[26], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(59, complications[26], "tak", 1));
         // Zgon wewnątrzszpitalny
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(60, complications[27], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(61, complications[27], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(60, complications[27], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(61, complications[27], "tak", 1));
         // Zgon-doba po operacji
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(62, complications[28], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(63, complications[28], "tak"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(62, complications[28], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(63, complications[28], "tak", 1));
         // Zgon z przyczyn naczyniowych
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(64, complications[29], "nie"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(65, complications[29], "tak"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(66, complications[29], "brak danych"));
-        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(67, complications[29], "nie dotyczy"));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(64, complications[29], "nie", 0));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(65, complications[29], "tak", 1));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(66, complications[29], "brak danych", 2));
+        complicationDescriptionService.saveOrUpdate(new ComplicationDescription(67, complications[29], "nie dotyczy", 3)); // powinno być 'x'
 
 
         // reoperacja_s

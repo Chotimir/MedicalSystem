@@ -23,11 +23,16 @@ public class ComplicationDescription extends IdComparableEntity {
     @Getter @Setter
     private String description;
 
+    @Column(name = "wartosc_w_excelu")
+    @Getter @Setter
+    private int excelValue;
+
     public ComplicationDescription() {}
 
-    public ComplicationDescription(int id, Complication complication, String description) {
+    public ComplicationDescription(int id, Complication complication, String description, int excelValue) {
         this.id = id;
         this.complication = complication;
         this.description = description;
+        this.excelValue = excelValue;
     }
 }

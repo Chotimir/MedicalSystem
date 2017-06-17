@@ -78,7 +78,7 @@ public class Admission extends IdComparableEntity {
     @ManyToOne
     @JoinColumn(name = "reoperacja")
     @Getter @Setter
-    private Reoperation reopration;
+    private Reoperation reoperation;
 
     @Column(name = "uwagi", columnDefinition = "text")
     @Getter @Setter

@@ -1,6 +1,6 @@
 package com.medicalsystem.excel;
 
-import com.medicalsystem.model.Patient;
+import com.medicalsystem.domain.Patient;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;

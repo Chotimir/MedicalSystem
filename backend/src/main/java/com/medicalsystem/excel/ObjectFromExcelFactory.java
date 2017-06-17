@@ -158,7 +158,7 @@ public class ObjectFromExcelFactory {
         Cell faintCell = row.getCell(16);
         admission.setFaint((faintCell == null) ? -1 : (int) faintCell.getNumericCellValue());
 
-        admission.setReopration(getReoperationWithKey(row));
+        admission.setReoperation(getReoperationWithKey(row));
 
         Cell commentsCell = row.getCell(104);
         admission.setComments((commentsCell == null) ? "" : commentsCell.getStringCellValue());
