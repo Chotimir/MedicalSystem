@@ -2,9 +2,9 @@
   <div class="form-group row col-12" *ngFor="let comorbidity of comorbidities">
     <label for={{comorbidity.name}} class="col-form-label col-3 offset-1">{{comorbidity.name}}</label>
     <div class="col-4">
-      <select class="form-control" id={{comorbidity.name}} onchange="setSelected(this.id, this.selected)">
+      <select [(ngModel)]="comorbidity.selected" class="form-control" id={{comorbidity.name}} name={{comorbidity.name}}>
         <option hidden disabled selected value></option>
-        <option *ngFor="let value of comorbidity.values">
+        <option *ngFor="let value of comorbidity.values" [ngValue]="value">
           {{value}}
         </option>
       </select>
