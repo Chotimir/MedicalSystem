@@ -7,6 +7,7 @@ import { AdminComponent } from './admin/admin.component';
 import {HomeRoutingModule} from "./home-routing.module";
 import {TranslateModule} from "@ngx-translate/core";
 import {FormsModule} from "@angular/forms";
+import { ExportComponent } from './export/export.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import {FormsModule} from "@angular/forms";
     TranslateModule,
     FormsModule
   ],
-  declarations: [HomeComponent, SearchComponent, ImportComponent, AdminComponent]
+  declarations: [HomeComponent, SearchComponent, ImportComponent, AdminComponent, ExportComponent]
 })
 export class HomeModule { }
