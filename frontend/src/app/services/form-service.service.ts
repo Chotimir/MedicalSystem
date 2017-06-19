@@ -1,5 +1,7 @@
 import {Headers, Http} from "@angular/http";
+import {Injectable} from "@angular/core";
 
+@Injectable()
 export abstract class FormService<T> {
 
   private headers = new Headers({'Content-Type': 'application/json'});
