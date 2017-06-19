@@ -67,9 +67,9 @@ public class Admission {
     @Getter @Setter
     private int leeRcri;
 
-    @Column(name = "p_possu", nullable = false)
+    @Column(name = "p_possum", nullable = false)
     @Getter @Setter
-    private int pPossu;
+    private int pPossum;
 
     @Column(name = "utrata_przytomnosci", nullable = false)
     @Getter @Setter

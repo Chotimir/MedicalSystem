@@ -4,7 +4,7 @@ import {FormService} from "./form-service.service";
 import {Operation} from "../model/operation";
 
 @Injectable()
-export class OperationService extends FormService {
+export class OperationService extends FormService<Operation> {
 
   private operationUrl = 'api/operation';
 

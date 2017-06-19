@@ -5,7 +5,7 @@ import {SelectField} from "../model/select-field";
 import {FormService} from "./form-service.service";
 
 @Injectable()
-export class ComorbiditiesService extends FormService {
+export class ComorbiditiesService extends FormService<SelectField[]> {
 
   private comorbiditiesUrl = 'api/comorbidities';
 

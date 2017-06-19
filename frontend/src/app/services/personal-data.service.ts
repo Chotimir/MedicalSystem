@@ -4,7 +4,7 @@ import {FormService} from "./form-service.service";
 import {PersonalData} from "../model/personal-data";
 
 @Injectable()
-export class PersonalDataService extends FormService {
+export class PersonalDataService extends FormService<PersonalData> {
 
   private personalDataUrl = 'api/personalData';
 

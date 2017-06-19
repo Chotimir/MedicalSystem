@@ -1,19 +1,18 @@
 import {Headers, Http} from "@angular/http";
-import {Admission} from "../model/admission";
 
-export abstract class FormService {
+export abstract class FormService<T> {
 
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
 
-  get(serviceUrl: string): Promise<Admission> {
+  get(serviceUrl: string): Promise<T> {
     return this.http.get(serviceUrl).toPromise()
-      .then(response => response.json() as Admission)
+      .then(response => response.json() as T)
       .catch(this.handleError);
   }
 
-  update(data: any, serviceUrl: string): void {
+  update(data: T, serviceUrl: string): void {
     this.http.put(serviceUrl, JSON.stringify(data), {headers: this.headers})
       .toPromise()
       .then(() => "")

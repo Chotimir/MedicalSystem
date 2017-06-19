@@ -23,7 +23,7 @@ CREATE TABLE "przyjecie" (
 	"palenie_tytoniu" integer NOT NULL DEFAULT '0',
 	"skala_asa" integer NOT NULL,
 	"lee_rcri" integer NOT NULL,
-	"p_possu" integer NOT NULL,
+	"p_possum" integer NOT NULL,
 	"utrata_przytomnosci" integer NOT NULL,
 	"reoperacja" integer DEFAULT '0',
 	"uwagi" text,
