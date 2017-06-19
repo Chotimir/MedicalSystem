@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
 })
 export class SearchComponent implements OnInit {
 
-  @Input() patientID: number;
+  @Input() patientID: string;
 
   constructor(private router: Router) { }
 
@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
   }
 
   navigateToPatient() {
-    this.router.navigate(["/patientForm"]);
+    this.router.navigate(["/patientForm", this.patientID]);
   }
 
 }

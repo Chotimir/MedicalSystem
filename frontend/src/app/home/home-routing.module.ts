@@ -16,7 +16,7 @@ export const routes: Routes = [
       { path: 'admin', component: AdminComponent },
       { path: 'auth', redirectTo: '/auth/login', pathMatch: 'full'},
       { path: '', redirectTo: 'search', pathMatch: 'full'},
-      { path: '**', redirectTo: 'search', pathMatch: 'full'},
+      { path: '**', redirectTo: 'search', pathMatch: 'full'}
     ]}
 ];
 

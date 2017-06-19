@@ -6,14 +6,14 @@ import {Operation} from "../model/operation";
 @Injectable()
 export class OperationService extends FormService<Operation> {
 
-  private operationUrl = 'api/operation';
+  private url = '/operation';
 
-  getOperation(): Promise<Operation> {
-    return this.get(this.operationUrl);
+  getOperation(patientId: string): Promise<Operation> {
+    return this.get(patientId + this.url);
   }
 
-  updateOperation(operation: Operation): void {
-    this.update(operation, this.operationUrl);
+  updateOperation(operation: Operation, patientId: string): void {
+    this.update(operation, patientId + this.url);
   }
 
 }

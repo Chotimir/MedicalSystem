@@ -27,7 +27,7 @@
 	"Operation Date": "Data operacji",
 	"P-POSSUM": "P-POSSUM",
 	"Password": "Hasło",
-	"Patient": "Pacjent {{value}}",
+	"Patient ID": "ID Pacjenta: {{value}}",
 	"Personal Data": "Dane osobowe",
 	"Provide the patients ID and click enter": "Wprowadź ID pacjenta i naciśnij enter",
 	"Register": "Zarejestruj",

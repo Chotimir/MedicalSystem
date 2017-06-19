@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PatientFormComponent } from './patient-form.component';
 import { PersonalDataComponent } from "./personal-data/personal-data.component";
 import {AdmissionComponent} from "./admission/admission.component";
-import {TestsComponent} from "./tests/tests.component";
+import {ExaminationsComponent} from "./examination/examinations.component";
 import {ComorbiditiesComponent} from "./comorbidities/comorbidities.component";
 import {OperationComponent} from "./operation/operation.component";
 import {ComplicationsComponent} from "./complications/complications.component";
@@ -14,7 +14,7 @@ export const routes: Routes = [
   children: [
     { path: "personalData", component: PersonalDataComponent },
     { path: "admission", component: AdmissionComponent },
-    { path: "tests", component: TestsComponent },
+    { path: "tests", component: ExaminationsComponent },
     { path: "comorbidities", component: ComorbiditiesComponent },
     { path: "operation", component: OperationComponent },
     { path: "complications", component: ComplicationsComponent },

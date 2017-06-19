@@ -6,14 +6,14 @@ import {FormService} from "./form-service.service";
 @Injectable()
 export class ComplicationsService extends FormService<SelectField[]> {
 
-  private complicationsUrl = 'api/complications';
+  private url = '/complications';
 
-  getComplications(): Promise<SelectField[]> {
-    return this.get(this.complicationsUrl);
+  getComplications(patientId: string): Promise<SelectField[]> {
+    return this.get(patientId + this.url);
   }
 
-  updateComplications(complications: SelectField[]): void {
-    this.update(complications, this.complicationsUrl);
+  updateComplications(complications: SelectField[], patientId: string): void {
+    this.update(complications, patientId + this.url);
   }
 
 }

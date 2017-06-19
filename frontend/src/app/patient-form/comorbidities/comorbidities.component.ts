@@ -1,4 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 import {ComorbiditiesService} from "../../services/comorbidities.service";
 import {SelectField} from "../../model/select-field";
@@ -11,21 +12,23 @@ import {SelectField} from "../../model/select-field";
 })
 export class ComorbiditiesComponent implements OnInit, OnDestroy {
 
+  patientId: string;
   comorbidities: SelectField[];
 
-  constructor(private comorbiditiesService: ComorbiditiesService) { }
+  constructor(private comorbiditiesService: ComorbiditiesService, private route: ActivatedRoute) { }
 
   getComorbidities(): void {
-    this.comorbiditiesService.getComorbidities().then(comorbidities => this.comorbidities = comorbidities);
+    this.comorbiditiesService.getComorbidities(this.patientId).then(comorbidities => this.comorbidities = comorbidities);
   }
 
   ngOnInit() {
+    this.patientId = this.route.parent.snapshot.params['id'];
     this.getComorbidities();
   }
 
   ngOnDestroy() {
     console.log(this.comorbidities);
-    this.comorbiditiesService.updateComorbidities(this.comorbidities);
+    this.comorbiditiesService.updateComorbidities(this.comorbidities, this.patientId);
   }
 
 }

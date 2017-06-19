@@ -6,14 +6,14 @@ import {FormService} from "./form-service.service";
 @Injectable()
 export class AdmissionService extends FormService<Admission> {
 
-  private admissionUrl = 'api/admission';
+  private url = '/admission';
 
-  getAdmission(): Promise<Admission> {
-    return this.get(this.admissionUrl);
+  getAdmission(patientId: string): Promise<Admission> {
+    return this.get(patientId + this.url);
   }
 
-  updateAdmission(admission: Admission): void {
-    this.update(admission, this.admissionUrl);
+  updateAdmission(admission: Admission, patientId: string): void {
+    this.update(admission, patientId + this.url);
   }
 
 }

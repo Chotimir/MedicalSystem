@@ -15,15 +15,15 @@ const mockdata: SelectField[] = [
 @Injectable()
 export class ComorbiditiesService extends FormService<SelectField[]> {
 
-  private comorbiditiesUrl = 'api/comorbidities';
+  private url = '/comorbidities';
 
-  getComorbidities(): Promise<SelectField[]> {
+  getComorbidities(patientId: string): Promise<SelectField[]> {
     return Promise.resolve(mockdata);
-    // return this.get(this.comorbiditiesUrl);
+    // return this.get(patientId + this.url);
   }
 
-  updateComorbidities(comorbidities: SelectField[]): void {
-    // this.update(comorbidities, this.comorbiditiesUrl);
+  updateComorbidities(comorbidities: SelectField[], patientId: string): void {
+    // this.update(comorbidities, patientId + this.url);
   }
 
 }

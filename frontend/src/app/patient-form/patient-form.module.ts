@@ -10,7 +10,7 @@ import { AdmissionComponent } from './admission/admission.component';
 import { ComorbiditiesComponent } from './comorbidities/comorbidities.component';
 import { OperationComponent } from './operation/operation.component';
 import { ComplicationsComponent } from './complications/complications.component';
-import { TestsComponent } from './tests/tests.component';
+import { ExaminationsComponent } from './examination/examinations.component';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { TestsComponent } from './tests/tests.component';
     ComorbiditiesComponent,
     OperationComponent,
     ComplicationsComponent,
-    TestsComponent
+    ExaminationsComponent
   ]
 })
 export class PatientFormModule { }
