@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  @Input() patientID: number;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  navigateToPatient() {
+    this.router.navigate(["/patientForm"]);
   }
 
 }

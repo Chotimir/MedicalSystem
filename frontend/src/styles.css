@@ -17,7 +17,7 @@
   }
 }
 
-.nav-item {
+.nav-item, .center-text {
   text-align: center;
 }
 
@@ -45,6 +45,11 @@
 
 .center {
   justify-content: center;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
 }
 
 .col-form-label {
