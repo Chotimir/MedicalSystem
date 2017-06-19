@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 
 import {FormService} from "./form-service.service";
-import {Examination} from "../model/examination";
+import {Examination} from "../../model/examination";
 
 @Injectable()
 export class ExaminationsService extends FormService<Examination[]> {

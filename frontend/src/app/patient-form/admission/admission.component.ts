@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Admission} from "../../model/admission";
-import {AdmissionService} from "../../services/admission.service";
+import {AdmissionService} from "../../services/form/admission.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

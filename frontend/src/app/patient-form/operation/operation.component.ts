@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Operation} from "../../model/operation";
 import {ActivatedRoute} from "@angular/router";
-import {OperationService} from "../../services/operation.service";
+import {OperationService} from "../../services/form/operation.service";
 
 @Component({
   selector: 'app-operation',

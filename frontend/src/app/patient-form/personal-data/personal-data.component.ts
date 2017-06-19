@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PersonalData} from "../../model/personal-data";
-import {PersonalDataService} from "../../services/personal-data.service";
+import {PersonalDataService} from "../../services/form/personal-data.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

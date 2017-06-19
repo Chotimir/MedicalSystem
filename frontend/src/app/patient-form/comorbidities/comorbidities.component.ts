@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
-import {ComorbiditiesService} from "../../services/comorbidities.service";
+import {ComorbiditiesService} from "../../services/form/comorbidities.service";
 import {SelectField} from "../../model/select-field";
 
 @Component({

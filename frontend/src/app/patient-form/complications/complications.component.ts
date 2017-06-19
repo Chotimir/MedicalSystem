@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SelectField} from "../../model/select-field";
 import {ActivatedRoute} from "@angular/router";
-import {ComplicationsService} from "../../services/complications.service";
+import {ComplicationsService} from "../../services/form/complications.service";
 
 @Component({
   selector: 'app-complications',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 
-import {SelectField} from "../model/select-field";
+import {SelectField} from "../../model/select-field";
 import {FormService} from "./form-service.service";
 
 const mockdata: SelectField[] = [

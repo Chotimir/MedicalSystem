@@ -5,21 +5,19 @@ import {Injectable} from "@angular/core";
 export abstract class FormService<T> {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private patientUrl = 'api/patient/';
+  private patientsUrl = 'api/patients/';
 
   constructor(private http: Http) { }
 
   get(childUrl: string): Promise<T> {
-    return this.http.get(this.patientUrl + childUrl).toPromise()
+    return this.http.get(this.patientsUrl + childUrl).toPromise()
       .then(response => response.json() as T)
       .catch(this.handleError);
   }
 
   update(data: T, childUrl: string): void {
-    this.http.put(this.patientUrl + childUrl, JSON.stringify(data), {headers: this.headers})
-      .toPromise()
-      .then(() => "")
-      .catch(this.handleError);
+    this.http.put(this.patientsUrl + childUrl, JSON.stringify(data), {headers: this.headers}).toPromise()
+      .then(() => "").catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
