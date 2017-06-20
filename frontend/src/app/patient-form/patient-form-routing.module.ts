@@ -18,7 +18,7 @@ export const routes: Routes = [
     { path: "comorbidities", component: ComorbiditiesComponent },
     { path: "operation", component: OperationComponent },
     { path: "complications", component: ComplicationsComponent },
-    { path: 'home', redirectTo: '/home/search', pathMatch: 'full'},
+    { path: 'home', redirectTo: '/home/patients', pathMatch: 'full'},
     { path: '', redirectTo: 'personalData', pathMatch: 'full'},
     { path: '**', redirectTo: 'personalData', pathMatch: 'full'}
   ]}

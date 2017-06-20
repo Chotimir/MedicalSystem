@@ -12,7 +12,7 @@ export class ComplicationsService extends FormService<SelectField[]> {
     return this.get(patientId + this.url);
   }
 
-  updateComplications(complications: SelectField[], patientId: string): void {
+  updateComplications(complications: SelectField[], patientId: string) {
     this.update(complications, patientId + this.url);
   }
 

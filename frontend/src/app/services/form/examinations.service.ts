@@ -12,7 +12,7 @@ export class ExaminationsService extends FormService<Examination[]> {
     return this.get(patientId + this.url);
   }
 
-  updateExaminations(tests: Examination[], patientId: string): void {
+  updateExaminations(tests: Examination[], patientId: string) {
     this.update(tests, patientId + this.url);
   }
 

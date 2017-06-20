@@ -16,7 +16,7 @@ export class OperationComponent implements OnInit, OnDestroy {
 
   constructor(private operationService: OperationService, private route: ActivatedRoute) { }
 
-  getOperation(): void {
+  getOperation() {
     this.operationService.getOperation(this.patientId).then(operation => this.operation = operation);
   }
 

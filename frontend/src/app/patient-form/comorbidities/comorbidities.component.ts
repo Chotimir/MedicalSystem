@@ -17,7 +17,7 @@ export class ComorbiditiesComponent implements OnInit, OnDestroy {
 
   constructor(private comorbiditiesService: ComorbiditiesService, private route: ActivatedRoute) { }
 
-  getComorbidities(): void {
+  getComorbidities() {
     this.comorbiditiesService.getComorbidities(this.patientId).then(comorbidities => this.comorbidities = comorbidities);
   }
 

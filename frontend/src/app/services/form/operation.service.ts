@@ -12,7 +12,7 @@ export class OperationService extends FormService<Operation> {
     return this.get(patientId + this.url);
   }
 
-  updateOperation(operation: Operation, patientId: string): void {
+  updateOperation(operation: Operation, patientId: string) {
     this.update(operation, patientId + this.url);
   }
 

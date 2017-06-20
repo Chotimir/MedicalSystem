@@ -12,7 +12,7 @@ export class PersonalDataService extends FormService<PersonalData> {
     return this.get(patientId + this.url);
   }
 
-  updatePersonalData(personalData: PersonalData, patientId: string): void {
+  updatePersonalData(personalData: PersonalData, patientId: string) {
     this.update(personalData, patientId + this.url);
   }
 

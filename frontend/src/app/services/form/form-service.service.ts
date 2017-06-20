@@ -15,7 +15,7 @@ export abstract class FormService<T> {
       .catch(this.handleError);
   }
 
-  update(data: T, childUrl: string): void {
+  update(data: T, childUrl: string) {
     this.http.put(this.patientsUrl + childUrl, JSON.stringify(data), {headers: this.headers}).toPromise()
       .then(() => "").catch(this.handleError);
   }

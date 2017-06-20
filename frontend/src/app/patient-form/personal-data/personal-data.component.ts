@@ -16,7 +16,7 @@ export class PersonalDataComponent implements OnInit, OnDestroy {
 
   constructor(private personalDataService: PersonalDataService, private route: ActivatedRoute) { }
 
-  getPersonalData(): void {
+  getPersonalData() {
     this.personalDataService.getPersonalData(this.patientId).then(personalData => this.personalData = personalData);
   }
 

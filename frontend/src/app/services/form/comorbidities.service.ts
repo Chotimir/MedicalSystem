@@ -22,7 +22,7 @@ export class ComorbiditiesService extends FormService<SelectField[]> {
     // return this.get(patientId + this.url);
   }
 
-  updateComorbidities(comorbidities: SelectField[], patientId: string): void {
+  updateComorbidities(comorbidities: SelectField[], patientId: string) {
     // this.update(comorbidities, patientId + this.url);
   }
 

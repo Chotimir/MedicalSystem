@@ -16,7 +16,7 @@ export class ExaminationsComponent implements OnInit, OnDestroy {
 
   constructor(private examinationsService: ExaminationsService, private route: ActivatedRoute) { }
 
-  getExaminations(): void {
+  getExaminations() {
     this.examinationsService.getExaminations(this.patientId).then(examinations => this.examinations = examinations);
   }
 

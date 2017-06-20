@@ -16,7 +16,7 @@ export class ComplicationsComponent implements OnInit, OnDestroy {
 
   constructor(private complicationsService: ComplicationsService, private route: ActivatedRoute) { }
 
-  getComplications(): void {
+  getComplications() {
     this.complicationsService.getComplications(this.patientId).then(complications => this.complications = complications);
   }
 
