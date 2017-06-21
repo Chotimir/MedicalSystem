@@ -12,6 +12,17 @@
     </div>
   </div>
   <div class="form-group row col-12">
+    <label for="operationType" class="col-form-label col-3 offset-1" translate>Operation type</label>
+    <div class="col-4">
+      <select [(ngModel)]="admission.operationType.selected" class="form-control" id="operationType">
+        <option hidden disabled selected value></option>
+        <option *ngFor="let value of admission.operationType.values" [ngValue]="value">
+          {{value}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row col-12">
     <label for="aorticAneurysmSymptoms" class="col-form-label col-3 offset-1" translate>Aortic Aneurysm Symptoms</label>
     <div class="col-4">
       <select [(ngModel)]="admission.aorticAneurysmSymptoms.selected" class="form-control" id="aorticAneurysmSymptoms">

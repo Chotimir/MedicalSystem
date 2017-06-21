@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 import {FormService} from "./form-service.service";
 import {FollowUpVisit} from "../../model/follow-up-visit";
 
