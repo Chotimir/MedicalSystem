@@ -12,4 +12,8 @@ export class ExportComponent implements OnInit {
   ngOnInit() {
   }
 
+  download() {
+    // TODO
+  }
+
 }
