@@ -6,15 +6,15 @@ export class Operation {
   anesthetic: SelectField;
   duration: number;
   aortaClottingTime: number;
-  noradrenaline: SelectField;
-  dopamine: SelectField;
-  dobutamine: SelectField;
-  ephedrine: SelectField;
+  noradrenaline: boolean;
+  dopamine: boolean;
+  dobutamine: boolean;
+  ephedrine: boolean;
   bloodLost: number;
   urineExpelled: number;
   packedCellsTransfused: number;
   icuTime: number;
-  hospitalYime: number;
-  extendedVentilation: SelectField;
+  hospitalTime: number;
+  extendedVentilation: boolean;
   ventilatorDays: number;
 }
