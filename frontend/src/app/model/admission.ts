@@ -2,15 +2,16 @@ import {SelectField} from "./select-field";
 export class Admission {
   admissionDate: Date;
   operationDate: Date;
-  aorticAnurysmSymtoms: SelectField;
+  aorticAneurysmSymptoms: SelectField;
   aorticAneurysmSize: number;
   maxIliacAneurysmSize: number;
-  imageExamination: SelectField;
+  imagingExamination: SelectField;
   aneurysmLocation: SelectField;
   smoking: SelectField;
-  asaScale: number;
-  leeRcri: number;
-  pPossum: number;
-  faint: SelectField;
+  asaScale: SelectField;
+  leeRcri: SelectField;
+  pPossum: SelectField;
+  unconsciousness: SelectField;
+  reoperation: SelectField;
   comments: string;
 }
