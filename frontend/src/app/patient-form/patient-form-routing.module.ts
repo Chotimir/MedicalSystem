@@ -16,7 +16,7 @@ export const routes: Routes = [
     { path: "admission", component: AdmissionComponent },
     { path: "tests", component: ExaminationsComponent },
     { path: "comorbidities", component: ComorbiditiesComponent },
-    { path: "operation", component: OperationComponent },
+    { path: "followUpVisit", component: OperationComponent },
     { path: "complications", component: ComplicationsComponent },
     { path: 'home', redirectTo: '/home/patients', pathMatch: 'full'},
     { path: '', redirectTo: 'personalData', pathMatch: 'full'},

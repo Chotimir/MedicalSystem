@@ -11,6 +11,7 @@ import { ComorbiditiesComponent } from './comorbidities/comorbidities.component'
 import { OperationComponent } from './operation/operation.component';
 import { ComplicationsComponent } from './complications/complications.component';
 import { ExaminationsComponent } from './examination/examinations.component';
+import { FollowUpVisitComponent } from './follow-up-visit/follow-up-visit.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ExaminationsComponent } from './examination/examinations.component';
     ComorbiditiesComponent,
     OperationComponent,
     ComplicationsComponent,
-    ExaminationsComponent
+    ExaminationsComponent,
+    FollowUpVisitComponent
   ]
 })
 export class PatientFormModule { }
