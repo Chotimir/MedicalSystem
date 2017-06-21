@@ -14,7 +14,7 @@
   <div class="form-group row col-12">
     <label for="aorticAneurysmSymptoms" class="col-form-label col-3 offset-1" translate>Aortic Aneurysm Symptoms</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.aorticAneurysmSymptoms" class="form-control" id="aorticAneurysmSymptoms">
+      <select [(ngModel)]="admission.aorticAneurysmSymptoms.selected" class="form-control" id="aorticAneurysmSymptoms">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.aorticAneurysmSymptoms.values" [ngValue]="value">
           {{value}}
@@ -49,7 +49,7 @@
   <div class="form-group row col-12">
     <label for="smoking" class="col-form-label col-3 offset-1" translate>Smoking</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.smoking" class="form-control" id="smoking">
+      <select [(ngModel)]="admission.smoking.selected" class="form-control" id="smoking">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.smoking.values" [ngValue]="value">
           {{value}}
@@ -60,7 +60,7 @@
   <div class="form-group row col-12">
     <label for="ASA" class="col-form-label col-3 offset-1" translate>ASA</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.asaScale" class="form-control" id="ASA">
+      <select [(ngModel)]="admission.asaScale.selected" class="form-control" id="ASA">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.asaScale.values" [ngValue]="value">
           {{value}}
@@ -71,7 +71,7 @@
   <div class="form-group row col-12">
     <label for="RCRI" class="col-form-label col-3 offset-1" translate>Revised Cardiac Risk Index</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.leeRcri" class="form-control" id="RCRI">
+      <select [(ngModel)]="admission.leeRcri.selected" class="form-control" id="RCRI">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.leeRcri.values" [ngValue]="value">
           {{value}}
@@ -82,7 +82,7 @@
   <div class="form-group row col-12">
     <label for="pPossum" class="col-form-label col-3 offset-1" translate>P-POSSUM</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.pPossum" class="form-control" id="pPossum">
+      <select [(ngModel)]="admission.pPossum.selected" class="form-control" id="pPossum">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.pPossum.values" [ngValue]="value">
           {{value}}
@@ -93,7 +93,7 @@
   <div class="form-group row col-12">
     <label for="unconsciousness" class="col-form-label col-3 offset-1" translate>Unconsciousness</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.unconsciousness" class="form-control" id="unconsciousness">
+      <select [(ngModel)]="admission.unconsciousness.selected" class="form-control" id="unconsciousness">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.unconsciousness.values" [ngValue]="value">
           {{value}}
@@ -104,7 +104,7 @@
   <div class="form-group row col-12">
     <label for="reoperation" class="col-form-label col-3 offset-1" translate>Reoperation</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.reoperation" class="form-control" id="reoperation">
+      <select [(ngModel)]="admission.reoperation.selected" class="form-control" id="reoperation">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.reoperation.values" [ngValue]="value">
           {{value}}
