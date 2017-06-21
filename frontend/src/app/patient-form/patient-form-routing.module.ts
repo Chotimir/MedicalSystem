@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PatientFormComponent } from './patient-form.component';
 import { PersonalDataComponent } from "./personal-data/personal-data.component";
 import {AdmissionComponent} from "./admission/admission.component";
-import {ExaminationsComponent} from "./examination/examinations.component";
+import {ExaminationsComponent} from "./examinations/examinations.component";
 import {ComorbiditiesComponent} from "./comorbidities/comorbidities.component";
 import {OperationComponent} from "./operation/operation.component";
 import {ComplicationsComponent} from "./complications/complications.component";

@@ -10,7 +10,7 @@ import { AdmissionComponent } from './admission/admission.component';
 import { ComorbiditiesComponent } from './comorbidities/comorbidities.component';
 import { OperationComponent } from './operation/operation.component';
 import { ComplicationsComponent } from './complications/complications.component';
-import { ExaminationsComponent } from './examination/examinations.component';
+import { ExaminationsComponent } from './examinations/examinations.component';
 import { FollowUpVisitComponent } from './follow-up-visit/follow-up-visit.component';
 
 
