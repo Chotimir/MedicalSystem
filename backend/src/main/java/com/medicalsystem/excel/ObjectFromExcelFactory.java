@@ -9,9 +9,12 @@ import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 @Component
 public class ObjectFromExcelFactory {
@@ -36,6 +39,8 @@ public class ObjectFromExcelFactory {
     private RevisitService revisitService;
     private SmokingService smokingService;
     private TroponinService troponinService;
+
+    private Properties properties;
 
     @Autowired
     public ObjectFromExcelFactory(AdmissionService admissionService, AnesthesiaService anesthesiaService,
@@ -67,25 +72,30 @@ public class ObjectFromExcelFactory {
         this.revisitService = revisitService;
         this.smokingService = smokingService;
         this.troponinService = troponinService;
+        try {
+            this.properties = new Properties();
+            properties.load(new FileInputStream("/resources/excelColumns.properties"));
+        } catch (IOException e){
+        }
     }
 
     public Patient createPatient(Row row) {
         Patient patient = new Patient();
 
-        Cell patientIdCell = row.getCell(0);
+        Cell patientIdCell = row.getCell(Integer.parseInt(properties.getProperty("id.number")));
         patient.setId((patientIdCell == null) ? -1 : (int) patientIdCell.getNumericCellValue());
 
-        Cell lastNameCell = row.getCell(1);
+        Cell lastNameCell = row.getCell(Integer.parseInt(properties.getProperty("lastName.number")));
         patient.setLastName((lastNameCell == null) ? "" : lastNameCell.getStringCellValue());
 
-        Cell firstNameCell = row.getCell(2);
+        Cell firstNameCell = row.getCell(Integer.parseInt(properties.getProperty("firstName.number")));
         patient.setFirstName((firstNameCell == null) ? "" : firstNameCell.getStringCellValue());
 
-        Cell sexCell = row.getCell(3);
+        Cell sexCell = row.getCell(Integer.parseInt(properties.getProperty("sex.number")));
         patient.setSex((sexCell == null) ? 'x' : sexCell.getStringCellValue().charAt(0));
 
-        Cell ageCell = row.getCell(4);
-        patient.setAge((ageCell == null) ? -1 : (int) row.getCell(4).getNumericCellValue());
+        Cell ageCell = row.getCell(Integer.parseInt(properties.getProperty("age.number")));
+        patient.setAge((ageCell == null) ? -1 : (int) ageCell.getNumericCellValue());
 
         patient.setDiseases(getDiseaseListWithKey(row)); //choroby wspolistniejace
 
