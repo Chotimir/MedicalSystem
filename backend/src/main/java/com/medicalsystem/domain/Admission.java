@@ -67,9 +67,9 @@ public class Admission extends IdComparableEntity {
     @Getter @Setter
     private int leeRcri;
 
-    @Column(name = "p_possu")
+    @Column(name = "p_possum")
     @Getter @Setter
-    private double pPossu;
+    private double pPossum;
 
     @Column(name = "utrata_przytomnosci")
     @Getter @Setter

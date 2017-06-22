@@ -120,7 +120,7 @@ public class ObjectFromExcelFactory {
     }
 
     public Patient getPatientWithKey(Row row) {
-        Cell patientCell = row.getCell(0);
+        Cell patientCell = row.getCell(Integer.parseInt(properties.getProperty("id.number")));
         if (patientCell != null) {
             return patientService.getById((int) patientCell.getNumericCellValue());
         }
@@ -134,43 +134,46 @@ public class ObjectFromExcelFactory {
 
         admission.setOperation(createOperation(row));
 
-        java.util.Date admissionDateCell = row.getCell(5).getDateCellValue();
+        java.util.Date admissionDateCell = row.getCell(Integer.parseInt(properties.getProperty("admissionDate.number"))).getDateCellValue();
         Date admissionDate = new Date(admissionDateCell.getYear(), admissionDateCell.getMonth(), admissionDateCell.getDay());
         admission.setAdmissionDate(admissionDate);
 
-        java.util.Date operationDateCell = row.getCell(6).getDateCellValue();
+        java.util.Date operationDateCell = row.getCell(Integer.parseInt(properties.getProperty("operationDate.number"))).getDateCellValue();
         Date operationDate = new Date(operationDateCell.getYear(), operationDateCell.getMonth(), operationDateCell.getDay());
         admission.setOperationDate(operationDate);
 
-        Cell aaSymptomsCell = row.getCell(11);
+        Cell aaSymptomsCell = row.getCell(Integer.parseInt(properties.getProperty("aaSymptoms.number")));
         admission.setAaSymptoms((aaSymptomsCell == null) ? -1 : (int) aaSymptomsCell.getNumericCellValue());
 
-        Cell aaSizeCell = row.getCell(12);
+        Cell aaSizeCell = row.getCell(Integer.parseInt(properties.getProperty("aaSize.number")));
         admission.setAaSize((aaSizeCell == null) ? -1 : (int) aaSizeCell.getNumericCellValue());
 
-        Cell maxAneurysmSizeCell = row.getCell(13);
+        Cell maxAneurysmSizeCell = row.getCell(Integer.parseInt(properties.getProperty("maxAneurysmSize.number")));
         admission.setMaxAneurysmSize((maxAneurysmSizeCell == null) ? -1 : (int) maxAneurysmSizeCell.getNumericCellValue());
 
-        admission.setImageExamination(1); //brak danych w excelu
-        admission.setAneurysmLocation(1); //brak danych w excelu
+        Cell imageExaminationCell = row.getCell(Integer.parseInt(properties.getProperty("imageExamination.number")));
+        admission.setImageExamination((imageExaminationCell == null) ? -1 : (int) imageExaminationCell.getNumericCellValue());
+
+        Cell aneurysmLocationCell = row.getCell(Integer.parseInt(properties.getProperty("aneurysmLocation.number")));
+        admission.setAneurysmLocation((aneurysmLocationCell == null) ? -1 : (int) aneurysmLocationCell.getNumericCellValue());
 
         admission.setSmoking(getSmokingWithKey(row));
 
-        Cell asaScaleCell = row.getCell(15);
+        Cell asaScaleCell = row.getCell(Integer.parseInt(properties.getProperty("asaScale.number")));
         admission.setAsaScale((asaScaleCell == null) ? -1 : (int) asaScaleCell.getNumericCellValue());
 
-        Cell leeRcriCell = row.getCell(28);
+        Cell leeRcriCell = row.getCell(Integer.parseInt(properties.getProperty("leeRcri.number")));
         admission.setLeeRcri((leeRcriCell == null) ? -1 : (int) leeRcriCell.getNumericCellValue());
 
-        Cell pPossuCell = row.getCell(29);
-        admission.setPPossu((pPossuCell == null) ? -1 : (int) pPossuCell.getNumericCellValue());
+        Cell pPossumCell = row.getCell(Integer.parseInt(properties.getProperty("pPossum.number")));
+        admission.setPPossum((pPossumCell == null) ? -1 : (int) pPossumCell.getNumericCellValue());
 
-        Cell faintCell = row.getCell(16);
+        Cell faintCell = row.getCell(Integer.parseInt(properties.getProperty("faint.number")));
         admission.setFaint((faintCell == null) ? -1 : (int) faintCell.getNumericCellValue());
 
         admission.setReoperation(getReoperationWithKey(row));
 
-        Cell commentsCell = row.getCell(104);
+        Cell commentsCell = row.getCell(Integer.parseInt(properties.getProperty("comments.number")));
         admission.setComments((commentsCell == null) ? "" : commentsCell.getStringCellValue());
 
         admissionService.saveOrUpdate(admission); //because I need an ID in next method calls
@@ -194,7 +197,9 @@ public class ObjectFromExcelFactory {
 
     public List<Examination> getExaminationListWithKey(Row row, Admission admission) {
         List<Examination> examinations = new ArrayList<>();
-        for (int excelCellNumber = 30, examinationCount = 1; excelCellNumber < 36; excelCellNumber++, examinationCount++) {
+        int firstExaminationInExcel = Integer.parseInt(properties.getProperty("examination.pchn.number"));
+        int lastExaminationInExcel = Integer.parseInt(properties.getProperty("examination.fibrinogen.number"));
+        for (int excelCellNumber = firstExaminationInExcel, examinationCount = 1; excelCellNumber < lastExaminationInExcel; excelCellNumber++, examinationCount++) {
             Cell examinationCell = row.getCell(excelCellNumber);
             if (examinationCell != null) {
                 Examination examination = new Examination();
@@ -220,7 +225,7 @@ public class ObjectFromExcelFactory {
     }
 
     public Smoking getSmokingWithKey(Row row) {
-        Cell smokingCell = row.getCell(14);
+        Cell smokingCell = row.getCell(Integer.parseInt(properties.getProperty("smoking.number")));
         if (smokingCell != null) {
             return smokingService.getById((int) smokingCell.getNumericCellValue());
         }
@@ -294,7 +299,7 @@ public class ObjectFromExcelFactory {
     }
 
     public Anesthesia getAnesthesiaWithKey(Row row) {
-        Cell anesthesiaCell = row.getCell(8);
+        Cell anesthesiaCell = row.getCell(Integer.parseInt(properties.getProperty("anesthesia.number")));
         if (anesthesiaCell != null) {
             return anesthesiaService.getById((int) anesthesiaCell.getNumericCellValue());
         }
@@ -302,7 +307,7 @@ public class ObjectFromExcelFactory {
     }
 
     public Anesthetic getAnestheticWithKey(Row row) {
-        Cell anestheticCell = row.getCell(9);
+        Cell anestheticCell = row.getCell(Integer.parseInt(properties.getProperty("anesthetic.number")));
         if (anestheticCell != null) {
             return anestheticService.getById((int) anestheticCell.getNumericCellValue());
         }
@@ -329,7 +334,7 @@ public class ObjectFromExcelFactory {
     }
 
     public OperationMode getOperationModeWithKey(Row row) {
-        Cell operationModeCell = row.getCell(10);
+        Cell operationModeCell = row.getCell(Integer.parseInt(properties.getProperty("operationMode.number")));
         if (operationModeCell != null) {
             return operationModeService.getById((int) operationModeCell.getNumericCellValue());
         }
@@ -338,7 +343,7 @@ public class ObjectFromExcelFactory {
 
     public List<OperationType> getOperationTypeListWithKey(Row row) {
         List<OperationType> operationTypes = new ArrayList<>();
-        Cell operationTypeCell = row.getCell(7);
+        Cell operationTypeCell = row.getCell(Integer.parseInt(properties.getProperty("operationType.number")));
         if (operationTypeCell != null) {
             operationTypes.add(operationTypeService.getById((int) operationTypeCell.getNumericCellValue()));
             return operationTypes;
@@ -385,21 +390,20 @@ public class ObjectFromExcelFactory {
         Troponin troponin = new Troponin();
         troponin.setAdmission(admission);
 
-
-        Cell tnTCell = row.getCell(66);
+        Cell tnTCell = row.getCell(Integer.parseInt(properties.getProperty("troponin.tnt.number")));
         troponin.setTnt((tnTCell == null) ? -1 : (float) tnTCell.getNumericCellValue());
 
-        Cell tnlUltraCell = row.getCell(67);
-        troponin.setTnlUltra((tnlUltraCell == null) ? -1 : (float) tnlUltraCell.getNumericCellValue());
+        Cell tnIUltraCell = row.getCell(Integer.parseInt(properties.getProperty("troponin.tniUltra.number")));
+        troponin.setTniUltra((tnIUltraCell == null) ? -1 : (float) tnIUltraCell.getNumericCellValue());
 
-        Cell tnlCell = row.getCell(66);
-        troponin.setTnl((tnlCell == null) ? -1 : (float) tnlCell.getNumericCellValue());
+        Cell tnICell = row.getCell(Integer.parseInt(properties.getProperty("troponin.tni.number")));
+        troponin.setTni((tnICell == null) ? -1 : (float) tnICell.getNumericCellValue());
 
-        Cell tntDayCell = row.getCell(67);
+        Cell tntDayCell = row.getCell(Integer.parseInt(properties.getProperty("troponin.tntDay.number")));
         troponin.setTntDay((tntDayCell == null) ? -1 : (float) tntDayCell.getNumericCellValue());
 
-        Cell tnlDayCell = row.getCell(66);
-        troponin.setTnl((tnlDayCell == null) ? -1 : (float) tnlDayCell.getNumericCellValue());
+        Cell tnIDayCell = row.getCell(Integer.parseInt(properties.getProperty("troponin.tniDay.number")));
+        troponin.setTni((tnIDayCell == null) ? -1 : (float) tnIDayCell.getNumericCellValue());
 
         return troponins;
     }

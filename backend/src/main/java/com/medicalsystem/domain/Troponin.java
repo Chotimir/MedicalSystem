@@ -23,20 +23,20 @@ public class Troponin extends IdComparableEntity {
     @Getter @Setter
     private float tnt;
 
-    @Column(name = "tnl_ultra")
+    @Column(name = "tni_ultra")
     @Getter @Setter
-    private float tnlUltra;
+    private float tniUltra;
 
-    @Column(name = "tnl")
+    @Column(name = "tni")
     @Getter @Setter
-    private float tnl;
+    private float tni;
 
     @Column(name = "tnt_doba")
     @Getter @Setter
     private float tntDay;
 
-    @Column(name = "tnl_doba")
+    @Column(name = "tni_doba")
     @Getter @Setter
-    private float tnlDay;
+    private float tniDay;
 
 }
