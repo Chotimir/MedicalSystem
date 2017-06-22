@@ -237,7 +237,7 @@ public class ObjectFromExcelFactory {
     }
 
     public Reoperation getReoperationWithKey(Row row) {
-        Cell reoperationCell = row.getCell(95);
+        Cell reoperationCell = row.getCell(Integer.parseInt(properties.getProperty("reoperation.number")));
         if (reoperationCell != null) {
             return reoperationService.getById((int) reoperationCell.getNumericCellValue());
         }
@@ -251,49 +251,49 @@ public class ObjectFromExcelFactory {
         operation.setAnesthesia(getAnesthesiaWithKey(row));
         operation.setAnesthetic(getAnestheticWithKey(row));
 
-        Cell durationCell = row.getCell(48);
+        Cell durationCell = row.getCell(Integer.parseInt(properties.getProperty("operation.duration.number")));
         operation.setDuration((durationCell == null) ? -1 : (int) durationCell.getNumericCellValue());
 
-        Cell aortaClottingTimeCell = row.getCell(49);
+        Cell aortaClottingTimeCell = row.getCell(Integer.parseInt(properties.getProperty("operation.aortaClottingTime.number")));
         operation.setAortaClottingTime((aortaClottingTimeCell == null) ? -1 : (int) aortaClottingTimeCell.getNumericCellValue());
 
-        Cell noradrenalineCell = row.getCell(51);
+        Cell noradrenalineCell = row.getCell(Integer.parseInt(properties.getProperty("operation.noradrenaline.number")));
         if (noradrenalineCell != null) {
             operation.setNoradrenaline((noradrenalineCell.getNumericCellValue() == 1) ? true : false);
         }
 
-        Cell adrenaline = row.getCell(52);
+        Cell adrenaline = row.getCell(Integer.parseInt(properties.getProperty("operation.adrenaline.number")));
         if (adrenaline != null) {
             operation.setAdrenaline((adrenaline.getNumericCellValue() == 1) ? true : false);
         }
 
-        Cell dopamine = row.getCell(53);
+        Cell dopamine = row.getCell(Integer.parseInt(properties.getProperty("operation.dopamine.number")));
         if (dopamine != null) {
             operation.setDopamine((dopamine.getNumericCellValue() == 1) ? true : false);
         }
 
-        Cell dobutamine = row.getCell(54);
+        Cell dobutamine = row.getCell(Integer.parseInt(properties.getProperty("operation.dobutamine.number")));
         if (dobutamine != null) {
             operation.setDobutamine((dobutamine.getNumericCellValue() == 1) ? true : false);
         }
 
-        Cell ephedrine = row.getCell(55);
+        Cell ephedrine = row.getCell(Integer.parseInt(properties.getProperty("operation.ephedrine.number")));
         if (ephedrine != null) {
             operation.setEphedrine((ephedrine.getNumericCellValue() == 1) ? true : false);
         }
 
-        operation.setBloodLost((int) row.getCell(56).getNumericCellValue());
-        operation.setUrineExpelled((int) row.getCell(57).getNumericCellValue());
-        operation.setPackedCellsTransfused((int) row.getCell(58).getNumericCellValue());
-        operation.setIcuTime((int) row.getCell(59).getNumericCellValue());
-        operation.setHospitalTime((int) row.getCell(60).getNumericCellValue());
+        operation.setBloodLost((int) row.getCell(Integer.parseInt(properties.getProperty("operation.bloodLost.number"))).getNumericCellValue());
+        operation.setUrineExpelled((int) row.getCell(Integer.parseInt(properties.getProperty("operation.urineExpelled.number"))).getNumericCellValue());
+        operation.setPackedCellsTransfused((int) row.getCell(Integer.parseInt(properties.getProperty("operation.packedCellsTransfused.number"))).getNumericCellValue());
+        operation.setIcuTime((int) row.getCell(Integer.parseInt(properties.getProperty("operation.icuTime.number"))).getNumericCellValue());
+        operation.setHospitalTime((int) row.getCell(Integer.parseInt(properties.getProperty("operation.hospitalTime.number"))).getNumericCellValue());
 
-        Cell extendedVentilation = row.getCell(62);
+        Cell extendedVentilation = row.getCell(Integer.parseInt(properties.getProperty("operation.extendedVentilation.number")));
         if (extendedVentilation != null) {
             operation.setExtendedVentilation((extendedVentilation.getNumericCellValue() == 1) ? true : false);
         }
 
-        operation.setVentilatorDays((int) row.getCell(63).getNumericCellValue());
+        operation.setVentilatorDays((int) row.getCell(Integer.parseInt(properties.getProperty("operation.ventilatorDays.number"))).getNumericCellValue());
 
 //        List<Complication> complications = getComplicationList(row);
 //        operation.setComplications(complications);
@@ -361,10 +361,10 @@ public class ObjectFromExcelFactory {
 
         revisit.setAdmission(admission);
 
-        Cell controlVisitCell = row.getCell(100);
+        Cell controlVisitCell = row.getCell(Integer.parseInt(properties.getProperty("controlVisit.number")));
         revisit.setControlVisit((controlVisitCell == null) ? -1 : (int) controlVisitCell.getNumericCellValue());
 
-        Cell dateCell = row.getCell(102);
+        Cell dateCell = row.getCell(Integer.parseInt(properties.getProperty("revisit.date.number")));
         if (dateCell != null) {
             Date date = null;
             java.util.Date dateCellValue = dateCell.getDateCellValue();
@@ -382,7 +382,7 @@ public class ObjectFromExcelFactory {
     }
 
     public RevisitCause getRevisitCauseWithKey(Row row) {
-        Cell revisitCauseCell = row.getCell(103);
+        Cell revisitCauseCell = row.getCell(Integer.parseInt(properties.getProperty("revisit.cause.number")));
         if (revisitCauseCell != null) {
             return revisitCauseService.getById((int) revisitCauseCell.getNumericCellValue());
         }
