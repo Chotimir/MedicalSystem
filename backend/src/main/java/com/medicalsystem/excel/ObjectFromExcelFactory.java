@@ -104,9 +104,11 @@ public class ObjectFromExcelFactory {
 
     public List<Disease> getDiseaseListWithKey(Row row) {
         List<Disease> diseases = new ArrayList<>();
-        for (int excelCellNumber = 17, diseaseCount = 1; excelCellNumber < 28; excelCellNumber++, diseaseCount++) {
+        int firstDiseaseInExcel = Integer.parseInt(properties.getProperty("disease.shock.number"));
+        int lastDiseaseInExcel = Integer.parseInt(properties.getProperty("disease.ekg.number"));
+        for (int excelCellNumber = firstDiseaseInExcel, diseaseCount = 1; excelCellNumber <= lastDiseaseInExcel; excelCellNumber++, diseaseCount++) {
             Cell diseaseCell = row.getCell(excelCellNumber);
-            if (diseaseCell != null && diseaseCell.getNumericCellValue() == 1) { //to analyse
+            if (diseaseCell != null && diseaseCell.getNumericCellValue() != 0) { //to analyse
                 Disease disease = diseaseService.getById(diseaseCount);
                 diseases.add(disease);
             }
@@ -199,7 +201,7 @@ public class ObjectFromExcelFactory {
         List<Examination> examinations = new ArrayList<>();
         int firstExaminationInExcel = Integer.parseInt(properties.getProperty("examination.pchn.number"));
         int lastExaminationInExcel = Integer.parseInt(properties.getProperty("examination.fibrinogen.number"));
-        for (int excelCellNumber = firstExaminationInExcel, examinationCount = 1; excelCellNumber < lastExaminationInExcel; excelCellNumber++, examinationCount++) {
+        for (int excelCellNumber = firstExaminationInExcel, examinationCount = 1; excelCellNumber <= lastExaminationInExcel; excelCellNumber++, examinationCount++) {
             Cell examinationCell = row.getCell(excelCellNumber);
             if (examinationCell != null) {
                 Examination examination = new Examination();
@@ -214,7 +216,9 @@ public class ObjectFromExcelFactory {
 
     public List<Medicament> getMedicamentListWithKey(Row row) {
         List<Medicament> medicaments = new ArrayList<>();
-        for (int excelCellNumber = 36, medicamentCount = 1; excelCellNumber < 48; excelCellNumber++, medicamentCount++) {
+        int firstMedicamentInExcel = Integer.parseInt(properties.getProperty("medicament.aspirin.number"));
+        int lastMedicamentInExcel = Integer.parseInt(properties.getProperty("medicament.fibrate.number"));
+        for (int excelCellNumber = firstMedicamentInExcel, medicamentCount = 1; excelCellNumber <= lastMedicamentInExcel; excelCellNumber++, medicamentCount++) {
             Cell medicamentCell = row.getCell(excelCellNumber);
             if (medicamentCell != null && medicamentCell.getNumericCellValue() == 1) {
                 Medicament medicament = medicamentService.getById(medicamentCount);
