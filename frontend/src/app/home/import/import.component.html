@@ -1,0 +1,35 @@
+<div ng2FileDrop [uploader]="uploader" class="container-fluid" style="margin-top: 60px">
+  <div class="col-centered center-text">
+    <p translate>Import patients data from an excel file</p>
+    <p translate>Drag and drop anywhere on the screen or use the file picker below</p>
+  </div>
+
+  <div class="top-margin">
+    <div class="col-4 col-centered">
+      <table class="table table-inverse rounded">
+        <thead>
+        <tr>
+          <th class="center-text" width="70%">Uploaded Files</th>
+          <th class="center-text">Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of uploader.queue">
+          <td class="center-text">
+            <a>{{item?.file?.name}}</a>
+          </td>
+          <td class="center-text">
+            <i class="material-icons" (click)="item.remove()">delete</i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="container-fluid flex center top-margin">
+    <label for="file-upload" class="btn btn-success" translate>Add file</label>
+    <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader"/>
+    <button type="submit" class="btn btn-success" (click)="uploader.uploadAll()" translate>Import data</button>
+  </div>
+</div>

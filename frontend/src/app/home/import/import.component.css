@@ -1,0 +1,10 @@
+input[type="file"] {
+  display: none;
+}
+
+label.btn {
+  height: 46px;
+  margin-bottom: 0;
+  font-family: sans-serif;
+  padding-top: 12px;
+}

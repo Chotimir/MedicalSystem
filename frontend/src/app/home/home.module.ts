@@ -8,13 +8,15 @@ import {HomeRoutingModule} from "./home-routing.module";
 import {TranslateModule} from "@ngx-translate/core";
 import {FormsModule} from "@angular/forms";
 import { ExportComponent } from './export/export.component';
+import { FileUploadModule } from "ng2-file-upload";
 
 @NgModule({
   imports: [
     CommonModule,
     HomeRoutingModule,
     TranslateModule,
-    FormsModule
+    FormsModule,
+    FileUploadModule
   ],
   declarations: [HomeComponent, PatientsComponent, ImportComponent, AdminComponent, ExportComponent]
 })
