@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FileUploader} from "ng2-file-upload";
 
-const URL = 'api/files';
+const URL = 'api/import/excel';
 
 @Component({
   selector: 'app-import',
