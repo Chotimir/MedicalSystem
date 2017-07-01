@@ -84,15 +84,15 @@ public class Admission extends IdComparableEntity {
     @Getter @Setter
     private String comments;
 
-    @OneToMany(mappedBy = "admission")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admission")
     @Getter @Setter
     private List<Examination> examinations;
 
-    @OneToMany(mappedBy = "admission")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admission")
     @Getter @Setter
     private List<Revisit> revisits;
 
-    @OneToMany(mappedBy = "admission")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admission")
     @Getter @Setter
     private List<Troponin> troponins;
 

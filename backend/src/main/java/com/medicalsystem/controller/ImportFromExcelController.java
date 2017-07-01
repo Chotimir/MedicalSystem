@@ -19,7 +19,7 @@ public class ImportFromExcelController {
     @RequestMapping(value = "/importExcelFile", method = RequestMethod.GET)
      public void saveDataFromExcel() {
         saveDataFromExcelToDB.configureRows();
-        export.exportToExcel();
+//        export.exportToExcel(); to-do
     }
 
 }

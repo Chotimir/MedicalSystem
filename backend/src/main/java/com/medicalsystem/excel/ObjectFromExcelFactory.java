@@ -76,9 +76,8 @@ public class ObjectFromExcelFactory {
         this.smokingService = smokingService;
         this.troponinService = troponinService;
         try {
-            InputStream inputStream = new FileInputStream(excelColumnsPath);
             this.properties = new Properties();
-            properties.load(inputStream);
+            properties.load(new FileInputStream(excelColumnsPath));
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -113,7 +112,7 @@ public class ObjectFromExcelFactory {
         int lastDiseaseInExcel = Integer.parseInt(properties.getProperty("disease.ekg.number"));
         for (int excelCellNumber = firstDiseaseInExcel, diseaseCount = 1; excelCellNumber <= lastDiseaseInExcel; excelCellNumber++, diseaseCount++) {
             Cell diseaseCell = row.getCell(excelCellNumber);
-            if (diseaseCell != null && diseaseCell.getNumericCellValue() != 0) { //to analyse
+            if (diseaseCell != null && diseaseCell.getNumericCellValue() != 0) {
                 Disease disease = diseaseService.getById(diseaseCount);
                 diseases.add(disease);
             }
@@ -121,10 +120,6 @@ public class ObjectFromExcelFactory {
         return diseases;
     }
 
-    public static DiseaseDescription createDiseaseDescription(Row row) {
-        DiseaseDescription diseaseDescription = new DiseaseDescription();
-        return diseaseDescription;
-    }
 
     public Patient getPatientWithKey(Row row) {
         Cell patientCell = row.getCell(Integer.parseInt(properties.getProperty("id.number")));
@@ -188,7 +183,6 @@ public class ObjectFromExcelFactory {
         admission.setMedicaments(getMedicamentListWithKey(row));
         admission.setOperationTypes(getOperationTypeListWithKey(row));
 
-        //doesn't work, empty tables in db
         admission.setExaminations(getExaminationListWithKey(row, admission));
         admission.setRevisits(getRevisitListWithKey(row, admission));
         admission.setTroponins(getTroponinListWithKey(row, admission));
@@ -206,11 +200,12 @@ public class ObjectFromExcelFactory {
         List<Examination> examinations = new ArrayList<>();
         int firstExaminationInExcel = Integer.parseInt(properties.getProperty("examination.pchn.number"));
         int lastExaminationInExcel = Integer.parseInt(properties.getProperty("examination.fibrinogen.number"));
-        for (int excelCellNumber = firstExaminationInExcel, examinationCount = 1; excelCellNumber <= lastExaminationInExcel; excelCellNumber++, examinationCount++) {
+        for (int excelCellNumber = firstExaminationInExcel, dbIndex = 1; excelCellNumber <= lastExaminationInExcel;
+             excelCellNumber++, dbIndex++) {
             Cell examinationCell = row.getCell(excelCellNumber);
             if (examinationCell != null) {
                 Examination examination = new Examination();
-                examination.setDescription(examinationDescriptionService.getById(examinationCount));
+                examination.setDescription(examinationDescriptionService.getById(dbIndex));
                 examination.setResult((float) examinationCell.getNumericCellValue());
                 examination.setAdmission(admission);
                 examinations.add(examination);
@@ -238,7 +233,7 @@ public class ObjectFromExcelFactory {
         if (smokingCell != null) {
             return smokingService.getById((int) smokingCell.getNumericCellValue());
         }
-        return new Smoking(); //to do - remove "nullable = false" from domain classes
+        return new Smoking();
     }
 
     public Reoperation getReoperationWithKey(Row row) {
@@ -322,7 +317,7 @@ public class ObjectFromExcelFactory {
 
     private List<Complication> getComplications(int firstIndex, int lastIndex, List<Complication> complications,
                                                 Row row, int dbIndex) {
-        for (int excelCellNumber = firstIndex; excelCellNumber < lastIndex; excelCellNumber++) {
+        for (int excelCellNumber = firstIndex; excelCellNumber <= lastIndex; excelCellNumber++) {
             Cell complicationCell = row.getCell(excelCellNumber);
             if (complicationCell != null && complicationCell.getNumericCellValue() == 1) { //what about "2"? - to do
                 Complication complication = complicationService.getById(dbIndex);
@@ -425,6 +420,7 @@ public class ObjectFromExcelFactory {
         Cell tnIDayCell = row.getCell(Integer.parseInt(properties.getProperty("troponin.tniDay.number")));
         troponin.setTni((tnIDayCell == null) ? -1 : (float) tnIDayCell.getNumericCellValue());
 
+        troponins.add(troponin);
         return troponins;
     }
 
