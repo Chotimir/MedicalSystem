@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -40,6 +42,7 @@ public class ObjectFromExcelFactory {
     private SmokingService smokingService;
     private TroponinService troponinService;
 
+    private static String excelColumnsPath = "C:\\Users\\Kamil\\SkyDrive\\Studia Semestr 6\\7 inzynierka\\project\\MedicalSystem\\backend\\src\\main\\resources\\excelColumns.properties";
     private Properties properties;
 
     @Autowired
@@ -52,7 +55,7 @@ public class ObjectFromExcelFactory {
                                      OperationService operationService, OperationTypeService operationTypeService,
                                      PatientService patientService, ReoperationService reoperationService,
                                      RevisitCauseService revisitCauseService, RevisitService revisitService,
-                                     SmokingService smokingService, TroponinService troponinService) {
+                                     SmokingService smokingService, TroponinService troponinService)  {
         this.admissionService = admissionService;
         this.anesthesiaService = anesthesiaService;
         this.anestheticService = anestheticService;
@@ -73,9 +76,11 @@ public class ObjectFromExcelFactory {
         this.smokingService = smokingService;
         this.troponinService = troponinService;
         try {
+            InputStream inputStream = new FileInputStream(excelColumnsPath);
             this.properties = new Properties();
-            properties.load(new FileInputStream("/resources/excelColumns.properties"));
+            properties.load(inputStream);
         } catch (IOException e){
+            e.printStackTrace();
         }
     }
 
@@ -295,12 +300,40 @@ public class ObjectFromExcelFactory {
 
         operation.setVentilatorDays((int) row.getCell(Integer.parseInt(properties.getProperty("operation.ventilatorDays.number"))).getNumericCellValue());
 
-//        List<Complication> complications = getComplicationList(row);
-//        operation.setComplications(complications);
+        List<Complication> complications = getComplicationList(row);
+        operation.setComplications(complications);
         operationService.saveOrUpdate(operation);
 
         return operation;
     }
+
+
+    public List<Complication> getComplicationList(Row row) {
+        List<Complication> complications = new ArrayList<>(30);
+        int minsComplication = Integer.parseInt(properties.getProperty("complication.1.number"));
+        int miComplication = Integer.parseInt(properties.getProperty("complication.2.number"));
+        getComplications(minsComplication, miComplication, complications, row, 1);
+        int firstComplicationInExcel = Integer.parseInt(properties.getProperty("complication.3.number"));
+        int lastComplicationInExcel = Integer.parseInt(properties.getProperty("complication.30.number"));
+        getComplications(firstComplicationInExcel, lastComplicationInExcel, complications, row, 3);
+
+        return complications;
+    }
+
+    private List<Complication> getComplications(int firstIndex, int lastIndex, List<Complication> complications,
+                                                Row row, int dbIndex) {
+        for (int excelCellNumber = firstIndex; excelCellNumber < lastIndex; excelCellNumber++) {
+            Cell complicationCell = row.getCell(excelCellNumber);
+            if (complicationCell != null && complicationCell.getNumericCellValue() == 1) { //what about "2"? - to do
+                Complication complication = complicationService.getById(dbIndex);
+                complication.setDescription(new ArrayList<>(Arrays.asList(complicationDescriptionService.getById(dbIndex))));
+                complications.add(complication);
+            }
+            dbIndex++;
+        }
+        return complications;
+    }
+
 
     public Anesthesia getAnesthesiaWithKey(Row row) {
         Cell anesthesiaCell = row.getCell(Integer.parseInt(properties.getProperty("anesthesia.number")));
@@ -319,23 +352,6 @@ public class ObjectFromExcelFactory {
 
     }
 
-    //add excel value in class
-//    public List<Complication> getComplicationList(Row row) {
-//        List<Complication> complications = new ArrayList<>(30);
-//        for (int i = 1; i < 31; i++) {
-//            Complication complication = complicationService.getById(i);
-//            List<ComplicationDescription> complicationDescription = getComplicationDescriptionWithKey(row);
-//             complication.setDescription(complicationDescription);
-//        }
-//        return complications;
-//    }
-
-    public List<ComplicationDescription> getComplicationDescriptionWithKey(Row row) {
-        List<ComplicationDescription> complicationDescriptions = new ArrayList<>();
-        complicationDescriptions.add(complicationDescriptionService.getById(1));
-        return complicationDescriptions;
-
-    }
 
     public OperationMode getOperationModeWithKey(Row row) {
         Cell operationModeCell = row.getCell(Integer.parseInt(properties.getProperty("operationMode.number")));
