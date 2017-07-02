@@ -43,7 +43,6 @@ public class ObjectFromExcelFactory {
     private SmokingService smokingService;
     private TroponinService troponinService;
 
-    //private static String excelColumnsPath = "C:\\Users\\Kamil\\SkyDrive\\Studia Semestr 6\\7 inzynierka\\project\\MedicalSystem\\backend\\src\\main\\resources\\excelColumns.properties";
     private String excelColumnsFileName = "excelColumns.properties";
     private Properties properties;
 
