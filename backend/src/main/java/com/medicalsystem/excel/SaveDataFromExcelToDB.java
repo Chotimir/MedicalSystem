@@ -15,17 +15,24 @@ import java.util.Iterator;
 @Component
 public class SaveDataFromExcelToDB {
 
-    @Autowired
+    final
     PatientService patientService;
 
-    @Autowired
+    final
     AdmissionService admissionService;
 
-    @Autowired
+    final
     ObjectFromExcelFactory objectFromExcelFactory;
 
+    @Autowired
+    public SaveDataFromExcelToDB(PatientService patientService, AdmissionService admissionService, ObjectFromExcelFactory objectFromExcelFactory) {
+        this.patientService = patientService;
+        this.admissionService = admissionService;
+        this.objectFromExcelFactory = objectFromExcelFactory;
+    }
+
     public void configureRows() {
-        XSSFSheet sheet = ExcelParser.parseExcelFile("C:\\Users\\Kamil\\SkyDrive\\Studia Semestr 6\\7 inzynierka\\baza.xlsx");
+        XSSFSheet sheet = ExcelParser.parseExcelFile("baza.xlsx");
         if (sheet == null) {
             return;
         }
