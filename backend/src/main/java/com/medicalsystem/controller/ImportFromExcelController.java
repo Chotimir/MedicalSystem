@@ -20,6 +20,7 @@ public class ImportFromExcelController {
      public void saveDataFromExcel() {
         saveDataFromExcelToDB.configureRows();
 //        export.exportToExcel(); to-do
+        // no ale chyba nie tu xD ~MS
     }
 
 }

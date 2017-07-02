@@ -21,6 +21,9 @@ import java.util.Properties;
 @Component
 public class ObjectFromExcelFactory {
 
+    private final String excelColumnsFileName = "excelColumns.properties";
+    private Properties properties;
+
     private AdmissionService admissionService;
     private AnesthesiaService anesthesiaService;
     private AnestheticService anestheticService;
@@ -34,17 +37,12 @@ public class ObjectFromExcelFactory {
     private OperationModeService operationModeService;
     private OperationService operationService;
     private OperationTypeService operationTypeService;
-    @Getter
-    @Setter
     private PatientService patientService;
     private ReoperationService reoperationService;
     private RevisitCauseService revisitCauseService;
     private RevisitService revisitService;
     private SmokingService smokingService;
     private TroponinService troponinService;
-
-    private String excelColumnsFileName = "excelColumns.properties";
-    private Properties properties;
 
     @Autowired
     public ObjectFromExcelFactory(AdmissionService admissionService, AnesthesiaService anesthesiaService,

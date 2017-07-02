@@ -1,6 +1,7 @@
 package com.medicalsystem.excel;
 
 import com.medicalsystem.domain.Patient;
+import com.medicalsystem.service.PatientService;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -20,13 +21,18 @@ import java.util.List;
 @Component
 public class XlsxExport {
 
-    @Autowired
-    ObjectFromExcelFactory objectFromExcelFactory;
-    private static final String path = "C:\\Users\\Kamil\\SkyDrive\\Studia Semestr 6\\7 inzynierka\\eksport\\results\\test.xls";
+    private static final String path = "test.xls";
     private static final Logger log = LoggerFactory.getLogger(XlsxExport.class);
 
+    private final PatientService patientService;
+
+    @Autowired
+    public XlsxExport(PatientService patientService) {
+        this.patientService = patientService;
+    }
+
     public void exportToExcel() {
-        Patient patient = objectFromExcelFactory.getPatientService().getById(1);
+        Patient patient = patientService.getById(1);
         List<String> patientData = new ArrayList<>();
         patientData.add(String.valueOf(patient.getId()));
         patientData.add(patient.getFirstName());
