@@ -34,7 +34,8 @@ public class ObjectFromExcelFactory {
     private OperationModeService operationModeService;
     private OperationService operationService;
     private OperationTypeService operationTypeService;
-    @Getter @Setter
+    @Getter
+    @Setter
     private PatientService patientService;
     private ReoperationService reoperationService;
     private RevisitCauseService revisitCauseService;
@@ -42,20 +43,21 @@ public class ObjectFromExcelFactory {
     private SmokingService smokingService;
     private TroponinService troponinService;
 
-    private static String excelColumnsPath = "C:\\Users\\Kamil\\SkyDrive\\Studia Semestr 6\\7 inzynierka\\project\\MedicalSystem\\backend\\src\\main\\resources\\excelColumns.properties";
+    //private static String excelColumnsPath = "C:\\Users\\Kamil\\SkyDrive\\Studia Semestr 6\\7 inzynierka\\project\\MedicalSystem\\backend\\src\\main\\resources\\excelColumns.properties";
+    private String excelColumnsFileName = "excelColumns.properties";
     private Properties properties;
 
     @Autowired
     public ObjectFromExcelFactory(AdmissionService admissionService, AnesthesiaService anesthesiaService,
-                                     AnestheticService anestheticService, ComplicationDescriptionService
-                                             complicationDescriptionService, ComplicationService complicationService,
-                                     DiseaseDescriptionService diseaseDescriptionService, DiseaseService diseaseService,
-                                     ExaminationDescriptionService examinationDescriptionService, ExaminationService examinationService,
-                                     MedicamentService medicamentService, OperationModeService operationModeService,
-                                     OperationService operationService, OperationTypeService operationTypeService,
-                                     PatientService patientService, ReoperationService reoperationService,
-                                     RevisitCauseService revisitCauseService, RevisitService revisitService,
-                                     SmokingService smokingService, TroponinService troponinService)  {
+                                  AnestheticService anestheticService, ComplicationDescriptionService
+                                          complicationDescriptionService, ComplicationService complicationService,
+                                  DiseaseDescriptionService diseaseDescriptionService, DiseaseService diseaseService,
+                                  ExaminationDescriptionService examinationDescriptionService, ExaminationService examinationService,
+                                  MedicamentService medicamentService, OperationModeService operationModeService,
+                                  OperationService operationService, OperationTypeService operationTypeService,
+                                  PatientService patientService, ReoperationService reoperationService,
+                                  RevisitCauseService revisitCauseService, RevisitService revisitService,
+                                  SmokingService smokingService, TroponinService troponinService) {
         this.admissionService = admissionService;
         this.anesthesiaService = anesthesiaService;
         this.anestheticService = anestheticService;
@@ -75,12 +77,15 @@ public class ObjectFromExcelFactory {
         this.revisitService = revisitService;
         this.smokingService = smokingService;
         this.troponinService = troponinService;
-        try {
-            this.properties = new Properties();
-            properties.load(new FileInputStream(excelColumnsPath));
-        } catch (IOException e){
+
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        this.properties = new Properties();
+        try (InputStream input = loader.getResourceAsStream(excelColumnsFileName)) {
+            this.properties.load(input);
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public Patient createPatient(Row row) {
