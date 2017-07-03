@@ -8,6 +8,7 @@ import java.sql.Date;
 
 public class CellValue {
 
+    // Autowiring not possible - CellValue is created using 'new' keyword in builders
     private static ExcelColumnsProperties columnsProperties = new ExcelColumnsProperties();
     private static DataFormatter formatter = new DataFormatter();
 

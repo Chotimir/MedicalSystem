@@ -32,6 +32,12 @@ public class RowImporter {
         this.admissionService = admissionService;
     }
 
+    /**
+     * Builds entity dependencies based on a single spreadsheed row.
+     * Explicitly creates only three main objects (Patient, Operation, Admission) - the remaining objects are created in a cascade way.
+     *
+     * @param row spreadsheet row
+     */
     public void importToDB(Row row) {
 
         /* Patient */

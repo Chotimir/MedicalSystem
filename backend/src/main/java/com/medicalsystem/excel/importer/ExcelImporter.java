@@ -29,7 +29,21 @@ public class ExcelImporter {
         this.rowImporter = rowImporter;
     }
 
+    /**
+     * Imports data from the spreadsheet.
+     */
     public void importToDB() {
+
+        importOpenSheet();
+        importEvarSheet();
+
+        System.out.println("IMPORT COMPLETED");
+    }
+
+    /**
+     * Imports data from the 'open' sheet.
+     */
+    private void importOpenSheet() {
         /* Otwarte */
         Iterator<Row> rowIterator = openSheet.iterator();
 
@@ -42,10 +56,13 @@ public class ExcelImporter {
             Row row = rowIterator.next();
             rowImporter.importToDB(row);
         }
+    }
 
-        // TODO: EVAR
-
-        System.out.println("IMPORT COMPLETED");
+    /**
+     * Imports data from the 'EVAR' sheet.
+     */
+    private void importEvarSheet() {
+        // TODO: Implement
     }
 
 }
