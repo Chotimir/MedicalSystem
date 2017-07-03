@@ -1,4 +1,4 @@
-package com.medicalsystem.newexcel;
+package com.medicalsystem.excel;
 
 import java.sql.Date;
 import java.time.LocalDate;

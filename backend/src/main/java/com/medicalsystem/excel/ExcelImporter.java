@@ -1,4 +1,4 @@
-package com.medicalsystem.newexcel;
+package com.medicalsystem.excel;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;

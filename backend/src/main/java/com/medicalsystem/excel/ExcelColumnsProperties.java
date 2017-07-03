@@ -1,4 +1,4 @@
-package com.medicalsystem.newexcel;
+package com.medicalsystem.excel;
 
 import org.springframework.stereotype.Component;
 
