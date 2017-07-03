@@ -30,8 +30,14 @@ public class AdmissionBuilder {
         this.operationTypeBuilder = operationTypeBuilder;
     }
 
-    public Admission build(Row row) {
+    public Admission build(Row row, Patient patient, Operation operation) {
         Admission admission = new Admission();
+
+        /* Patient */
+        admission.setPatient(patient);
+
+        /* Operation */
+        admission.setOperation(operation);
 
         /* Admission date */
         CellValue admissionDate = new CellValue(row, "admissionDate.number");

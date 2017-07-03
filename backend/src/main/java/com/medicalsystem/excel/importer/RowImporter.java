@@ -33,20 +33,17 @@ public class RowImporter {
     }
 
     public void importToDB(Row row) {
+
         /* Patient */
         Patient patient = patientBuilder.build(row);
+        patientService.saveOrUpdate(patient);
 
         /* Operation */
         Operation operation = operationBuilder.build(row);
+        operationService.saveOrUpdate(operation);
 
         /* Admission */
-        Admission admission = admissionBuilder.build(row);
-        admission.setPatient(patient);
-        admission.setOperation(operation);
-
-        /* Persist entities */
-        patientService.saveOrUpdate(patient);
-        operationService.saveOrUpdate(operation);
+        Admission admission = admissionBuilder.build(row, patient, operation);
         admissionService.saveOrUpdate(admission);
 
         System.out.println("ROW PERSISTED");
