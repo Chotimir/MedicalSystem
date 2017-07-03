@@ -7,14 +7,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "lek_znieczulajacy_s")
-public class Anesthetic {
+public class Anesthetic extends IdComparableEntity {
 
     @Id
     @Column(name = "lek_znieczulajacy")
     @Getter @Setter
     private int id;
 
-    @Column(name = "nazwa_leku_znieczulajacego", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "nazwa_leku_znieczulajacego", columnDefinition = "varchar(50)")
     @Getter @Setter
     private String name;
 

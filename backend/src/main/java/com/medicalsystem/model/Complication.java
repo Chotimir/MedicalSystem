@@ -8,20 +8,20 @@ import java.util.List;
 
 @Entity
 @Table(name = "powiklania_s")
-public class Complication {
+public class Complication extends IdComparableEntity {
 
     @Id
     @Column(name = "id_powiklania")
     @Getter @Setter
     private int id;
 
-    @Column(name = "nazwa_powiklania", columnDefinition = "varchar(50)", nullable = false)
+    @Column(name = "nazwa_powiklania", columnDefinition = "varchar(50)")
     @Getter @Setter
     private String name;
 
     @OneToMany(mappedBy = "complication", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Getter @Setter
-    private List<ComplicationDescription> descriptions;
+    private List<ComplicationDescription> description;
 
     public Complication() {}
 

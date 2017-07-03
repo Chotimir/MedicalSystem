@@ -11,12 +11,8 @@ import java.util.List;
 @Service
 public class SmokingServiceImpl implements SmokingService {
 
-    private final SmokingRepository smokingRepository;
-
     @Autowired
-    public SmokingServiceImpl(SmokingRepository smokingRepository) {
-        this.smokingRepository = smokingRepository;
-    }
+    private SmokingRepository smokingRepository;
 
     @Override
     public List<Smoking> listAll() {

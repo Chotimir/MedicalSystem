@@ -25,7 +25,6 @@ CREATE TABLE "przyjecie" (
 	"lee_rcri" integer NOT NULL,
 	"p_possum" integer NOT NULL,
 	"utrata_przytomnosci" integer NOT NULL,
-	"reoperacja" integer DEFAULT '0',
 	"uwagi" text,
 	CONSTRAINT przyjecie_pk PRIMARY KEY ("id_przyjecia")
 ) WITH (
@@ -176,6 +175,13 @@ CREATE TABLE "palenie_tytoniu_s" (
   OIDS=FALSE
 );
 
+CREATE TABLE "reoperacja" (
+	"id_przyjecia" integer NOT NULL,
+	"reoperacja" integer NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
 CREATE TABLE "reoperacja_s" (
 	"reoperacja" serial NOT NULL,
 	"nazwa_reoperacji" varchar(100) NOT NULL,
@@ -221,11 +227,28 @@ CREATE TABLE "opis_powiklania_s" (
   OIDS=FALSE
 );
 
+CREATE TABLE "badanie_obrazowe_s" (
+	"id_badania_obrazowego" serial NOT NULL,
+	"nazwa_badania_obrazowego" varchar(50) NOT NULL,
+	CONSTRAINT badanie_obrazowe_s_pk PRIMARY KEY ("id_badania_obrazowego")
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE "lokalizacja_tetniaka_s_s" (
+	"id_lokalizacji_tetniaka" serial NOT NULL,
+	"nazwa_lokalizacji_tetniaka" varchar(50) NOT NULL,
+	CONSTRAINT lokalizacja_tetniaka_s_pk PRIMARY KEY ("id_lokalizacji_tetniaka")
+) WITH (
+  OIDS=FALSE
+);
+
 
 ALTER TABLE "przyjecie" ADD CONSTRAINT "przyjecie_fk0" FOREIGN KEY ("id_pacjenta") REFERENCES "dane_osobowe"("id_pacjenta");
 ALTER TABLE "przyjecie" ADD CONSTRAINT "przyjecie_fk1" FOREIGN KEY ("id_operacji") REFERENCES "operacja"("id_operacji");
 ALTER TABLE "przyjecie" ADD CONSTRAINT "przyjecie_fk2" FOREIGN KEY ("palenie_tytoniu") REFERENCES "palenie_tytoniu_s"("palenie_tytoniu");
-ALTER TABLE "przyjecie" ADD CONSTRAINT "przyjecie_fk3" FOREIGN KEY ("reoperacja") REFERENCES "reoperacja_s"("reoperacja");
+ALTER TABLE "przyjecie" ADD CONSTRAINT "przyjecie_fk3" FOREIGN KEY ("badanie_obrazowe") REFERENCES "badanie_obrazowe_s"("id_badania_obrazowego");
+ALTER TABLE "przyjecie" ADD CONSTRAINT "przyjecie_fk4" FOREIGN KEY ("lokalizacja_tetniaka") REFERENCES "lokalizacja_tetniaka_s"("id_lokalizacji_tetniaka");
 
 ALTER TABLE "rodzaj_zabiegu" ADD CONSTRAINT "rodzaj_zabiegu_fk0" FOREIGN KEY ("id_przyjecia") REFERENCES "przyjecie"("id_przyjecia");
 ALTER TABLE "rodzaj_zabiegu" ADD CONSTRAINT "rodzaj_zabiegu_fk1" FOREIGN KEY ("rodzaj_zabiegu") REFERENCES "rodzaj_zabiegu_s"("id_rodzaju_zabiegu");
@@ -254,3 +277,6 @@ ALTER TABLE "ponowna_wizyta" ADD CONSTRAINT "ponowna_wizyta_fk1" FOREIGN KEY ("p
 ALTER TABLE "opis_choroby_s" ADD CONSTRAINT "opis_choroby_s_fk0" FOREIGN KEY ("id_choroby") REFERENCES "choroby_s"("id_choroby");
 
 ALTER TABLE "opis_powiklania_s" ADD CONSTRAINT "opis_powiklania_s_fk0" FOREIGN KEY ("id_powiklania") REFERENCES "powiklania_s"("id_powiklania");
+
+ALTER TABLE "reoperacja" ADD CONSTRAINT "reoperacja_fk0" FOREIGN KEY ("id_przyjecia") REFERENCES "przyjecie"("id_przyjecia");
+ALTER TABLE "reoperacja" ADD CONSTRAINT "reoperacja_fk1" FOREIGN KEY ("reoperacja") REFERENCES "reoperacja_s"("reoperacja");

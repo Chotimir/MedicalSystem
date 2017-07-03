@@ -9,90 +9,94 @@ import java.util.List;
 
 @Entity
 @Table(name = "przyjecie")
-public class Admission {
+public class Admission extends IdComparableEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_przyjecia")
     @Getter @Setter
     private int id;
 
     @OneToOne
-    @JoinColumn(name = "id_pacjenta", nullable = false)
+    @JoinColumn(name = "id_pacjenta")
     @Getter @Setter
     private Patient patient;
 
     @OneToOne
-    @JoinColumn(name = "id_operacji", nullable = false)
+    @JoinColumn(name = "id_operacji")
     @Getter @Setter
     private Operation operation;
 
-    @Column(name = "data_przyjecia", nullable = false)
+    @Column(name = "data_przyjecia")
     @Getter @Setter
     private Date admissionDate;
 
-    @Column(name = "data_zabiegu", nullable = false)
+    @Column(name = "data_zabiegu")
     @Getter @Setter
     private Date operationDate;
 
-    @Column(name = "objawy_aa", nullable = false)
+    @Column(name = "objawy_aa")
     @Getter @Setter
     private int aaSymptoms;
 
-    @Column(name = "wymiary_aa", nullable = false)
+    @Column(name = "wymiary_aa")
     @Getter @Setter
     private int aaSize;
 
-    @Column(name = "maks_wymiary_tetniaka", nullable = false)
+    @Column(name = "maks_wymiary_tetniaka")
     @Getter @Setter
     private int maxAneurysmSize;
 
-    @Column(name = "badanie_obrazowe", nullable = false)
+    @Column(name = "badanie_obrazowe")
     @Getter @Setter
     private int imageExamination;
 
-    @Column(name = "lokalizacja_tetniaka", nullable = false)
+    @Column(name = "lokalizacja_tetniaka")
     @Getter @Setter
     private int aneurysmLocation;
 
     @ManyToOne
-    @JoinColumn(name = "palenie_tytoniu", nullable = false)
+    @JoinColumn(name = "palenie_tytoniu")
     @Getter @Setter
     private Smoking smoking;
 
-    @Column(name = "skala_asa", nullable = false)
+    @Column(name = "skala_asa")
     @Getter @Setter
     private int asaScale;
 
-    @Column(name = "lee_rcri", nullable = false)
+    @Column(name = "lee_rcri")
     @Getter @Setter
     private int leeRcri;
 
-    @Column(name = "p_possum", nullable = false)
+    @Column(name = "p_possum")
     @Getter @Setter
-    private int pPossum;
+    private double pPossum;
 
-    @Column(name = "utrata_przytomnosci", nullable = false)
+    @Column(name = "utrata_przytomnosci")
     @Getter @Setter
     private int faint;
 
-    @ManyToOne
-    @JoinColumn(name = "reoperacja", nullable = false)
+    @ManyToMany
+    @JoinTable(
+            name = "reoperacje",
+            joinColumns = @JoinColumn(name = "id_przyjecia", referencedColumnName = "id_przyjecia"),
+            inverseJoinColumns = @JoinColumn(name = "reoperacja", referencedColumnName = "reoperacja")
+    )
     @Getter @Setter
-    private Reoperation reopration;
+    private List<Reoperation> reoperations;
 
-    @Column(name = "uwagi", columnDefinition = "text", nullable = false)
+    @Column(name = "uwagi", columnDefinition = "text")
     @Getter @Setter
     private String comments;
 
-    @OneToMany(mappedBy = "admission")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admission")
     @Getter @Setter
     private List<Examination> examinations;
 
-    @OneToMany(mappedBy = "admission")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admission")
     @Getter @Setter
     private List<Revisit> revisits;
 
-    @OneToMany(mappedBy = "admission")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admission")
     @Getter @Setter
     private List<Troponin> troponins;
 

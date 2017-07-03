@@ -7,25 +7,25 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "badania_przy_przyjeciu")
-public class Examination {
+public class Examination extends IdComparableEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_badania_przy_przyjeciu")
     @Getter @Setter
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_przyjecia", nullable = false)
+    @JoinColumn(name = "id_przyjecia")
     @Getter @Setter
     private Admission admission;
 
     @OneToOne
-    @JoinColumn(name = "id_badania", nullable = false)
+    @JoinColumn(name = "id_badania")
     @Getter @Setter
     private ExaminationDescription description;
 
-    @Column(name = "wynik_badania", nullable = false)
+    @Column(name = "wynik_badania")
     @Getter @Setter
-    private float result;
+    private double result;
 
 }

@@ -7,36 +7,36 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "troponiny")
-public class Troponin {
+public class Troponin extends IdComparableEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_troponiny")
     @Getter @Setter
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_przyjecia", nullable = false)
+    @JoinColumn(name = "id_przyjecia")
     @Getter @Setter
     private Admission admission;
 
-    @Column(name = "tnt", nullable = false)
+    @Column(name = "tnt")
     @Getter @Setter
-    private float tnt;
+    private double tnt;
 
-    @Column(name = "tnl_ultra", nullable = false)
+    @Column(name = "tni_ultra")
     @Getter @Setter
-    private float tnlUltra;
+    private double tniUltra;
 
-    @Column(name = "tnl", nullable = false)
+    @Column(name = "tni")
     @Getter @Setter
-    private float tnl;
+    private double tni;
 
-    @Column(name = "tnt_doba", nullable = false)
+    @Column(name = "tnt_doba")
     @Getter @Setter
-    private float tntDay;
+    private double tntDay;
 
-    @Column(name = "tnl_doba", nullable = false)
+    @Column(name = "tni_doba")
     @Getter @Setter
-    private float tnlDay;
+    private double tniDay;
 
 }

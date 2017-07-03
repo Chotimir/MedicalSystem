@@ -7,14 +7,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "przyczyna_ponownego_przyjecia_s")
-public class RevisitCause {
+public class RevisitCause extends IdComparableEntity {
 
     @Id
     @Column(name = "przyczyna_ponownego_przyjecia")
     @Getter @Setter
     private int id;
 
-    @Column(name = "nazwa_przyczyny", columnDefinition = "varchar(70)", nullable = false)
+    @Column(name = "nazwa_przyczyny", columnDefinition = "varchar(70)")
     @Getter @Setter
     private String name;
 

@@ -35,7 +35,18 @@ INSERT INTO "tryb_zabiegu_s" (tryb_zabiegu, nazwa_trybu_zabiegu) VALUES
 
 -- Tetniak?
 -- Badanie obrazowe na podstawie ktorego okreslono srednice tetniaka
+DELETE FROM "badanie_obrazowe_s" (id_badania_obrazowego, nazwa_badania_obrazowego) VALUES
+  ('1', 'angio-TK'),
+  ('2', 'USG'),
+  ('3', 'z protokołu operacyjnego');
+
 -- Lokalizacja tetniaka
+DELETE FROM "lokalizacja_tetniaka_s";
+INSERT INTO "lokalizacja_tetniaka_s" (id_lokalizacji_tetniaka, nazwa_lokalizacji_tetniaka) VALUES
+  ('1', 'Suprarenal'),
+  ('2', 'Pararenal'),
+  ('3', 'Juxtarenal')
+  ('4', 'Infrarenal');
 
 -- Palenie tytoniu
 DELETE FROM "palenie_tytoniu_s";
@@ -51,47 +62,50 @@ INSERT INTO "palenie_tytoniu_s" (palenie_tytoniu, wartosc_tekstowa) VALUES
 DELETE FROM "opis_choroby_s";
 DELETE FROM "choroby_s";
 INSERT INTO "choroby_s" (id_choroby, nazwa_choroby) VALUES
-  ('1', 'HT'), -- nadciśnienie tętnicze
-  ('2', 'CAD'), -- choroba wieńcowa
-  ('3', 'CAD wysokiego ryzyka'),
-  ('4', 'MI/ACS przebyty'), -- Zawał serca/ostry zespół wieńcowy
-  ('5', 'Stenoza aortalna'),
-  ('6', 'CVE przebyty'), -- incydent naczyniowo-mózgowy
-  ('7', 'CHF'), -- przewlekla niewydolnosc krazenia
-  ('8', 'DM'), -- cukrzyca
-  ('9', 'COPD'), -- przewlekla obturacyjna choroba pluc
-  ('10', 'EKG przymęciowe'); -- EKG przy przyjęciu
+  ('1', 'Wstrząs'); -- Wstrząs przy przyjęciu
+  ('2', 'HT'), -- nadciśnienie tętnicze
+  ('3', 'CAD'), -- choroba wieńcowa
+  ('4', 'CAD wysokiego ryzyka'),
+  ('5', 'MI/ACS przebyty'), -- Zawał serca/ostry zespół wieńcowy
+  ('6', 'Stenoza aortalna'),
+  ('7', 'CVE przebyty'), -- incydent naczyniowo-mózgowy
+  ('8', 'CHF'), -- przewlekla niewydolnosc krazenia
+  ('9', 'DM'), -- cukrzyca
+  ('10', 'COPD'), -- przewlekla obturacyjna choroba pluc
+  ('11', 'EKG przyjęciowe'); -- EKG przy przyjęciu
 
 DELETE FROM "opis_choroby_s";
 INSERT INTO "opis_choroby_s" (id_opis_choroby, id_choroby, nazwa_opis_powiklania, wartosc_w_excelu) VALUES
-  ('1', '1', 'nie', '0'), -- HT
+  ('1', '1', 'nie', '0'), -- wstrząs
   ('2', '1', 'tak', '1'),
-  ('3', '2', 'nie', '0'), -- CAD
+  ('3', '2', 'nie', '0'), -- HT
   ('4', '2', 'tak', '1'),
-  ('5', '3', 'nie', '0'), -- CAD wysokiego ryzyka
+  ('5', '3', 'nie', '0'), -- CAD
   ('6', '3', 'tak', '1'),
-  ('7', '4', 'nie', '0'), -- MI/ACS
+  ('7', '4', 'nie', '0'), -- CAD wysokiego ryzyka
   ('8', '4', 'tak', '1'),
-  ('9', '5', 'brak', '0'), -- Stenoza aortalna
-  ('10', '5', 'łagodna', '1'),
-  ('11', '5', 'umiarkowana', '2'),
-  ('12', '5', 'ciężka', '3'),
-  ('13', '5', 'sztuczna zastawka', '4'),
-  ('14', '6', 'nie', '0'), -- CVE przebyty
-  ('15', '6', 'tak', '1'),
-  ('16', '7', 'nie', '0'), -- CHF
+  ('9', '5', 'nie', '0'), -- MI/ACS
+  ('10', '5', 'tak', '1'),
+  ('11', '6', 'brak', '0'), -- Stenoza aortalna
+  ('12', '6', 'łagodna', '1'),
+  ('13', '6', 'umiarkowana', '2'),
+  ('14', '6', 'ciężka', '3'),
+  ('15', '6', 'sztuczna zastawka', '4'),
+  ('16', '7', 'nie', '0'), -- CVE przebyty
   ('17', '7', 'tak', '1'),
-  ('18', '8', 'nie', '0'), -- DM
+  ('18', '8', 'nie', '0'), -- CHF
   ('19', '8', 'tak', '1'),
-  ('20', '8', 'w trakcie insulinoterapii', '2'),
-  ('21', '9', 'nie', '0'), -- COPD
-  ('22', '9', 'tak', '1'),
-  ('23', '10', 'rytm zatokowy', '1'), -- EKG
-  ('24', '10', 'AF', '2'),
-  ('25', '10', 'rytm zatokowy + obecność VE', '3'),
-  ('26', '10', 'AF + obecność VE', '4'),
-  ('27', '10', 'rytm z rozrusznika', '5'),
-  ('28', '10', 'AF + rytm z rozrusznika', '6');
+  ('20', '9', 'nie', '0'), -- DM
+  ('21', '9', 'tak', '1'),
+  ('22', '9', 'w trakcie insulinoterapii', '2'),
+  ('23', '10', 'nie', '0'), -- COPD
+  ('24', '10', 'tak', '1'),
+  ('25', '11', 'rytm zatokowy', '1'), -- EKG
+  ('26', '11', 'AF', '2'),
+  ('27', '11', 'rytm zatokowy + obecność VE', '3'),
+  ('28', '11', 'AF + obecność VE', '4'),
+  ('29', '11', 'rytm z rozrusznika', '5'),
+  ('30', '11', 'AF + rytm z rozrusznika', '6');
 
 -- Badania
 DELETE FROM "badania_s";

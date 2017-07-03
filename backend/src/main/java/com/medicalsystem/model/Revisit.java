@@ -8,23 +8,23 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "ponowna_wizyta")
-public class Revisit {
+public class Revisit extends IdComparableEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ponownej_wizyty")
     @Getter @Setter
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_przyjecia", nullable = false)
+    @JoinColumn(name = "id_przyjecia")
     @Getter @Setter
     private Admission admission;
 
-    @Column(name = "kontrolna_wizyta", nullable = false)
+    @Column(name = "kontrolna_wizyta")
     @Getter @Setter
     private int controlVisit;
 
-    @Column(name = "data_ponownego_przyjecia", nullable = false)
+    @Column(name = "data_ponownego_przyjecia")
     @Getter @Setter
     private Date date;
 
