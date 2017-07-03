@@ -16,12 +16,12 @@ public class CellValue {
     public CellValue(Row row, String columnProperty) {
         int cellIndex = columnsProperties.getPropertyAsInt(columnProperty);
         Cell cell = row.getCell(cellIndex);
-        this.value = formatter.formatCellValue(cell);
+        this.value = formatter.formatCellValue(cell).trim();
     }
 
     public CellValue(Row row, int cellIndex) {
         Cell cell = row.getCell(cellIndex);
-        this.value = formatter.formatCellValue(cell);
+        this.value = formatter.formatCellValue(cell).trim();
     }
 
     public String getAsString() {
@@ -52,6 +52,10 @@ public class CellValue {
             System.out.println("Error parsing value as double: " + value);
             return -1;
         }
+    }
+
+    public boolean getAsBoolean() {
+        return value.equals("1");
     }
 
 }

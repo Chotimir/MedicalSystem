@@ -2,6 +2,7 @@ package com.medicalsystem.newexcel;
 
 import com.medicalsystem.model.*;
 import com.medicalsystem.service.Services;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,11 +28,18 @@ public class RowImporter {
 
         /* Patient */
         Patient patient = createPatient();
-        services.patientService.saveOrUpdate(patient);
+
+        /* Operation */
+        Operation operation = createOperation();
 
         /* Admission */
         Admission admission = createAdmission();
         admission.setPatient(patient);
+        admission.setOperation(operation);
+
+        /* Persist entities */
+        services.patientService.saveOrUpdate(patient);
+        services.operationService.saveOrUpdate(operation);
         services.admissionService.saveOrUpdate(admission);
 
         System.out.println("ROW PERSISTED");
@@ -148,6 +156,90 @@ public class RowImporter {
         admission.setOperationTypes(operationTypes);
 
         return admission;
+    }
+
+    private Operation createOperation() {
+        Operation operation = new Operation();
+
+        /* Operation mode */
+        CellValue operationModeCell = new CellValue(row, "operationMode.number");
+        int operationModeId = operationModeCell.getAsInt();
+        OperationMode operationMode = services.operationModeService.getById(operationModeId);
+        operation.setOperationMode(operationMode);
+
+        /* Anesthesia */
+        CellValue anesthesiaCell = new CellValue(row, "anesthesia.number");
+        int anesthesiaId = anesthesiaCell.getAsInt();
+        Anesthesia anesthesia = services.anesthesiaService.getById(anesthesiaId);
+        operation.setAnesthesia(anesthesia);
+
+        /* Anesthetic */
+        CellValue anestheticCell = new CellValue(row, "anesthetic.number");
+        int anestheticId = anestheticCell.getAsInt();
+        Anesthetic anesthetic = services.anestheticService.getById(anestheticId);
+        operation.setAnesthetic(anesthetic);
+
+        /* Duration */
+        CellValue duration = new CellValue(row, "operation.duration.number");
+        operation.setDuration(duration.getAsInt());
+
+        /* Aorta clotting time */
+        CellValue aortaClottingTime = new CellValue(row, "operation.aortaClottingTime.number");
+        operation.setAortaClottingTime(aortaClottingTime.getAsInt());
+
+        /* Noradrenaline */
+        CellValue noradrenaline = new CellValue(row, "operation.noradrenaline.number");
+        operation.setNoradrenaline(noradrenaline.getAsBoolean());
+
+        /* Adrenaline*/
+        CellValue adrenaline = new CellValue(row, "operation.adrenaline.number");
+        operation.setAdrenaline(adrenaline.getAsBoolean());
+
+        /* Dopamine */
+        CellValue dopamine = new CellValue(row, "operation.dopamine.number");
+        operation.setDopamine(dopamine.getAsBoolean());
+
+        /* Dobutamine */
+        CellValue dobutamine = new CellValue(row, "operation.dobutamine.number");
+        operation.setDobutamine(dobutamine.getAsBoolean());
+
+        /* Ephedrine */
+        CellValue ephedrine = new CellValue(row, "operation.ephedrine.number");
+        operation.setEphedrine(ephedrine.getAsBoolean());
+
+        /* Blood lost */
+        CellValue bloodLost = new CellValue(row, "operation.bloodLost.number");
+        operation.setBloodLost(bloodLost.getAsInt());
+
+        /* Urine expelled */
+        CellValue urineExpelled = new CellValue(row, "operation.urineExpelled.number");
+        operation.setUrineExpelled(urineExpelled.getAsInt());
+
+        /* Packed cells transfused */
+        CellValue packedCellsTransfused = new CellValue(row, "operation.packedCellsTransfused.number");
+        operation.setPackedCellsTransfused(packedCellsTransfused.getAsInt());
+
+        /* ICU time */
+        CellValue icuTime = new CellValue(row, "operation.icuTime.number");
+        operation.setIcuTime(icuTime.getAsInt());
+
+        /* Hospital time */
+        CellValue hospitalTime = new CellValue(row, "operation.hospitalTime.number");
+        operation.setHospitalTime(hospitalTime.getAsInt());
+
+        /* Extended ventilation */
+        CellValue extendedVentilation = new CellValue(row, "operation.extendedVentilation.number");
+        operation.setExtendedVentilation(extendedVentilation.getAsBoolean());
+
+        /* Ventilator days */
+        CellValue ventilatorDays = new CellValue(row, "operation.ventilatorDays.number");
+        operation.setVentilatorDays(ventilatorDays.getAsInt());
+
+        /* Complications */
+        List<Complication> complications = getComplications();
+        operation.setComplications(complications);
+
+        return operation;
     }
 
     // TODO: problem z List<DiseaseDescription> w Disease
@@ -351,5 +443,11 @@ public class RowImporter {
         }
 
         return operationTypes;
+    }
+
+    // TODO: taki sam problem jak z Disease i DiseaseDescription ~MS
+    private List<Complication> getComplications() {
+        List<Complication> complications = new ArrayList<>();
+        return complications;
     }
 }
