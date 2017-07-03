@@ -1,4 +1,4 @@
-package com.medicalsystem.domain;
+package com.medicalsystem.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +26,6 @@ public class Examination extends IdComparableEntity {
 
     @Column(name = "wynik_badania")
     @Getter @Setter
-    private float result;
+    private double result;
 
 }

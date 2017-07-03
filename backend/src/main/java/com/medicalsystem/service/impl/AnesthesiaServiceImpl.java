@@ -1,6 +1,6 @@
 package com.medicalsystem.service.impl;
 
-import com.medicalsystem.domain.Anesthesia;
+import com.medicalsystem.model.Anesthesia;
 import com.medicalsystem.repository.AnesthesiaRepository;
 import com.medicalsystem.service.AnesthesiaService;
 import org.springframework.beans.factory.annotation.Autowired;

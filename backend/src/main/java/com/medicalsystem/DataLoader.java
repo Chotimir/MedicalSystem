@@ -1,13 +1,15 @@
 package com.medicalsystem;
 
-import com.medicalsystem.domain.*;
+import com.medicalsystem.model.*;
 import com.medicalsystem.service.*;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DataLoader implements ApplicationRunner {
 
     private final OperationTypeService operationTypeService;
@@ -23,29 +25,6 @@ public class DataLoader implements ApplicationRunner {
     private final ComplicationDescriptionService complicationDescriptionService;
     private final ReoperationService reoperationService;
     private final RevisitCauseService revisitCauseService;
-
-    @Autowired
-    public DataLoader(OperationTypeService operationTypeService, AnesthesiaService anesthesiaService,
-                      AnestheticService anestheticService, OperationModeService operationModeService,
-                      SmokingService smokingService, DiseaseService diseaseService,
-                      DiseaseDescriptionService diseaseDescriptionService,
-                      ExaminationDescriptionService examinationDescriptionService, MedicamentService medicamentService,
-                      ComplicationService complicationService, ComplicationDescriptionService complicationDescriptionService,
-                      ReoperationService reoperationService, RevisitCauseService revisitCauseService) {
-        this.operationTypeService = operationTypeService;
-        this.anesthesiaService = anesthesiaService;
-        this.anestheticService = anestheticService;
-        this.operationModeService = operationModeService;
-        this.smokingService = smokingService;
-        this.diseaseService = diseaseService;
-        this.diseaseDescriptionService = diseaseDescriptionService;
-        this.examinationDescriptionService = examinationDescriptionService;
-        this.medicamentService = medicamentService;
-        this.complicationService = complicationService;
-        this.complicationDescriptionService = complicationDescriptionService;
-        this.reoperationService = reoperationService;
-        this.revisitCauseService = revisitCauseService;
-    }
 
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
@@ -152,6 +131,7 @@ public class DataLoader implements ApplicationRunner {
 
 
         // badania_s
+        // DO NOT CHANGE THE ORDER - needed in RowImporter
         examinationDescriptionService.saveOrUpdate(new ExaminationDescription(1, "PShN w stadium 5 (dializoterapia)", "brak"));
         examinationDescriptionService.saveOrUpdate(new ExaminationDescription(2, "Kreatynina", "umol/l"));
         examinationDescriptionService.saveOrUpdate(new ExaminationDescription(3, "eGFR", "MDRD"));
@@ -161,6 +141,7 @@ public class DataLoader implements ApplicationRunner {
 
 
         // leki_s
+        // DO NOT CHANGE THE ORDER - needed in RowImporter
         medicamentService.saveOrUpdate(new Medicament(1, "Aspiryna"));
         medicamentService.saveOrUpdate(new Medicament(2, "Statyna"));
         medicamentService.saveOrUpdate(new Medicament(3, "ACE-I"));

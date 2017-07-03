@@ -1,7 +1,7 @@
 package com.medicalsystem.excel;
 
-import com.medicalsystem.domain.Admission;
-import com.medicalsystem.domain.Patient;
+import com.medicalsystem.model.Admission;
+import com.medicalsystem.model.Patient;
 import com.medicalsystem.service.AdmissionService;
 import com.medicalsystem.service.PatientService;
 import org.apache.poi.ss.usermodel.Row;
@@ -32,7 +32,7 @@ public class SaveDataFromExcelToDB {
     }
 
     public void configureRows() {
-        XSSFSheet sheet = ExcelParser.parseExcelFile("baza.xlsx");
+        XSSFSheet sheet = ExcelParser.parseExcelFile("baza2.xlsx");
         if (sheet == null) {
             return;
         }

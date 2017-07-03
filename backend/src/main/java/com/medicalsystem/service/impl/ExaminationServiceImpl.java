@@ -1,6 +1,6 @@
 package com.medicalsystem.service.impl;
 
-import com.medicalsystem.domain.Examination;
+import com.medicalsystem.model.Examination;
 import com.medicalsystem.repository.ExaminationRepository;
 import com.medicalsystem.service.ExaminationService;
 import org.springframework.beans.factory.annotation.Autowired;

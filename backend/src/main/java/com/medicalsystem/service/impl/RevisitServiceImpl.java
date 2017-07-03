@@ -1,6 +1,6 @@
 package com.medicalsystem.service.impl;
 
-import com.medicalsystem.domain.Revisit;
+import com.medicalsystem.model.Revisit;
 import com.medicalsystem.repository.RevisitRepository;
 import com.medicalsystem.service.RevisitService;
 import org.springframework.beans.factory.annotation.Autowired;

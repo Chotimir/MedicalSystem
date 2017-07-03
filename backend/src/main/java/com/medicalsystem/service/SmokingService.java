@@ -1,6 +1,6 @@
 package com.medicalsystem.service;
 
-import com.medicalsystem.domain.Smoking;
+import com.medicalsystem.model.Smoking;
 
 public interface SmokingService extends CRUDService<Smoking> {
 }

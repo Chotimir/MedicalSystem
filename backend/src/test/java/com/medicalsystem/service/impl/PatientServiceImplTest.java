@@ -1,6 +1,6 @@
 package com.medicalsystem.service.impl;
 
-import com.medicalsystem.domain.Patient;
+import com.medicalsystem.model.Patient;
 import com.medicalsystem.service.PatientService;
 import org.junit.Assert;
 import org.junit.Test;

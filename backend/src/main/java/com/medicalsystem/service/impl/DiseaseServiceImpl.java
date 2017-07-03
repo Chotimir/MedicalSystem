@@ -1,6 +1,6 @@
 package com.medicalsystem.service.impl;
 
-import com.medicalsystem.domain.Disease;
+import com.medicalsystem.model.Disease;
 import com.medicalsystem.repository.DiseaseRepository;
 import com.medicalsystem.service.DiseaseService;
 import org.springframework.beans.factory.annotation.Autowired;

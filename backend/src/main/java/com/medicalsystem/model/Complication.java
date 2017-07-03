@@ -1,4 +1,4 @@
-package com.medicalsystem.domain;
+package com.medicalsystem.model;
 
 import lombok.Getter;
 import lombok.Setter;

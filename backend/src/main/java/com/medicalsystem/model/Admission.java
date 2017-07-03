@@ -1,4 +1,4 @@
-package com.medicalsystem.domain;
+package com.medicalsystem.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -75,10 +75,14 @@ public class Admission extends IdComparableEntity {
     @Getter @Setter
     private int faint;
 
-    @ManyToOne
-    @JoinColumn(name = "reoperacja")
+    @ManyToMany
+    @JoinTable(
+            name = "reoperacje",
+            joinColumns = @JoinColumn(name = "id_przyjecia", referencedColumnName = "id_przyjecia"),
+            inverseJoinColumns = @JoinColumn(name = "reoperacja", referencedColumnName = "reoperacja")
+    )
     @Getter @Setter
-    private Reoperation reoperation;
+    private List<Reoperation> reoperations;
 
     @Column(name = "uwagi", columnDefinition = "text")
     @Getter @Setter

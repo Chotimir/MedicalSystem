@@ -1,6 +1,6 @@
 package com.medicalsystem.service.impl;
 
-import com.medicalsystem.domain.Smoking;
+import com.medicalsystem.model.Smoking;
 import com.medicalsystem.repository.SmokingRepository;
 import com.medicalsystem.service.SmokingService;
 import org.springframework.beans.factory.annotation.Autowired;

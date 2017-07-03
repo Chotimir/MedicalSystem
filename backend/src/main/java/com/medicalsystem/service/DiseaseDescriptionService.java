@@ -1,6 +1,6 @@
 package com.medicalsystem.service;
 
-import com.medicalsystem.domain.DiseaseDescription;
+import com.medicalsystem.model.DiseaseDescription;
 
 public interface DiseaseDescriptionService extends CRUDService<DiseaseDescription> {
 }

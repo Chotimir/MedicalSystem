@@ -1,6 +1,6 @@
 package com.medicalsystem.excel;
 
-import com.medicalsystem.domain.*;
+import com.medicalsystem.model.*;
 import com.medicalsystem.service.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -184,7 +184,7 @@ public class ObjectFromExcelFactory {
 
         Cell leeRcriCell = row.getCell(Integer.parseInt(properties.getProperty("leeRcri.number")));
         String leeRcri = formatter.formatCellValue(leeRcriCell);
-        admission.setLeeRcri(leeRcri.isEmpty() || leeRcri.equals("x") ? -1 : Integer.parseInt(leeRcri));
+        admission.setLeeRcri(leeRcri.isEmpty() || leeRcri.equals("x") || leeRcri.equals("bd") ? -1 : Integer.parseInt(leeRcri));
 
         Cell pPossumCell = row.getCell(Integer.parseInt(properties.getProperty("pPossum.number")));
         String pPossum = formatter.formatCellValue(pPossumCell);
@@ -194,7 +194,7 @@ public class ObjectFromExcelFactory {
         String faint = formatter.formatCellValue(faintCell);
         admission.setFaint(faint.isEmpty() || faint.equals("x") ? -1 : Integer.parseInt(faint));
 
-        admission.setReoperation(getReoperationWithKey(row));
+        //admission.setReoperation(getReoperationWithKey(row));
 
         Cell commentsCell = row.getCell(Integer.parseInt(properties.getProperty("comments.number")));
         String comments = formatter.formatCellValue(commentsCell);
@@ -229,7 +229,7 @@ public class ObjectFromExcelFactory {
             if (!examinationCellValue.isEmpty()) {
                 Examination examination = new Examination();
                 examination.setDescription(examinationDescriptionService.getById(dbIndex));
-                examination.setResult(Float.parseFloat(examinationCellValue));
+                examination.setResult(Float.parseFloat(examinationCellValue.replaceAll(",", ".")));
                 examination.setAdmission(admission);
                 examinations.add(examination);
             }
@@ -266,10 +266,10 @@ public class ObjectFromExcelFactory {
         Cell reoperationCell = row.getCell(Integer.parseInt(properties.getProperty("reoperation.number")));
         String reoperation = formatter.formatCellValue(reoperationCell);
 
-        if (reoperation.isEmpty())
+        if (reoperation.isEmpty() || reoperation.equals("x"))
             return new Reoperation();
 
-        return reoperationService.getById((int) reoperationCell.getNumericCellValue());
+        return reoperationService.getById(Integer.parseInt(reoperation));
     }
 
     public Operation createOperation(Row row) {

@@ -1,6 +1,6 @@
 package com.medicalsystem.service.impl;
 
-import com.medicalsystem.domain.Troponin;
+import com.medicalsystem.model.Troponin;
 import com.medicalsystem.repository.TroponinRepository;
 import com.medicalsystem.service.TroponinService;
 import org.springframework.beans.factory.annotation.Autowired;

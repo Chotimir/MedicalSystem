@@ -1,6 +1,6 @@
 package com.medicalsystem.repository;
 
-import com.medicalsystem.domain.Patient;
+import com.medicalsystem.model.Patient;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

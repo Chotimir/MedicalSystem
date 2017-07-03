@@ -1,4 +1,4 @@
-package com.medicalsystem.domain;
+package com.medicalsystem.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,22 +21,22 @@ public class Troponin extends IdComparableEntity {
 
     @Column(name = "tnt")
     @Getter @Setter
-    private float tnt;
+    private double tnt;
 
     @Column(name = "tni_ultra")
     @Getter @Setter
-    private float tniUltra;
+    private double tniUltra;
 
     @Column(name = "tni")
     @Getter @Setter
-    private float tni;
+    private double tni;
 
     @Column(name = "tnt_doba")
     @Getter @Setter
-    private float tntDay;
+    private double tntDay;
 
     @Column(name = "tni_doba")
     @Getter @Setter
-    private float tniDay;
+    private double tniDay;
 
 }

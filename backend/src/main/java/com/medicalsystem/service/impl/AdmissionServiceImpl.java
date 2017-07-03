@@ -1,6 +1,6 @@
 package com.medicalsystem.service.impl;
 
-import com.medicalsystem.domain.Admission;
+import com.medicalsystem.model.Admission;
 import com.medicalsystem.repository.AdmissionRepository;
 import com.medicalsystem.service.AdmissionService;
 import org.springframework.beans.factory.annotation.Autowired;
