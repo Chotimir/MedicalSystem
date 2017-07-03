@@ -2,43 +2,41 @@ package com.medicalsystem.excel.builder;
 
 import com.medicalsystem.excel.CellValue;
 import com.medicalsystem.model.*;
-import com.medicalsystem.service.Services;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class OperationBuilder {
 
-    private final Services services;
+    private final OperationModeBuilder operationModeBuilder;
+    private final AnesthesiaBuilder anesthesiaBuilder;
+    private final AnestheticBuilder anestheticBuilder;
+    private final ComplicationBuilder complicationBuilder;
 
     @Autowired
-    public OperationBuilder(Services services) {
-        this.services = services;
+    public OperationBuilder(OperationModeBuilder operationModeBuilder, AnesthesiaBuilder anesthesiaBuilder, AnestheticBuilder anestheticBuilder, ComplicationBuilder complicationBuilder) {
+        this.operationModeBuilder = operationModeBuilder;
+        this.anesthesiaBuilder = anesthesiaBuilder;
+        this.anestheticBuilder = anestheticBuilder;
+        this.complicationBuilder = complicationBuilder;
     }
 
     public Operation build(Row row) {
         Operation operation = new Operation();
 
         /* Operation mode */
-        CellValue operationModeCell = new CellValue(row, "operationMode.number");
-        int operationModeId = operationModeCell.getAsInt();
-        OperationMode operationMode = services.operationModeService.getById(operationModeId);
+        OperationMode operationMode = operationModeBuilder.build(row);
         operation.setOperationMode(operationMode);
 
         /* Anesthesia */
-        CellValue anesthesiaCell = new CellValue(row, "anesthesia.number");
-        int anesthesiaId = anesthesiaCell.getAsInt();
-        Anesthesia anesthesia = services.anesthesiaService.getById(anesthesiaId);
+        Anesthesia anesthesia = anesthesiaBuilder.build(row);
         operation.setAnesthesia(anesthesia);
 
         /* Anesthetic */
-        CellValue anestheticCell = new CellValue(row, "anesthetic.number");
-        int anestheticId = anestheticCell.getAsInt();
-        Anesthetic anesthetic = services.anestheticService.getById(anestheticId);
+        Anesthetic anesthetic = anestheticBuilder.build(row);
         operation.setAnesthetic(anesthetic);
 
         /* Duration */
@@ -98,16 +96,10 @@ public class OperationBuilder {
         operation.setVentilatorDays(ventilatorDays.getAsInt());
 
         /* Complications */
-        List<Complication> complications = getComplications(row);
+        List<Complication> complications = complicationBuilder.build(row);
         operation.setComplications(complications);
 
         return operation;
-    }
-
-    // TODO: taki sam problem jak z Disease i DiseaseDescription ~MS
-    private List<Complication> getComplications(Row row) {
-        List<Complication> complications = new ArrayList<>();
-        return complications;
     }
 
 }
