@@ -4,6 +4,7 @@ import com.medicalsystem.excel.CellValue;
 import com.medicalsystem.model.Admission;
 import com.medicalsystem.model.Revisit;
 import com.medicalsystem.model.RevisitCause;
+import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,14 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RevisitBuilder {
 
     private final RevisitCauseBuilder revisitCauseBuilder;
-
-    @Autowired
-    public RevisitBuilder(RevisitCauseBuilder revisitCauseBuilder) {
-        this.revisitCauseBuilder = revisitCauseBuilder;
-    }
 
     /**
      * W sumie nie wiem czemu tu jest lista ~MS

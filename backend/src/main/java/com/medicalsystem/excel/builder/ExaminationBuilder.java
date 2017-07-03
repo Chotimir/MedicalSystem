@@ -6,6 +6,7 @@ import com.medicalsystem.model.Admission;
 import com.medicalsystem.model.Examination;
 import com.medicalsystem.model.ExaminationDescription;
 import com.medicalsystem.service.ExaminationDescriptionService;
+import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,16 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ExaminationBuilder {
 
     private final ExcelColumnsProperties columnsProperties;
     private final ExaminationDescriptionService examinationDescriptionService;
-
-    @Autowired
-    public ExaminationBuilder(ExcelColumnsProperties columnsProperties, ExaminationDescriptionService examinationDescriptionService) {
-        this.columnsProperties = columnsProperties;
-        this.examinationDescriptionService = examinationDescriptionService;
-    }
 
     public List<Examination> build(Row row, Admission admission) {
         List<Examination> examinations = new ArrayList<>();

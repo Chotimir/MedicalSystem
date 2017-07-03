@@ -2,6 +2,7 @@ package com.medicalsystem.excel.builder;
 
 import com.medicalsystem.excel.CellValue;
 import com.medicalsystem.model.*;
+import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,20 +10,13 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class OperationBuilder {
 
     private final OperationModeBuilder operationModeBuilder;
     private final AnesthesiaBuilder anesthesiaBuilder;
     private final AnestheticBuilder anestheticBuilder;
     private final ComplicationBuilder complicationBuilder;
-
-    @Autowired
-    public OperationBuilder(OperationModeBuilder operationModeBuilder, AnesthesiaBuilder anesthesiaBuilder, AnestheticBuilder anestheticBuilder, ComplicationBuilder complicationBuilder) {
-        this.operationModeBuilder = operationModeBuilder;
-        this.anesthesiaBuilder = anesthesiaBuilder;
-        this.anestheticBuilder = anestheticBuilder;
-        this.complicationBuilder = complicationBuilder;
-    }
 
     public Operation build(Row row) {
         Operation operation = new Operation();

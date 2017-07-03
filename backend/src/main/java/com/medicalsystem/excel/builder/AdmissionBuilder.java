@@ -2,6 +2,7 @@ package com.medicalsystem.excel.builder;
 
 import com.medicalsystem.excel.CellValue;
 import com.medicalsystem.model.*;
+import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AdmissionBuilder {
 
     private final SmokingBuilder smokingBuilder;
@@ -18,17 +20,6 @@ public class AdmissionBuilder {
     private final TroponinBuilder troponinBuilder;
     private final MedicamentBuilder medicamentBuilder;
     private final OperationTypeBuilder operationTypeBuilder;
-
-    @Autowired
-    public AdmissionBuilder(SmokingBuilder smokingBuilder, ReoperationBuilder reoperationBuilder, ExaminationBuilder examinationBuilder, RevisitBuilder revisitBuilder, TroponinBuilder troponinBuilder, MedicamentBuilder medicamentBuilder, OperationTypeBuilder operationTypeBuilder) {
-        this.smokingBuilder = smokingBuilder;
-        this.reoperationBuilder = reoperationBuilder;
-        this.examinationBuilder = examinationBuilder;
-        this.revisitBuilder = revisitBuilder;
-        this.troponinBuilder = troponinBuilder;
-        this.medicamentBuilder = medicamentBuilder;
-        this.operationTypeBuilder = operationTypeBuilder;
-    }
 
     public Admission build(Row row, Patient patient, Operation operation) {
         Admission admission = new Admission();

@@ -7,11 +7,13 @@ import com.medicalsystem.model.*;
 import com.medicalsystem.service.AdmissionService;
 import com.medicalsystem.service.OperationService;
 import com.medicalsystem.service.PatientService;
+import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RowImporter {
 
     private final PatientBuilder patientBuilder;
@@ -21,16 +23,6 @@ public class RowImporter {
     private final PatientService patientService;
     private final OperationService operationService;
     private final AdmissionService admissionService;
-
-    @Autowired
-    public RowImporter(PatientBuilder patientBuilder, AdmissionBuilder admissionBuilder, OperationBuilder operationBuilder, PatientService patientService, OperationService operationService, AdmissionService admissionService) {
-        this.patientBuilder = patientBuilder;
-        this.admissionBuilder = admissionBuilder;
-        this.operationBuilder = operationBuilder;
-        this.patientService = patientService;
-        this.operationService = operationService;
-        this.admissionService = admissionService;
-    }
 
     /**
      * Builds entity dependencies based on a single spreadsheed row.

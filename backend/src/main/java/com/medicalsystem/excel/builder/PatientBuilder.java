@@ -3,6 +3,7 @@ package com.medicalsystem.excel.builder;
 import com.medicalsystem.excel.CellValue;
 import com.medicalsystem.model.Disease;
 import com.medicalsystem.model.Patient;
+import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,14 +11,10 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PatientBuilder {
 
     private final DiseaseBuilder diseaseBuilder;
-
-    @Autowired
-    public PatientBuilder(DiseaseBuilder diseaseBuilder) {
-        this.diseaseBuilder = diseaseBuilder;
-    }
 
     public Patient build(Row row) {
         Patient patient = new Patient();
