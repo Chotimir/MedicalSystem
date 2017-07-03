@@ -1,9 +1,7 @@
 package com.medicalsystem.excel.builder;
 
 import com.medicalsystem.excel.CellValue;
-import com.medicalsystem.excel.ExcelColumnsProperties;
 import com.medicalsystem.model.*;
-import com.medicalsystem.service.Services;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

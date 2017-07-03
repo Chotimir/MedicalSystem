@@ -4,7 +4,9 @@ import com.medicalsystem.excel.builder.AdmissionBuilder;
 import com.medicalsystem.excel.builder.OperationBuilder;
 import com.medicalsystem.excel.builder.PatientBuilder;
 import com.medicalsystem.model.*;
-import com.medicalsystem.service.Services;
+import com.medicalsystem.service.AdmissionService;
+import com.medicalsystem.service.OperationService;
+import com.medicalsystem.service.PatientService;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,18 +14,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class RowImporter {
 
-    private final Services services;
-
     private final PatientBuilder patientBuilder;
     private final AdmissionBuilder admissionBuilder;
     private final OperationBuilder operationBuilder;
 
+    private final PatientService patientService;
+    private final OperationService operationService;
+    private final AdmissionService admissionService;
+
     @Autowired
-    public RowImporter(Services services, PatientBuilder patientBuilder, AdmissionBuilder admissionBuilder, OperationBuilder operationBuilder) {
-        this.services = services;
+    public RowImporter(PatientBuilder patientBuilder, AdmissionBuilder admissionBuilder, OperationBuilder operationBuilder, PatientService patientService, OperationService operationService, AdmissionService admissionService) {
         this.patientBuilder = patientBuilder;
         this.admissionBuilder = admissionBuilder;
         this.operationBuilder = operationBuilder;
+        this.patientService = patientService;
+        this.operationService = operationService;
+        this.admissionService = admissionService;
     }
 
     public void importToDB(Row row) {
@@ -39,9 +45,9 @@ public class RowImporter {
         admission.setOperation(operation);
 
         /* Persist entities */
-        services.patientService.saveOrUpdate(patient);
-        services.operationService.saveOrUpdate(operation);
-        services.admissionService.saveOrUpdate(admission);
+        patientService.saveOrUpdate(patient);
+        operationService.saveOrUpdate(operation);
+        admissionService.saveOrUpdate(admission);
 
         System.out.println("ROW PERSISTED");
     }
