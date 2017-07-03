@@ -14,8 +14,6 @@ import java.util.List;
 @Component
 public class AdmissionBuilder {
 
-    private Row row;
-
     private final Services services;
     private final ExcelColumnsProperties columnsProperties;
 
@@ -26,8 +24,6 @@ public class AdmissionBuilder {
     }
 
     public Admission build(Row row) {
-        this.row = row;
-
         Admission admission = new Admission();
 
         /* Admission date */
@@ -80,7 +76,7 @@ public class AdmissionBuilder {
         admission.setFaint(faint.getAsInt());
 
         /* Reoperations */
-        List<Reoperation> reoperations = getReoperations();
+        List<Reoperation> reoperations = getReoperations(row);
         admission.setReoperations(reoperations);
 
         /* Comments */
@@ -88,23 +84,23 @@ public class AdmissionBuilder {
         admission.setComments(comments.getAsString());
 
         /* Examinations */
-        List<Examination> examinations = getExaminations(admission);
+        List<Examination> examinations = getExaminations(row, admission);
         admission.setExaminations(examinations);
 
         /* Revisits */
-        List<Revisit> revisits = getRevisits(admission);
+        List<Revisit> revisits = getRevisits(row, admission);
         admission.setRevisits(revisits);
 
         /* Troponins */
-        List<Troponin> troponins = getTroponins(admission);
+        List<Troponin> troponins = getTroponins(row, admission);
         admission.setTroponins(troponins);
 
         /* Medicaments */
-        List<Medicament> medicaments = getMedicaments();
+        List<Medicament> medicaments = getMedicaments(row);
         admission.setMedicaments(medicaments);
 
         /* Operation types */
-        List<OperationType> operationTypes = getOperationTypes();
+        List<OperationType> operationTypes = getOperationTypes(row);
         admission.setOperationTypes(operationTypes);
 
         return admission;
@@ -114,7 +110,7 @@ public class AdmissionBuilder {
      * Creates a list of Reoperation based on excel input.
      * Input can be e.g. "456", "13", "6", hence the list.
      */
-    private List<Reoperation> getReoperations() {
+    private List<Reoperation> getReoperations(Row row) {
         List<Reoperation> reoperations = new ArrayList<>();
 
         /* Reoperation */
@@ -136,7 +132,7 @@ public class AdmissionBuilder {
         return reoperations;
     }
 
-    private List<Examination> getExaminations(Admission admission) {
+    private List<Examination> getExaminations(Row row, Admission admission) {
         List<Examination> examinations = new ArrayList<>();
 
         /* Get index of the column of the first examination */
@@ -173,7 +169,7 @@ public class AdmissionBuilder {
     /**
      * W sumie nie wiem czemu tu jest lista ~MS
      */
-    private List<Revisit> getRevisits(Admission admission) {
+    private List<Revisit> getRevisits(Row row, Admission admission) {
         List<Revisit> revisits = new ArrayList<>();
 
         /* Check if there was a revisit */
@@ -210,7 +206,7 @@ public class AdmissionBuilder {
     /**
      * W sumie nie wiem czemu tu jest lista ~MS
      */
-    private List<Troponin> getTroponins(Admission admission) {
+    private List<Troponin> getTroponins(Row row, Admission admission) {
         List<Troponin> troponins = new ArrayList<>();
 
         /* Create troponin object */
@@ -250,7 +246,7 @@ public class AdmissionBuilder {
      * TODO: Obecnie wrzucamy do listy tylko te z wartością 1, nie mamy możliwości oznaczenia leku jako bd,
      * TODO: jedynie czy jest lub czy go nie ma (tak chyba nie może być) ~MS
      */
-    private List<Medicament> getMedicaments() {
+    private List<Medicament> getMedicaments(Row row) {
         List<Medicament> medicaments = new ArrayList<>();
 
         /* Get index of the column of the first medicament */
@@ -283,7 +279,7 @@ public class AdmissionBuilder {
      * Creates a list of OperationType based on excel input.
      * Input can be e.g. "13", "16", "2", hence the list.
      */
-    private List<OperationType> getOperationTypes() {
+    private List<OperationType> getOperationTypes(Row row) {
         List<OperationType> operationTypes = new ArrayList<>();
 
         /* Operation type */

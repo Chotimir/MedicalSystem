@@ -1,4 +1,4 @@
-package com.medicalsystem.excel;
+package com.medicalsystem.excel.importer;
 
 import com.medicalsystem.excel.builder.AdmissionBuilder;
 import com.medicalsystem.excel.builder.OperationBuilder;

@@ -36,7 +36,7 @@ public class PatientBuilder {
         patient.setAge(age.getAsInt());
 
         /* Diseases */
-        List<Disease> diseases = getDiseases();
+        List<Disease> diseases = getDiseases(row);
         patient.setDiseases(diseases);
 
         return patient;
@@ -44,7 +44,7 @@ public class PatientBuilder {
 
     // TODO: problem z List<DiseaseDescription> w Disease
     // TODO: (powinna być jedna wartość DiseaseDescription zamiast listy) ~MS
-    private List<Disease> getDiseases() {
+    private List<Disease> getDiseases(Row row) {
         List<Disease> diseases = new ArrayList<>();
 
         return diseases;
