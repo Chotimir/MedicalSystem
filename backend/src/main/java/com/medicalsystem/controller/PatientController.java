@@ -24,7 +24,7 @@ public class PatientController {
         if (patientService.exists(id)) {
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
-                    .body("Patient with given id already exists: " + id);
+                    .body("Patient exists with id: " + id);
         }
 
         /* Create new patient with given id */
@@ -34,10 +34,10 @@ public class PatientController {
         /* Persist patient */
         patientService.saveOrUpdate(patient);
 
-        System.out.println("Created patient with id: " + id);
-
         /* Return response */
-        return new ResponseEntity<>(patient, HttpStatus.OK);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Patient created with id: " + id);
     }
 
     @GetMapping("api/patient/{id}")
