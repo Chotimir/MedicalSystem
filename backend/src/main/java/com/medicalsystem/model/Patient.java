@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "dane_osobowe")
 public class Patient extends IdComparableEntity {
 
-//    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id_pacjenta")
     @Getter @Setter
@@ -26,7 +26,7 @@ public class Patient extends IdComparableEntity {
 
     @Column(name = "plec", columnDefinition = "varchar(1)")
     @Getter @Setter
-    private char sex;
+    private String sex;
 
     @Column(name = "wiek")
     @Getter @Setter

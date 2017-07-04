@@ -3,16 +3,17 @@ package com.medicalsystem.service.impl;
 import com.medicalsystem.model.Smoking;
 import com.medicalsystem.repository.SmokingRepository;
 import com.medicalsystem.service.SmokingService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SmokingServiceImpl implements SmokingService {
 
-    @Autowired
-    private SmokingRepository smokingRepository;
+    private final SmokingRepository smokingRepository;
 
     @Override
     public List<Smoking> listAll() {

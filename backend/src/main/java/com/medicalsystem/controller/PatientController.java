@@ -2,35 +2,48 @@ package com.medicalsystem.controller;
 
 import com.medicalsystem.model.Patient;
 import com.medicalsystem.service.PatientService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.EntityExistsException;
+import java.util.ArrayList;
 
 @RestController
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PatientController {
 
     private final PatientService patientService;
 
-    @Autowired
-    public PatientController(PatientService patientService) {
-        this.patientService = patientService;
-    }
+    @PostMapping("api/patient/{id}")
+    public ResponseEntity createPatient(@PathVariable int id) {
 
-    @PostMapping("api/patient")
-    public ResponseEntity<Patient> createPatient(@RequestBody String id) {
-        System.out.println("dupa");
-        System.out.println(id);
-        /* Create new patient object */
+        /* Check if there's a patient with the given id */
+        if (patientService.exists(id)) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("Patient with given id already exists: " + id);
+        }
+
+        /* Create new patient with given id */
         Patient patient = new Patient();
-        patient.setId(Integer.parseInt(id));
+        patient.setId(id);
 
-        /* Persist created patient object */
+        /* Persist patient */
         patientService.saveOrUpdate(patient);
 
+        System.out.println("Created patient with id: " + id);
+
+        /* Return response */
         return new ResponseEntity<>(patient, HttpStatus.OK);
+    }
+
+    @GetMapping("api/patient/{id}")
+    @ResponseBody
+    public boolean patientExists(@PathVariable int id) {
+        return patientService.exists(id);
     }
 
 }

@@ -34,10 +34,15 @@ public class ExcelImporter {
      */
     public void importToDB() {
 
+        long start = System.currentTimeMillis();
+
         importOpenSheet();
         importEvarSheet();
 
+        long stop = System.currentTimeMillis();
+
         System.out.println("IMPORT COMPLETED");
+        System.out.println("Time: " + (stop - start));
     }
 
     /**

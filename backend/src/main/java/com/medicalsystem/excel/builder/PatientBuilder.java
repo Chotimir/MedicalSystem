@@ -33,7 +33,7 @@ public class PatientBuilder {
 
         /* Sex */
         CellValue sex = new CellValue(row, "sex.number");
-        patient.setSex(sex.getAsChar());
+        patient.setSex(sex.getAsSexString());
 
         /* Age */
         CellValue age = new CellValue(row, "age.number");
