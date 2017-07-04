@@ -17,14 +17,30 @@ public class PatientController {
 
     private final PatientService patientService;
 
-    @PostMapping("api/patient/{id}")
-    public ResponseEntity createPatient(@PathVariable int id) {
+    /**
+     * Returns true if an entity with the given id exists in the database, false otherwise.
+     *
+     * @param  id id of the entity
+     */
+    @GetMapping("api/patient")
+    @ResponseBody
+    public boolean patientExists(@RequestParam int id) {
+        return patientService.exists(id);
+    }
+
+    /**
+     * Creates an empty Patient entity, setting only its id.
+     *
+     * @param  id id of the entity
+     * @return    200 OK          - if method successful
+     *            400 Bad Request - if patient with the given id already exists in the database
+     */
+    @PostMapping("api/patient")
+    public ResponseEntity<Patient> createPatient(@RequestParam int id) {
 
         /* Check if there's a patient with the given id */
         if (patientService.exists(id)) {
-            return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body("Patient exists with id: " + id);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         /* Create new patient with given id */
@@ -35,15 +51,7 @@ public class PatientController {
         patientService.saveOrUpdate(patient);
 
         /* Return response */
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body("Patient created with id: " + id);
-    }
-
-    @GetMapping("api/patient/{id}")
-    @ResponseBody
-    public boolean patientExists(@PathVariable int id) {
-        return patientService.exists(id);
+        return new ResponseEntity<>(patient, HttpStatus.OK);
     }
 
 }
