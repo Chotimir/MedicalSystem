@@ -59,7 +59,6 @@
             <version>3.9</version>
         </dependency>
 <<<<<<< HEAD
-=======
         <dependency>
             <groupId>medicalsystem</groupId>
             <artifactId>frontend</artifactId>
@@ -81,7 +80,8 @@
 		</dependency>
 
 
->>>>>>> dev
+=======
+>>>>>>> master
 	</dependencies>
 
 	<build>
