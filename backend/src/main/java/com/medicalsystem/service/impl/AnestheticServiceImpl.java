@@ -3,20 +3,17 @@ package com.medicalsystem.service.impl;
 import com.medicalsystem.model.Anesthetic;
 import com.medicalsystem.repository.AnestheticRepository;
 import com.medicalsystem.service.AnestheticService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AnestheticServiceImpl implements AnestheticService {
 
     private final AnestheticRepository anestheticRepository;
-
-    @Autowired
-    public AnestheticServiceImpl(AnestheticRepository anestheticRepository) {
-        this.anestheticRepository = anestheticRepository;
-    }
 
     @Override
     public List<Anesthetic> listAll() {

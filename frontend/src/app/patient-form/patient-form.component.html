@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-    <a class="navbar-brand" href="#" translate [translateParams]="{value: 12345}">Patient</a>
+    <a class="navbar-brand" href="#" translate [translateParams]="{value: patientId}">Patient ID</a>
     <div class="collapse navbar-collapse center">
       <ul class="nav navbar-nav" routerLinkActive="active">
         <li class="nav-item">
@@ -10,7 +10,10 @@
           <a class="nav-link" routerLink="admission" translate>Admission</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="tests" translate>Tests</a>
+          <a class="nav-link" routerLink="troponins" translate>Troponins</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="examinations" translate>Examinations</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="comorbidities" translate>Comorbidities</a>
@@ -21,11 +24,14 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="complications" translate>Complications</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="follow-up" translate>Follow Up Visit</a>
+        </li>
       </ul>
     </div>
     <ul class="nav navbar-nav">
       <li class="nav-item wide">
-        <a class="nav-link" routerLink="auth" translate>Save and exit</a>
+        <a class="nav-link" routerLink="home" translate>Exit</a>
       </li>
     </ul>
   </nav>

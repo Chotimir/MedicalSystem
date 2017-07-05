@@ -1,0 +1,30 @@
+<form>
+  <div class="form-group row col-12">
+    <label for="followUpVisit" class="col-form-label col-3 offset-1" translate>Follow Up Visit</label>
+    <div class="col-4">
+      <select [(ngModel)]="followUpVisit.followUpVisit.selected" class="form-control" id="followUpVisit">
+        <option hidden disabled selected value></option>
+        <option *ngFor="let value of followUpVisit.followUpVisit.values" [ngValue]="value">
+          {{value}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="repeatedAdmissionDate" class="col-form-label col-3 offset-1" translate>Repeated Admission Date</label>
+    <div class="col-4">
+      <input [(ngModel)]="followUpVisit.repeatedAdmissionDate" type="date" class="form-control" id="repeatedAdmissionDate">
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="repeatedAdmissionReason" class="col-form-label col-3 offset-1" translate>Repeated Admission Reason</label>
+    <div class="col-4">
+      <select [(ngModel)]="followUpVisit.repeatedAdmissionReason.selected" class="form-control" id="repeatedAdmissionReason">
+        <option hidden disabled selected value></option>
+        <option *ngFor="let value of followUpVisit.repeatedAdmissionReason.values" [ngValue]="value">
+          {{value}}
+        </option>
+      </select>
+    </div>
+  </div>
+</form>

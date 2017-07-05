@@ -1,0 +1,8 @@
+<form>
+  <div class="form-group row col-12" *ngFor="let examination of examinations">
+    <label for={{examination.description}} class="col-form-label col-3 offset-1">{{examination.description}}</label>
+    <div class="col-4">
+      <input [(ngModel)]="examination.result" type="number" class="form-control" id={{examination.description}} name={{examination.description}}>
+    </div>
+  </div>
+</form>

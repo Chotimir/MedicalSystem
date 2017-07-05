@@ -17,13 +17,21 @@
   }
 }
 
-.nav-item {
+.nav-item, .center-text {
   text-align: center;
 }
 
 .nav-item.wide {
   width: 150px;
   text-align: right;
+}
+
+.navbar {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.rounded {
+  border-radius: 20px;
 }
 
 .container-fluid, .container {
@@ -45,6 +53,11 @@
 
 .center {
   justify-content: center;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
 }
 
 .col-form-label {

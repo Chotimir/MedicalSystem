@@ -3,20 +3,17 @@ package com.medicalsystem.service.impl;
 import com.medicalsystem.model.Reoperation;
 import com.medicalsystem.repository.ReoperationRepository;
 import com.medicalsystem.service.ReoperationService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ReoperationServiceImpl implements ReoperationService {
 
     private final ReoperationRepository reoperationRepository;
-
-    @Autowired
-    public ReoperationServiceImpl(ReoperationRepository reoperationRepository) {
-        this.reoperationRepository = reoperationRepository;
-    }
 
     @Override
     public List<Reoperation> listAll() {

@@ -1,3 +1,13 @@
-<p>
-  complications works!
-</p>
+<form>
+  <div class="form-group row col-12" *ngFor="let complication of complications">
+    <label for={{complication.name}} class="col-form-label col-3 offset-1">{{complication.name}}</label>
+    <div class="col-4">
+      <select [(ngModel)]="complication.selected" class="form-control" id={{complication.name}} name={{complication.name}}>
+        <option hidden disabled selected value></option>
+        <option *ngFor="let value of complication.values" [ngValue]="value">
+          {{value}}
+        </option>
+      </select>
+    </div>
+  </div>
+</form>

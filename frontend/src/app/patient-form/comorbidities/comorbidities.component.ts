@@ -1,6 +1,7 @@
-import {AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
-import {ComorbiditiesService} from "../../services/comorbidities.service";
+import {ComorbiditiesService} from "../../services/form/comorbidities.service";
 import {SelectField} from "../../model/select-field";
 
 @Component({
@@ -9,30 +10,25 @@ import {SelectField} from "../../model/select-field";
   styleUrls: ['./comorbidities.component.css'],
   providers: [ComorbiditiesService]
 })
-export class ComorbiditiesComponent implements OnInit, AfterViewChecked {
+export class ComorbiditiesComponent implements OnInit, OnDestroy {
 
+  patientId: string;
   comorbidities: SelectField[];
 
-  constructor(private comorbiditiesService: ComorbiditiesService) { }
+  constructor(private comorbiditiesService: ComorbiditiesService, private route: ActivatedRoute) { }
 
-  getComorbidities(): void {
-    this.comorbiditiesService.getComorbidities().then(comorbidities => this.comorbidities = comorbidities);
-  }
-
-  setSelected(comorbidityName: string, selected: string) {
-    this.comorbidities.filter(c => c.name === comorbidityName).forEach(c => c.selected = selected);
+  getComorbidities() {
+    this.comorbiditiesService.getComorbidities(this.patientId).then(comorbidities => this.comorbidities = comorbidities);
   }
 
   ngOnInit() {
+    this.patientId = this.route.parent.snapshot.params['id'];
     this.getComorbidities();
   }
 
-  ngAfterViewChecked() {
-    if (this.comorbidities != null) {
-      this.comorbidities.filter(c => c.selected != null).forEach(c => {
-        (<HTMLSelectElement>document.getElementById(c.name)).value = c.selected;
-      });
-    }
+  ngOnDestroy() {
+    console.log(this.comorbidities);
+    this.comorbiditiesService.updateComorbidities(this.comorbidities, this.patientId);
   }
 
 }

@@ -3,20 +3,17 @@ package com.medicalsystem.service.impl;
 import com.medicalsystem.model.OperationType;
 import com.medicalsystem.repository.OperationTypeRepository;
 import com.medicalsystem.service.OperationTypeService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class OperationTypeServiceImpl implements OperationTypeService {
 
     private final OperationTypeRepository operationTypeRepository;
-
-    @Autowired
-    public OperationTypeServiceImpl(OperationTypeRepository operationTypeRepository) {
-        this.operationTypeRepository = operationTypeRepository;
-    }
 
     @Override
     public List<OperationType> listAll() {

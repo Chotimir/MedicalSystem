@@ -3,20 +3,17 @@ package com.medicalsystem.service.impl;
 import com.medicalsystem.model.Troponin;
 import com.medicalsystem.repository.TroponinRepository;
 import com.medicalsystem.service.TroponinService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class TroponinServiceImpl implements TroponinService {
 
     private final TroponinRepository troponinRepository;
-
-    @Autowired
-    public TroponinServiceImpl(TroponinRepository troponinRepository) {
-        this.troponinRepository = troponinRepository;
-    }
 
     @Override
     public List<Troponin> listAll() {

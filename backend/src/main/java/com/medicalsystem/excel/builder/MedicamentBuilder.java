@@ -4,6 +4,7 @@ import com.medicalsystem.excel.CellValue;
 import com.medicalsystem.excel.ExcelColumnsProperties;
 import com.medicalsystem.model.Medicament;
 import com.medicalsystem.service.MedicamentService;
+import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,16 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class MedicamentBuilder {
 
     private final ExcelColumnsProperties columnsProperties;
     private final MedicamentService medicamentService;
-
-    @Autowired
-    public MedicamentBuilder(ExcelColumnsProperties columnsProperties, MedicamentService medicamentService) {
-        this.columnsProperties = columnsProperties;
-        this.medicamentService = medicamentService;
-    }
 
     /**
      * TODO: Każdy lek w excelu może mieć wartość 0, 1 lub bd.

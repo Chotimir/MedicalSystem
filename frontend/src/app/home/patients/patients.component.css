@@ -1,0 +1,40 @@
+.switch {
+  height: 40px;
+}
+
+.switch > input {
+  -webkit-appearance: none;
+  width: 80px;
+  height: 40px;
+  display: inline-block;
+  position: relative;
+  border-radius: 40px;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: #555555;
+}
+
+.switch > input:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: #292b2c;
+  left: 4px;
+  top: 4px;
+  border-radius: 50%;
+  transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.5s;
+}
+
+.switch > input:checked:before {
+  left: 44px;
+}
+
+.nav-item {
+  width: 150px;
+  text-align: center;
+  margin: 0;
+}

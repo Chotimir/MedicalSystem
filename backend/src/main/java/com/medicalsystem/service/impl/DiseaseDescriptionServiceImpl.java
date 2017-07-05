@@ -3,20 +3,17 @@ package com.medicalsystem.service.impl;
 import com.medicalsystem.model.DiseaseDescription;
 import com.medicalsystem.repository.DiseaseDescriptionRepository;
 import com.medicalsystem.service.DiseaseDescriptionService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DiseaseDescriptionServiceImpl implements DiseaseDescriptionService {
 
     private final DiseaseDescriptionRepository diseaseDescriptionRepository;
-
-    @Autowired
-    public DiseaseDescriptionServiceImpl(DiseaseDescriptionRepository diseaseDescriptionRepository) {
-        this.diseaseDescriptionRepository = diseaseDescriptionRepository;
-    }
 
     @Override
     public List<DiseaseDescription> listAll() {

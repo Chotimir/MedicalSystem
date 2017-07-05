@@ -22,7 +22,7 @@ public class PatientServiceImplTest {
         patient.setId(1);
         patient.setFirstName("Kamil");
         patient.setLastName("Komenda");
-        patient.setSex('M');
+        patient.setSex("M");
         patient.setAge(24);
 
         patientService.saveOrUpdate(patient);

@@ -1,3 +1,133 @@
-<p>
-  operation works!
-</p>
+<form>
+  <div class="form-group row col-12">
+    <label for="operationMode" class="col-form-label col-3 offset-1" translate>Operation mode</label>
+    <div class="col-4">
+      <select [(ngModel)]="operation.operationMode.selected" class="form-control" id="operationMode">
+        <option hidden disabled selected value></option>
+        <option *ngFor="let value of operation.operationMode.values" [ngValue]="value">
+          {{value}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="anesthesia" class="col-form-label col-3 offset-1" translate>Anesthesia</label>
+    <div class="col-4">
+      <select [(ngModel)]="operation.anesthesia.selected" class="form-control" id="anesthesia">
+        <option hidden disabled selected value></option>
+        <option *ngFor="let value of operation.anesthesia.values" [ngValue]="value">
+          {{value}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="anesthetic" class="col-form-label col-3 offset-1" translate>Anesthetic</label>
+    <div class="col-4">
+      <select [(ngModel)]="operation.anesthetic.selected" class="form-control" id="anesthetic">
+        <option hidden disabled selected value></option>
+        <option *ngFor="let value of operation.anesthetic.values" [ngValue]="value">
+          {{value}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="duration" class="col-form-label col-3 offset-1" translate>Operation Duration</label>
+    <div class="col-4">
+      <input [(ngModel)]="operation.duration" type="number" class="form-control" id="duration">
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="aortaClottingTime" class="col-form-label col-3 offset-1" translate>Aorta clotting time</label>
+    <div class="col-4">
+      <input [(ngModel)]="operation.aortaClottingTime" type="number" class="form-control" id="aortaClottingTime">
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="noradrenaline" class="col-form-label col-3 offset-1" translate>Noradrenaline</label>
+    <div class="col-4">
+      <select [(ngModel)]="operation.noradrenaline" class="form-control" id="noradrenaline">
+        <option hidden disabled selected value></option>
+        <option [ngValue]="true" translate>Yes</option>
+        <option [ngValue]="false" translate>No</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="dopamine" class="col-form-label col-3 offset-1" translate>Dopamine</label>
+    <div class="col-4">
+      <select [(ngModel)]="operation.dopamine" class="form-control" id="dopamine">
+        <option hidden disabled selected value></option>
+        <option [ngValue]="true" translate>Yes</option>
+        <option [ngValue]="false" translate>No</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="dobutamine" class="col-form-label col-3 offset-1" translate>Dobutamine</label>
+    <div class="col-4">
+      <select [(ngModel)]="operation.dobutamine" class="form-control" id="dobutamine">
+        <option hidden disabled selected value></option>
+        <option [ngValue]="true" translate>Yes</option>
+        <option [ngValue]="false" translate>No</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="ephedrine" class="col-form-label col-3 offset-1" translate>Ephedrine</label>
+    <div class="col-4">
+      <select [(ngModel)]="operation.ephedrine" class="form-control" id="ephedrine">
+        <option hidden disabled selected value></option>
+        <option [ngValue]="true" translate>Yes</option>
+        <option [ngValue]="false" translate>No</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="bloodLost" class="col-form-label col-3 offset-1" translate>Blood lost</label>
+    <div class="col-4">
+      <input [(ngModel)]="operation.bloodLost" type="number" class="form-control" id="bloodLost">
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="urineExpelled" class="col-form-label col-3 offset-1" translate>Urine expelled</label>
+    <div class="col-4">
+      <input [(ngModel)]="operation.urineExpelled" type="number" class="form-control" id="urineExpelled">
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="packedCellsTransfused" class="col-form-label col-3 offset-1" translate>Packed cells transfused</label>
+    <div class="col-4">
+      <input [(ngModel)]="operation.packedCellsTransfused" type="number" class="form-control" id="packedCellsTransfused">
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="icuTime" class="col-form-label col-3 offset-1" translate>ICU time</label>
+    <div class="col-4">
+      <input [(ngModel)]="operation.icuTime" type="number" class="form-control" id="icuTime">
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="hospitalTime" class="col-form-label col-3 offset-1" translate>Time in hospital</label>
+    <div class="col-4">
+      <input [(ngModel)]="operation.hospitalTime" type="number" class="form-control" id="hospitalTime">
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="extendedVentilation" class="col-form-label col-3 offset-1" translate>Extended ventilation</label>
+    <div class="col-4">
+      <select [(ngModel)]="operation.extendedVentilation" class="form-control" id="extendedVentilation">
+        <option hidden disabled selected value></option>
+        <option [ngValue]="true" translate>Yes</option>
+        <option [ngValue]="false" translate>No</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="ventilatorDays" class="col-form-label col-3 offset-1" translate>Ventilator days</label>
+    <div class="col-4">
+      <input [(ngModel)]="operation.ventilatorDays" type="number" class="form-control" id="ventilatorDays">
+    </div>
+  </div>
+</form>

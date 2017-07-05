@@ -3,20 +3,17 @@ package com.medicalsystem.service.impl;
 import com.medicalsystem.model.Admission;
 import com.medicalsystem.repository.AdmissionRepository;
 import com.medicalsystem.service.AdmissionService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AdmissionServiceImpl implements AdmissionService {
 
     private final AdmissionRepository admissionRepository;
-
-    @Autowired
-    public AdmissionServiceImpl(AdmissionRepository admissionRepository) {
-        this.admissionRepository = admissionRepository;
-    }
 
     @Override
     public List<Admission> listAll() {

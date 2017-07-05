@@ -21,7 +21,7 @@ public class PatientRepositoryTest {
         patient.setId(1);
         patient.setFirstName("Mikołaj");
         patient.setLastName("Sieniawski");
-        patient.setSex('M');
+        patient.setSex("M");
         patient.setAge(22);
 
         patientRepository.save(patient);
