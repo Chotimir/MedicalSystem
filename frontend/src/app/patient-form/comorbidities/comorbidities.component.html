@@ -1,0 +1,13 @@
+<form>
+  <div class="form-group row col-12" *ngFor="let comorbidity of comorbidities">
+    <label for={{comorbidity.name}} class="col-form-label col-3 offset-1">{{comorbidity.name}}</label>
+    <div class="col-4">
+      <select class="form-control" id={{comorbidity.name}} onchange="setSelected(this.id, this.selected)">
+        <option hidden disabled selected value></option>
+        <option *ngFor="let value of comorbidity.values">
+          {{value}}
+        </option>
+      </select>
+    </div>
+  </div>
+</form>

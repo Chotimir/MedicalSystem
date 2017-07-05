@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
+
+.navbar-collapse.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-collapse.center.no-right-nav {
+ margin-right: 110px;
+}
+
+@media (min-width: 992px){
+  .navbar li {
+    margin-right: 30px;
+  }
+}
+
+.nav-item {
+  text-align: center;
+}
+
+.nav-item.wide {
+  width: 150px;
+  text-align: right;
+}
+
+.container-fluid, .container {
+  background-color: #dddddd;
+  padding: 0;
+}
+
+.container-fluid.top {
+  height: 100vh;
+}
+
+.top-margin {
+  margin-top: 30px;
+}
+
+.flex {
+  display: flex;
+}
+
+.center {
+  justify-content: center;
+}
+
+.col-form-label {
+  text-align: right;
+}
+
+.btn {
+  width: 200px;
+  margin-right: 15px;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+body {
+  background-color: #dddddd;
+}
