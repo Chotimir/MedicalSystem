@@ -34,4 +34,9 @@ public class AdmissionServiceImpl implements AdmissionService {
     public void delete(Integer id) {
         admissionRepository.delete(id);
     }
+
+    @Override
+    public boolean exists(int id) {
+        return admissionRepository.exists(id);
+    }
 }
