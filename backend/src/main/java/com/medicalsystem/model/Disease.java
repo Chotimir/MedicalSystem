@@ -20,7 +20,7 @@ public class Disease extends IdComparableEntity {
     @Getter @Setter
     private String name;
 
-    @OneToMany(mappedBy = "disease", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "disease", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Getter @Setter
     @JsonManagedReference
     private List<DiseaseDescription> descriptions;
