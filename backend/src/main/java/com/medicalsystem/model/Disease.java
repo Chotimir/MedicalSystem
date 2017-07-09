@@ -1,5 +1,6 @@
 package com.medicalsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,8 +20,9 @@ public class Disease extends IdComparableEntity {
     @Getter @Setter
     private String name;
 
-    @OneToMany(mappedBy = "disease", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "disease", cascade = CascadeType.ALL)
     @Getter @Setter
+    @JsonManagedReference
     private List<DiseaseDescription> descriptions;
 
     public Disease() {}

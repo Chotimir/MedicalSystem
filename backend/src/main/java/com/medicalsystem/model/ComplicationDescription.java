@@ -1,5 +1,6 @@
 package com.medicalsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ public class ComplicationDescription extends IdComparableEntity {
     @ManyToOne
     @JoinColumn(name = "id_powiklania")
     @Getter @Setter
+    @JsonBackReference
     private Complication complication;
 
     @Column(name = "nazwa_opis_powiklania", columnDefinition = "varchar(50)")
