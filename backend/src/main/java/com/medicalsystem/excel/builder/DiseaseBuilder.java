@@ -26,15 +26,15 @@ public class DiseaseBuilder {
         List<DiseaseDescription> diseaseDescriptions = new ArrayList<>();
 
         /* Get index of the column of the first disease */
-        int firstExamIndex = columnsProperties.getPropertyAsInt("disease.shock.number");
+        int firstDiseaseIndex = columnsProperties.getPropertyAsInt("disease.shock.number");
 
         /* Get index of the column of the last disease */
-        int lastExamIndex = columnsProperties.getPropertyAsInt("disease.ekg.number");
+        int lastDiseaseIndex = columnsProperties.getPropertyAsInt("disease.ekg.number");
 
         /* Iterate over diseases - assumes that disease description ids are in proper order */
         int descriptionId = 1;
 
-        for (int i = firstExamIndex; i <= lastExamIndex; i++, descriptionId++) {
+        for (int i = firstDiseaseIndex; i <= lastDiseaseIndex; i++, descriptionId++) {
 
             /* Get disease result */
             CellValue resultCell = new CellValue(row, i);
@@ -44,7 +44,7 @@ public class DiseaseBuilder {
                 Disease disease = diseaseService.getById(descriptionId);
                 DiseaseDescription diseaseDescription = diseaseDescriptionService.getByDiseaseAndExcelValue(disease, result);
 
-                if(diseaseDescription != null){
+                if (diseaseDescription != null) {
                     diseaseDescriptions.add(diseaseDescription);
                 }
             }
