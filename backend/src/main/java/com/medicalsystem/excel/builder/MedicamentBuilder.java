@@ -28,10 +28,10 @@ public class MedicamentBuilder {
         List<Medicament> medicaments = new ArrayList<>();
 
         /* Get index of the column of the first medicament */
-        int firstMedIndex = columnsProperties.getPropertyAsInt("medicament.aspirin.number");
+        int firstMedIndex = columnsProperties.getColumnPropertyAsInt("medicament.aspirin.number");
 
         /* Get index of the column of the last medicament */
-        int lastMedIndex = columnsProperties.getPropertyAsInt("medicament.fibrate.number");
+        int lastMedIndex = columnsProperties.getColumnPropertyAsInt("medicament.fibrate.number");
 
         /* Iterate over medicaments - assumes that medicament ids are in proper order */
         int medicamentId = 1;

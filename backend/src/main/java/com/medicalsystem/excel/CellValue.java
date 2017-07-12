@@ -15,7 +15,7 @@ public class CellValue {
     private String value;
 
     public CellValue(Row row, String columnProperty) {
-        int cellIndex = columnsProperties.getPropertyAsInt(columnProperty);
+        int cellIndex = columnsProperties.getColumnPropertyAsInt(columnProperty);
         Cell cell = row.getCell(cellIndex);
         this.value = formatter.formatCellValue(cell).trim();
     }

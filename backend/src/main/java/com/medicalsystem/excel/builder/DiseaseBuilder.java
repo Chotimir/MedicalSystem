@@ -26,10 +26,10 @@ public class DiseaseBuilder {
         List<DiseaseDescription> diseaseDescriptions = new ArrayList<>();
 
         /* Get index of the column of the first disease */
-        int firstDiseaseIndex = columnsProperties.getPropertyAsInt("disease.shock.number");
+        int firstDiseaseIndex = columnsProperties.getColumnPropertyAsInt("disease.shock.number");
 
         /* Get index of the column of the last disease */
-        int lastDiseaseIndex = columnsProperties.getPropertyAsInt("disease.ekg.number");
+        int lastDiseaseIndex = columnsProperties.getColumnPropertyAsInt("disease.ekg.number");
 
         /* Iterate over diseases - assumes that disease description ids are in proper order */
         int descriptionId = 1;

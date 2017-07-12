@@ -25,10 +25,10 @@ public class ExaminationBuilder {
         List<Examination> examinations = new ArrayList<>();
 
         /* Get index of the column of the first examination */
-        int firstExamIndex = columnsProperties.getPropertyAsInt("examination.pchn.number");
+        int firstExamIndex = columnsProperties.getColumnPropertyAsInt("examination.pchn.number");
 
         /* Get index of the column of the last examination */
-        int lastExamIndex = columnsProperties.getPropertyAsInt("examination.fibrinogen.number");
+        int lastExamIndex = columnsProperties.getColumnPropertyAsInt("examination.fibrinogen.number");
 
         /* Iterate over examinations - assumes that examination description ids are in proper order */
         int descriptionId = 1;
