@@ -2,19 +2,19 @@
   <div class="form-group row col-12">
     <label for="admissionDate" class="col-form-label col-3 offset-1" translate>Admission Date</label>
     <div class="col-4">
-      <input [(ngModel)]="admission.admissionDate" type="date" class="form-control" id="admissionDate">
+      <input [(ngModel)]="admission.admissionDate" type="date" class="form-control" id="admissionDate" name="admissionDate">
     </div>
   </div>
   <div class="form-group row col-12">
     <label for="operationDate" class="col-form-label col-3 offset-1" translate>Operation Date</label>
     <div class="col-4">
-      <input [(ngModel)]="admission.operationDate" type="date" class="form-control" id="operationDate">
+      <input [(ngModel)]="admission.operationDate" type="date" class="form-control" id="operationDate" name="">
     </div>
   </div>
   <div class="form-group row col-12">
     <label for="operationType" class="col-form-label col-3 offset-1" translate>Operation type</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.operationType.selected" class="form-control" id="operationType">
+      <select [(ngModel)]="admission.operationType.selected" class="form-control" id="operationType" name="">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.operationType.values" [ngValue]="value">
           {{value}}
@@ -25,7 +25,7 @@
   <div class="form-group row col-12">
     <label for="aorticAneurysmSymptoms" class="col-form-label col-3 offset-1" translate>Aortic Aneurysm Symptoms</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.aorticAneurysmSymptoms.selected" class="form-control" id="aorticAneurysmSymptoms">
+      <select [(ngModel)]="admission.aorticAneurysmSymptoms.selected" class="form-control" id="aorticAneurysmSymptoms" name="">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.aorticAneurysmSymptoms.values" [ngValue]="value">
           {{value}}
@@ -36,31 +36,31 @@
   <div class="form-group row col-12">
     <label for="aorticAneurysmSize" class="col-form-label col-3 offset-1" translate>Aortic Aneurysm Size</label>
     <div class="col-4">
-      <input [(ngModel)]="admission.aorticAneurysmSize" type="number" class="form-control" id="aorticAneurysmSize">
+      <input [(ngModel)]="admission.aorticAneurysmSize" type="number" class="form-control" id="aorticAneurysmSize" name="aorticAneurysmSize">
     </div>
   </div>
   <div class="form-group row col-12">
     <label for="iliacArteryAneurysmMaxSize" class="col-form-label col-3 offset-1" translate>Iliac Artery Aneurysm Max Size</label>
     <div class="col-4">
-      <input [(ngModel)]="admission.maxIliacAneurysmSize" type="number" class="form-control" id="iliacArteryAneurysmMaxSize">
+      <input [(ngModel)]="admission.maxIliacAneurysmSize" type="number" class="form-control" id="iliacArteryAneurysmMaxSize" name="iliacArteryAneurysmMaxSize">
     </div>
   </div>
   <div class="form-group row col-12">
     <label for="imagingExamination" class="col-form-label col-3 offset-1" translate>Imaging Examination</label>
     <div class="col-4">
-      <input [(ngModel)]="admission.imagingExamination" type="number" class="form-control" id="imagingExamination">
+      <input [(ngModel)]="admission.imagingExamination" type="number" class="form-control" id="imagingExamination" name="imagingExamination">
     </div>
   </div>
   <div class="form-group row col-12">
     <label for="aneurysmLocalization" class="col-form-label col-3 offset-1" translate>Aneurysm Localization</label>
     <div class="col-4">
-      <input [(ngModel)]="admission.aneurysmLocation" type="number" class="form-control" id="aneurysmLocalization">
+      <input [(ngModel)]="admission.aneurysmLocation" type="number" class="form-control" id="aneurysmLocalization" name="aneurysmLocalization">
     </div>
   </div>
   <div class="form-group row col-12">
     <label for="smoking" class="col-form-label col-3 offset-1" translate>Smoking</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.smoking.selected" class="form-control" id="smoking">
+      <select [(ngModel)]="admission.smoking.selected" class="form-control" id="smoking" name="smoking">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.smoking.values" [ngValue]="value">
           {{value}}
@@ -71,7 +71,7 @@
   <div class="form-group row col-12">
     <label for="ASA" class="col-form-label col-3 offset-1" translate>ASA</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.asaScale.selected" class="form-control" id="ASA">
+      <select [(ngModel)]="admission.asaScale.selected" class="form-control" id="ASA" name="ASA">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.asaScale.values" [ngValue]="value">
           {{value}}
@@ -82,7 +82,7 @@
   <div class="form-group row col-12">
     <label for="RCRI" class="col-form-label col-3 offset-1" translate>Revised Cardiac Risk Index</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.leeRcri.selected" class="form-control" id="RCRI">
+      <select [(ngModel)]="admission.leeRcri.selected" class="form-control" id="RCRI" name="RCRI">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.leeRcri.values" [ngValue]="value">
           {{value}}
@@ -93,7 +93,7 @@
   <div class="form-group row col-12">
     <label for="pPossum" class="col-form-label col-3 offset-1" translate>P-POSSUM</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.pPossum.selected" class="form-control" id="pPossum">
+      <select [(ngModel)]="admission.pPossum.selected" class="form-control" id="pPossum" name="pPossum">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.pPossum.values" [ngValue]="value">
           {{value}}
@@ -104,7 +104,7 @@
   <div class="form-group row col-12">
     <label for="unconsciousness" class="col-form-label col-3 offset-1" translate>Unconsciousness</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.unconsciousness.selected" class="form-control" id="unconsciousness">
+      <select [(ngModel)]="admission.unconsciousness.selected" class="form-control" id="unconsciousness" name="unconsciousness">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.unconsciousness.values" [ngValue]="value">
           {{value}}
@@ -115,7 +115,7 @@
   <div class="form-group row col-12">
     <label for="reoperation" class="col-form-label col-3 offset-1" translate>Reoperation</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.reoperation.selected" class="form-control" id="reoperation">
+      <select [(ngModel)]="admission.reoperation.selected" class="form-control" id="reoperation" name="reoperation">
         <option hidden disabled selected value></option>
         <option *ngFor="let value of admission.reoperation.values" [ngValue]="value">
           {{value}}
@@ -126,7 +126,7 @@
   <div class="form-group row col-12">
     <label for="comments" class="col-form-label col-3 offset-1" translate>Comments</label>
     <div class="col-4">
-      <input [(ngModel)]="admission.comments" type="text" class="form-control" id="comments">
+      <input [(ngModel)]="admission.comments" type="text" class="form-control" id="comments" name="comments">
     </div>
   </div>
 </form>
