@@ -1,15 +1,17 @@
 import {Injectable} from '@angular/core';
-import {Http, RequestOptions, ResponseContentType} from "@angular/http";
+import {Headers, Http, RequestOptions, ResponseContentType} from "@angular/http";
+import {AuthService} from "./auth.service";
 
 @Injectable()
 export class ExportService {
 
+  private headers = new Headers({'Content-Type': 'application/json', 'Authorization': AuthService.getToken()});
   private exportUrl = 'api/export';
 
   constructor(private http: Http) { }
 
   exportExcel(): Promise<Blob> {
-    const options = new RequestOptions({responseType: ResponseContentType.Blob });
+    const options = new RequestOptions({responseType: ResponseContentType.Blob, headers: this.headers});
     return this.http.get(this.exportUrl, options).toPromise()
       .then(res => res.blob() as Blob)
       .catch(this.handleError);

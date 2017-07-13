@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Troponins} from "../../model/troponins";
-import {FormService} from "./form-service.service";
+import {FormService} from "../form-service.service";
 
 @Injectable()
 export class TroponinsService extends FormService<Troponins> {

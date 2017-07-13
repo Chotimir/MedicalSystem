@@ -10,7 +10,7 @@ export abstract class FormService<T> {
   constructor(private http: Http) { }
 
   get(childUrl: string): Promise<T> {
-    return this.http.get(this.patientsUrl + childUrl)
+    return this.http.get(this.patientsUrl + childUrl, {headers: this.headers})
       .toPromise().then(response => response.json() as T)
       .catch(this.handleError);
   }
