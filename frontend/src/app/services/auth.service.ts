@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import {JwtHelper} from "angular2-jwt";
 
 @Injectable()
 export class AuthService {
@@ -17,15 +18,21 @@ export class AuthService {
     return token ? token : "";
   }
 
-  static getCurrentUsername(): string {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const username = currentUser && currentUser.username;
-    return username ? username : "";
-  }
-
   static isLoggedIn(): boolean {
     const token: String = AuthService.getToken();
     return token && token.length > 0;
+  }
+
+  static isAdmin(): boolean {
+    const token: String = AuthService.getToken();
+    if (token && token.length > 0) {
+      const jwtHelper: JwtHelper = new JwtHelper();
+      const decoded = jwtHelper.decodeToken(token.toString());
+      console.log(decoded);
+      return false;
+    }
+
+    return false;
   }
 
   static logout(): void {
