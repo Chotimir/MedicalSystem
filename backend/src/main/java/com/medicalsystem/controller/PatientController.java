@@ -22,8 +22,8 @@ public class PatientController {
      *
      * @param  id id of the entity
      */
-    @GetMapping("api/patient")
-    public boolean patientExists(@RequestParam int id) {
+    @GetMapping("api/patients/{id}")
+    public boolean patientExists(@PathVariable int id) {
         return patientService.exists(id);
     }
 
@@ -34,8 +34,8 @@ public class PatientController {
      * @return    200 OK          - if method successful
      *            400 Bad Request - if patient with the given id already exists in the database
      */
-    @PostMapping("api/patient")
-    public ResponseEntity<?> createPatient(@RequestParam int id) {
+    @PostMapping("api/patients/{id}")
+    public ResponseEntity<?> createPatient(@PathVariable int id) {
 
         /* Check if there's a patient with the given id */
         if (patientService.exists(id))
