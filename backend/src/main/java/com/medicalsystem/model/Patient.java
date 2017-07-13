@@ -1,5 +1,6 @@
 package com.medicalsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,9 +11,9 @@ import java.util.List;
 @Table(name = "dane_osobowe")
 public class Patient extends IdComparableEntity {
 
-    //@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id_pacjenta")
+    @JsonIgnore
     @Getter @Setter
     private int id;
 
@@ -38,6 +39,7 @@ public class Patient extends IdComparableEntity {
             joinColumns = @JoinColumn(name = "id_pacjenta", referencedColumnName = "id_pacjenta"),
             inverseJoinColumns = @JoinColumn(name = "id_opis_choroby", referencedColumnName = "id_opis_choroby")
     )
+    @JsonIgnore
     @Getter @Setter
     private List<DiseaseDescription> diseaseDescriptions;
 

@@ -53,4 +53,14 @@ public class PatientController {
         return true;
     }
 
+    @GetMapping("api/patients/{id}/personalData")
+    public ResponseEntity<Patient> getPatient(@PathVariable int id) {
+        Patient patient = patientService.getById(id);
+
+        if (patient == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>(patient, HttpStatus.OK);
+    }
+
 }

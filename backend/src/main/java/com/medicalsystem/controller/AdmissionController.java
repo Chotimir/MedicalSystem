@@ -15,7 +15,7 @@ public class AdmissionController {
 
     private AdmissionService admissionService;
 
-    @GetMapping("api/admission/{id}")
+    @GetMapping("api/patients/{id}/admission")
     public ResponseEntity<Admission> getAdmission(@PathVariable int id) {
         Admission admission = admissionService.getById(id);
 
@@ -26,8 +26,11 @@ public class AdmissionController {
     }
 
 
-    @PutMapping("api/admission")
-    public ResponseEntity<?> updateAdmission(@RequestBody Admission admission) {
+    @PutMapping("api/patients/{id}/admission")
+    public ResponseEntity<?> updateAdmission(@PathVariable int id, @RequestBody Admission admission) {
+
+        // TODO: zmapować jsona z frontu na nasze admission, ustawić pacjenta w admission i zapisać do bazy
+
         admission = admissionService.saveOrUpdate(admission);
 
         if (admission == null)

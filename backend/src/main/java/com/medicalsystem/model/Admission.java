@@ -1,6 +1,8 @@
 package com.medicalsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.medicalsystem.serialization.AdmissionSerializer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "przyjecie")
+@JsonSerialize(using = AdmissionSerializer.class)
 public class Admission extends IdComparableEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

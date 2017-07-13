@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class DataLoader implements ApplicationRunner {
 
     /* For testing purposes */
-    private final boolean LOAD_EXCEL_ON_STARTUP = false;
+    private final boolean LOAD_EXCEL_ON_STARTUP = true;
 
     private final ExcelImporter importer;
 
@@ -32,6 +32,11 @@ public class DataLoader implements ApplicationRunner {
     private final ReoperationService reoperationService;
     private final RevisitCauseService revisitCauseService;
 
+    private void loadExcel() {
+        if (LOAD_EXCEL_ON_STARTUP)
+            importer.importToDB();
+    }
+
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
 
@@ -44,14 +49,12 @@ public class DataLoader implements ApplicationRunner {
         operationTypeService.saveOrUpdate(new OperationType(6, "Przęsło aortalno-dwubiodrowe"));
         operationTypeService.saveOrUpdate(new OperationType(7, "Plastyka aorty"));
 
-
         // znieczulenie_s
         anesthesiaService.saveOrUpdate(new Anesthesia(1, "Ogólne"));
         anesthesiaService.saveOrUpdate(new Anesthesia(2, "Miejscowe"));
         anesthesiaService.saveOrUpdate(new Anesthesia(3, "Podpajęczynówkowe"));
         anesthesiaService.saveOrUpdate(new Anesthesia(4, "Ogólne plus zewnątrzoponowe"));
         anesthesiaService.saveOrUpdate(new Anesthesia(5, "Ogólne plus podpajęczynówkowe"));
-
 
         // lek_znieczulajacy_s
         anestheticService.saveOrUpdate(new Anesthetic(1, "Propofol"));
@@ -60,17 +63,14 @@ public class DataLoader implements ApplicationRunner {
         anestheticService.saveOrUpdate(new Anesthetic(4, "Ketamina"));
         anestheticService.saveOrUpdate(new Anesthetic(5, "brak danych/nic"));
 
-
         // tryb_zabiegu_s
         operationModeService.saveOrUpdate(new OperationMode(1, "Planowy"));
         operationModeService.saveOrUpdate(new OperationMode(2, "Pilny/Naglący"));
-
 
         // palenie_tytoniu_s
         smokingService.saveOrUpdate(new Smoking(0, "nie palący"));
         smokingService.saveOrUpdate(new Smoking(1, "palący"));
         smokingService.saveOrUpdate(new Smoking(2, "palący w przeszłości"));
-
 
         // choroby_s
         Disease[] diseases = {
@@ -90,7 +90,6 @@ public class DataLoader implements ApplicationRunner {
         for (Disease disease : diseases) {
             diseaseService.saveOrUpdate(disease);
         }
-
 
         // opis_choroby_s
 		//wstrzas
@@ -135,7 +134,6 @@ public class DataLoader implements ApplicationRunner {
         diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(29, diseases[10], "rytm z rozrusznika", 5));
         diseaseDescriptionService.saveOrUpdate(new DiseaseDescription(30, diseases[10], "AF + rytm z rozrusznika", 6));
 
-
         // badania_s
         // DO NOT CHANGE THE ORDER - needed in RowImporter
         examinationDescriptionService.saveOrUpdate(new ExaminationDescription(1, "PShN w stadium 5 (dializoterapia)", "brak"));
@@ -144,7 +142,6 @@ public class DataLoader implements ApplicationRunner {
         examinationDescriptionService.saveOrUpdate(new ExaminationDescription(4, "Hb", "g/dl"));
         examinationDescriptionService.saveOrUpdate(new ExaminationDescription(5, "WBC", "tys/ul"));
         examinationDescriptionService.saveOrUpdate(new ExaminationDescription(6, "fibrynogen", "g/l"));
-
 
         // leki_s
         // DO NOT CHANGE THE ORDER - needed in RowImporter
@@ -160,7 +157,6 @@ public class DataLoader implements ApplicationRunner {
         medicamentService.saveOrUpdate(new Medicament(10, "HDCz"));
         medicamentService.saveOrUpdate(new Medicament(11, "klopidogrel"));
         medicamentService.saveOrUpdate(new Medicament(12, "fibrat"));
-
 
         // powiklania_s
         Complication[] complications = {
@@ -199,7 +195,6 @@ public class DataLoader implements ApplicationRunner {
         for (Complication complication : complications) {
             complicationService.saveOrUpdate(complication);
         }
-
 
         // opis_powiklania_s
         // MINS
@@ -300,7 +295,6 @@ public class DataLoader implements ApplicationRunner {
         complicationDescriptionService.saveOrUpdate(new ComplicationDescription(66, complications[29], "brak danych", 2));
         complicationDescriptionService.saveOrUpdate(new ComplicationDescription(67, complications[29], "nie dotyczy", 3)); // powinno być 'x'
 
-
         // reoperacja_s
         reoperationService.saveOrUpdate(new Reoperation(0, "nie"));
         reoperationService.saveOrUpdate(new Reoperation(1, "z powodu krwawienia z rany"));
@@ -312,14 +306,11 @@ public class DataLoader implements ApplicationRunner {
         reoperationService.saveOrUpdate(new Reoperation(7, "z powodu wytrzewienia"));
         reoperationService.saveOrUpdate(new Reoperation(8, "laparotomia zwiadowcza"));
 
-
         // przyczyna_ponownego_przyjecia_s
         revisitCauseService.saveOrUpdate(new RevisitCause(1, "zakażenie miejsca operowanego"));
         revisitCauseService.saveOrUpdate(new RevisitCause(2, "niedrożność protezy i niedokrwienie kończyn dolnych"));
         revisitCauseService.saveOrUpdate(new RevisitCause(3, "inne"));
 
-        if (LOAD_EXCEL_ON_STARTUP) {
-            importer.importToDB();
-        }
+        loadExcel();
     }
 }

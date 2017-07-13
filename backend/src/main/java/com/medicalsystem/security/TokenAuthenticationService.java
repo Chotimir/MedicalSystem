@@ -35,13 +35,13 @@ public class TokenAuthenticationService {
             return null;
 
         /* Parse token */
-        String user = Jwts.parser()
+        String username = Jwts.parser()
                 .setSigningKey(SECRET)
                 .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                 .getBody()
                 .getSubject();
 
-        return user != null ? new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList()) : null;
+        return username != null ? new UsernamePasswordAuthenticationToken(username, null, Collections.emptyList()) : null;
     }
 
 }
