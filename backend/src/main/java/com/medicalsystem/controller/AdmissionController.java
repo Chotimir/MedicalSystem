@@ -15,19 +15,24 @@ public class AdmissionController {
 
     private AdmissionService admissionService;
 
-    @GetMapping("/admission/{admissionId}")
-    public ResponseEntity<Admission> getAdmission(@PathVariable("admissionId") int id) {
-        if (!admissionService.exists(id)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @GetMapping("api/admission/{id}")
+    public ResponseEntity<Admission> getAdmission(@PathVariable int id) {
         Admission admission = admissionService.getById(id);
-        return new ResponseEntity<>(admission, HttpStatus.OK);
+
+        if (admission == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>(admission, HttpStatus.OK) ;
     }
 
 
-    @PutMapping("/admission")
-    public ResponseEntity<String> updateAdmission(@RequestBody Admission admission) {
-        admissionService.saveOrUpdate(admission);
-        return new ResponseEntity<>("Admission successfully added", HttpStatus.OK);
+    @PutMapping("api/admission")
+    public ResponseEntity<?> updateAdmission(@RequestBody Admission admission) {
+        admission = admissionService.saveOrUpdate(admission);
+
+        if (admission == null)
+            return new ResponseEntity<>("Error saving admission", HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return new ResponseEntity<>(admission, HttpStatus.OK);
     }
 }

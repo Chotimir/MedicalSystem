@@ -18,28 +18,28 @@ public class ComplicationController {
 
     private OperationService operationService;
 
-    @GetMapping("/operation/{operationId}/complicatons")
-    public ResponseEntity<List<Complication>> getComplications(@PathVariable("operationId") int id) {
-        if (!operationService.exists(id)) {
+    @GetMapping("api/operation/{id}/complicatons")
+    public ResponseEntity<List<Complication>> getComplications(@PathVariable int id) {
+        Operation operation = operationService.getById(id);
+
+        if (operation == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Complication> complications = operationService.getById(id).getComplications();
-        return new ResponseEntity<>(complications, HttpStatus.OK);
+
+        return new ResponseEntity<>(operation.getComplications(), HttpStatus.OK);
     }
 
-    @PutMapping("/operation/{operationId}/complications")
-    public ResponseEntity<String> updateComplications(@RequestBody Complication complication, @PathVariable("operationId") int id) {
-        if (!operationService.exists(id)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
+    @PutMapping("api/operation/{id}/complications")
+    public ResponseEntity<List<Complication>> updateComplications(@RequestBody Complication complication, @PathVariable int id) {
         Operation operation = operationService.getById(id);
+
+        if (operation == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
         List<Complication> complications = operation.getComplications();
         complications.add(complication);
-        operation.setComplications(complications);
 
         operationService.saveOrUpdate(operation);
 
-        return new ResponseEntity<>("Complication successfully added", HttpStatus.OK);
+        return new ResponseEntity<>(complications, HttpStatus.OK);
     }
 }

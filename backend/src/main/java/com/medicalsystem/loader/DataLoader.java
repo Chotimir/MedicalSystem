@@ -1,4 +1,4 @@
-package com.medicalsystem;
+package com.medicalsystem.loader;
 
 import com.medicalsystem.excel.importer.ExcelImporter;
 import com.medicalsystem.model.*;

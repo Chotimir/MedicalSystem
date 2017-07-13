@@ -18,27 +18,30 @@ public class ExaminationController {
 
     private AdmissionService admissionService;
 
-    @GetMapping("/admission/{admissionId}/examinations")
-    public ResponseEntity<List<Examination>> getExaminations(@PathVariable("admissionId") int id) {
-        if (!admissionService.exists(id)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @GetMapping("api/admission/{id}/examinations")
+    public ResponseEntity<List<Examination>> getExaminations(@PathVariable int id) {
+        Admission admission = admissionService.getById(id);
 
-        List<Examination> examinations = admissionService.getById(id).getExaminations();
-        return new ResponseEntity<>(examinations, HttpStatus.OK);
+        if (admission == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>(admission.getExaminations(), HttpStatus.OK);
     }
 
 
-    @PutMapping("/admission/{admissionId}/examinations")
-    public ResponseEntity<String> updateExaminations(@RequestBody Examination examination, @PathVariable("admissionId") int id) {
+    @PutMapping("api/admission/{id}/examinations")
+    public ResponseEntity<List<Examination>> updateExaminations(@RequestBody Examination examination, @PathVariable int id) {
         Admission admission = admissionService.getById(id);
+
+        if (admission == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
         List<Examination> examinations = admission.getExaminations();
         examinations.add(examination);
-        admission.setExaminations(examinations);
 
         admissionService.saveOrUpdate(admission);
 
-        return new ResponseEntity<>("Examination successfully added", HttpStatus.OK);
+        return new ResponseEntity<>(examinations, HttpStatus.OK);
     }
 
 

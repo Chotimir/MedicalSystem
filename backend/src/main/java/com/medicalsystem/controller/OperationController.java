@@ -16,24 +16,27 @@ public class OperationController {
     private AdmissionService admissionService;
 
 
-    @GetMapping("/admission/{admissionId}/operation")
-    public ResponseEntity<Operation> getOperation(@PathVariable("admissionId") int id) {
-        if (!admissionService.exists(id)) {
+    @GetMapping("api/admission/{id}/operation")
+    public ResponseEntity<Operation> getOperation(@PathVariable int id) {
+        Admission admission = admissionService.getById(id);
+
+        if (admission == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        Operation operation = admissionService.getById(id).getOperation();
-        return new ResponseEntity<>(operation, HttpStatus.OK);
+
+        return new ResponseEntity<>(admission.getOperation(), HttpStatus.OK);
     }
 
-    @PutMapping("/admission/{admissionId}/operation")
-    public ResponseEntity<String> updateOperation(@RequestBody Operation operation, @PathVariable("admissionId") int id) {
-        if (!admissionService.exists(id)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @PutMapping("api/admission/{id}/operation")
+    public ResponseEntity<Operation> updateOperation(@RequestBody Operation operation, @PathVariable int id) {
         Admission admission = admissionService.getById(id);
+
+        if (admission == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        
         admission.setOperation(operation);
+
         admissionService.saveOrUpdate(admission);
 
-        return new ResponseEntity<>("Operation successfully added", HttpStatus.OK);
+        return new ResponseEntity<>(operation, HttpStatus.OK);
     }
 }
