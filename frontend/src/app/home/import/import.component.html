@@ -9,8 +9,8 @@
       <table class="table table-inverse rounded">
         <thead>
         <tr>
-          <th class="center-text" width="70%">Uploaded Files</th>
-          <th class="center-text">Remove</th>
+          <th class="center-text" width="70%" translate>Uploaded Files</th>
+          <th class="center-text" translate>Remove</th>
         </tr>
         </thead>
         <tbody>
@@ -28,8 +28,8 @@
   </div>
 
   <div class="container-fluid flex center top-margin">
-    <label for="file-upload" class="btn btn-success" translate>Add file</label>
+    <label for="file-upload" class="btn" translate>Add file</label>
     <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader"/>
-    <button type="submit" class="btn btn-success" (click)="uploader.uploadAll()" translate>Import data</button>
+    <button class="btn" (click)="uploader.uploadAll()" translate>Import data</button>
   </div>
 </div>

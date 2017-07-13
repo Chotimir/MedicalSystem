@@ -5,12 +5,14 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AuthComponent } from './auth.component';
 import {AuthRoutingModule} from "./auth-routing.module";
 import {TranslateModule} from "@ngx-translate/core";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
     AuthRoutingModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule
   ],
   declarations: [LoginComponent, RegistrationComponent, AuthComponent]
 })

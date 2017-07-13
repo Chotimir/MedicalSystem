@@ -10,14 +10,14 @@ export abstract class FormService<T> {
   constructor(private http: Http) { }
 
   get(childUrl: string): Promise<T> {
-    return this.http.get(this.patientsUrl + childUrl).toPromise()
-      .then(response => response.json() as T)
+    return this.http.get(this.patientsUrl + childUrl)
+      .toPromise().then(response => response.json() as T)
       .catch(this.handleError);
   }
 
   update(data: T, childUrl: string) {
-    this.http.put(this.patientsUrl + childUrl, JSON.stringify(data), {headers: this.headers}).toPromise()
-      .then(() => "").catch(this.handleError);
+    this.http.put(this.patientsUrl + childUrl, JSON.stringify(data), {headers: this.headers})
+      .toPromise().catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
