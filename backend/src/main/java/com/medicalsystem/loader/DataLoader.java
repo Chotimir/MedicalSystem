@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class DataLoader implements ApplicationRunner {
 
     /* For testing purposes */
-    private final boolean LOAD_EXCEL_ON_STARTUP = true;
+    private final boolean LOAD_EXCEL_ON_STARTUP = false;
 
     private final ExcelImporter importer;
 
