@@ -1,10 +1,11 @@
 import {Headers, Http} from "@angular/http";
 import {Injectable} from "@angular/core";
+import {AuthService} from "app/services/auth.service";
 
 @Injectable()
 export abstract class FormService<T> {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({'Content-Type': 'application/json', 'Authorization': AuthService.getToken()});
   private patientsUrl = 'api/patients/';
 
   constructor(private http: Http) { }
