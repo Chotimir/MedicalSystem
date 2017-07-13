@@ -11,9 +11,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
+/*
+TODO: na razie obsługiwany jest import jedynie z pierwszego arkusza (zabiegi otwarte)
+TODO: EVARy różnią się kilkoma kolumnami, trzeba to rozkminić
+ */
+
 @Component
 public class ExcelImporter {
 
+    // Temporary for testing purposes
     private final String excelFile = "baza2.xlsx";
 
     private XSSFSheet openSheet;
@@ -33,16 +39,8 @@ public class ExcelImporter {
      * Imports data from the spreadsheet.
      */
     public void importToDB() {
-
-        long start = System.currentTimeMillis();
-
         importOpenSheet();
         importEvarSheet();
-
-        long stop = System.currentTimeMillis();
-
-        System.out.println("IMPORT COMPLETED");
-        System.out.println("Time: " + (stop - start));
     }
 
     /**

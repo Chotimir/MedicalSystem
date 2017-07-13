@@ -36,9 +36,9 @@ public class Patient extends IdComparableEntity {
     @JoinTable(
             name = "choroby_wspolistniejace",
             joinColumns = @JoinColumn(name = "id_pacjenta", referencedColumnName = "id_pacjenta"),
-            inverseJoinColumns = @JoinColumn(name = "id_choroby", referencedColumnName = "id_choroby")
+            inverseJoinColumns = @JoinColumn(name = "id_opis_choroby", referencedColumnName = "id_opis_choroby")
     )
     @Getter @Setter
-    private List<Disease> diseases;
+    private List<DiseaseDescription> diseaseDescriptions;
 
 }

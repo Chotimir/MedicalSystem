@@ -23,7 +23,6 @@ public class PatientController {
      * @param  id id of the entity
      */
     @GetMapping("api/patient")
-    @ResponseBody
     public boolean patientExists(@RequestParam int id) {
         return patientService.exists(id);
     }
@@ -36,19 +35,21 @@ public class PatientController {
      *            400 Bad Request - if patient with the given id already exists in the database
      */
     @PostMapping("api/patient")
-    public ResponseEntity<Patient> createPatient(@RequestParam int id) {
+    public ResponseEntity<?> createPatient(@RequestParam int id) {
 
         /* Check if there's a patient with the given id */
-        if (patientService.exists(id)) {
+        if (patientService.exists(id))
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
 
         /* Create new patient with given id */
         Patient patient = new Patient();
         patient.setId(id);
 
         /* Persist patient */
-        patientService.saveOrUpdate(patient);
+        patient = patientService.saveOrUpdate(patient);
+
+        if (patient == null)
+            return new ResponseEntity<>("Error saving patient", HttpStatus.INTERNAL_SERVER_ERROR);
 
         /* Return response */
         return new ResponseEntity<>(patient, HttpStatus.OK);

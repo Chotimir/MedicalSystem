@@ -1,5 +1,6 @@
-package com.medicalsystem;
+package com.medicalsystem.loader;
 
+import com.medicalsystem.excel.importer.ExcelImporter;
 import com.medicalsystem.model.*;
 import com.medicalsystem.service.*;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,11 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DataLoader implements ApplicationRunner {
+
+    /* For testing purposes */
+    private final boolean LOAD_EXCEL_ON_STARTUP = true;
+
+    private final ExcelImporter importer;
 
     private final OperationTypeService operationTypeService;
     private final AnesthesiaService anesthesiaService;
@@ -311,5 +317,9 @@ public class DataLoader implements ApplicationRunner {
         revisitCauseService.saveOrUpdate(new RevisitCause(1, "zakażenie miejsca operowanego"));
         revisitCauseService.saveOrUpdate(new RevisitCause(2, "niedrożność protezy i niedokrwienie kończyn dolnych"));
         revisitCauseService.saveOrUpdate(new RevisitCause(3, "inne"));
+
+        if (LOAD_EXCEL_ON_STARTUP) {
+            importer.importToDB();
+        }
     }
 }

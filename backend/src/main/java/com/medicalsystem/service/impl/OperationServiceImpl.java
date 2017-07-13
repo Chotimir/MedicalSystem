@@ -34,4 +34,9 @@ public class OperationServiceImpl implements OperationService {
     public void delete(Integer id) {
         operationRepository.delete(id);
     }
+
+    @Override
+    public boolean exists(int id) {
+        return operationRepository.exists(id);
+    }
 }
