@@ -28,8 +28,7 @@ export class AuthService {
     if (token && token.length > 0) {
       const jwtHelper: JwtHelper = new JwtHelper();
       const decoded = jwtHelper.decodeToken(token.toString());
-      console.log(decoded);
-      return false;
+      return decoded.admin;
     }
 
     return false;
