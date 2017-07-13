@@ -34,4 +34,9 @@ public class ComplicationServiceImpl implements ComplicationService {
     public void delete(Integer id) {
         complicationRepository.delete(id);
     }
+
+    @Override
+    public boolean exists(int id) {
+        return complicationRepository.exists(id);
+    }
 }

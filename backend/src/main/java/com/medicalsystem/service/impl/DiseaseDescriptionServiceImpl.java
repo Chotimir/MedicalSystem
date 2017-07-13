@@ -1,5 +1,6 @@
 package com.medicalsystem.service.impl;
 
+import com.medicalsystem.model.Disease;
 import com.medicalsystem.model.DiseaseDescription;
 import com.medicalsystem.repository.DiseaseDescriptionRepository;
 import com.medicalsystem.service.DiseaseDescriptionService;
@@ -33,5 +34,14 @@ public class DiseaseDescriptionServiceImpl implements DiseaseDescriptionService 
     @Override
     public void delete(Integer id) {
         diseaseDescriptionRepository.delete(id);
+    }
+
+    public DiseaseDescription getByDiseaseAndExcelValue(Disease disease, Integer excelValue){
+        for (DiseaseDescription x : diseaseDescriptionRepository.findAll()) {
+            if (x.getExcelValue() == excelValue && x.getDisease().equals(disease)){
+                return x;
+            }
+        }
+        return null;
     }
 }

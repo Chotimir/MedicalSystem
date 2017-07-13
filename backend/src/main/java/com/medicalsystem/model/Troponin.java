@@ -1,5 +1,6 @@
 package com.medicalsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ public class Troponin extends IdComparableEntity {
     @ManyToOne
     @JoinColumn(name = "id_przyjecia")
     @Getter @Setter
+    @JsonBackReference
     private Admission admission;
 
     @Column(name = "tnt")

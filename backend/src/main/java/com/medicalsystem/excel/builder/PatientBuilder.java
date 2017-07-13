@@ -1,7 +1,7 @@
 package com.medicalsystem.excel.builder;
 
 import com.medicalsystem.excel.CellValue;
-import com.medicalsystem.model.Disease;
+import com.medicalsystem.model.DiseaseDescription;
 import com.medicalsystem.model.Patient;
 import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
@@ -40,8 +40,8 @@ public class PatientBuilder {
         patient.setAge(age.getAsInt());
 
         /* Diseases */
-        List<Disease> diseases = diseaseBuilder.build(row);
-        patient.setDiseases(diseases);
+        List<DiseaseDescription> diseaseDescriptions = diseaseBuilder.build(row);
+        patient.setDiseaseDescriptions(diseaseDescriptions);
 
         return patient;
     }

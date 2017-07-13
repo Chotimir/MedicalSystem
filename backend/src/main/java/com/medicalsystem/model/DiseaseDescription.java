@@ -1,5 +1,6 @@
 package com.medicalsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ public class DiseaseDescription extends IdComparableEntity {
     @ManyToOne
     @JoinColumn(name = "id_choroby")
     @Getter @Setter
+    @JsonBackReference
     private Disease disease;
 
     @Column(name = "nazwa_opis_choroby", columnDefinition = "varchar(50)")
