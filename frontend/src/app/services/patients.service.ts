@@ -9,16 +9,13 @@ export class PatientsService {
   constructor(private http: Http) { }
 
   checkId(patientId: string): Promise<boolean> {
-    return Promise.resolve(true);
-    /*
     return this.http.get(this.patientsUrl + patientId).toPromise()
       .then(response => response.json() as boolean)
       .catch(this.handleError);
-      */
   }
 
   createPatient(patientId: string): Promise<boolean> {
-    return this.http.post(this.patientsUrl, patientId).toPromise()
+    return this.http.post(this.patientsUrl + patientId, "").toPromise()
       .then(response => response.json() as boolean)
       .catch(this.handleError);
   }

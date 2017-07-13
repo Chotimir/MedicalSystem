@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
 .navbar-collapse.center {
   display: flex;
@@ -67,10 +68,31 @@
 .btn {
   width: 200px;
   margin-right: 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: solid 1px #292b2c;
+  color: #292b2c;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+label.btn {
+  height: 38px !important;
+  padding-top: 8px !important;
 }
 
 .form-group {
   margin-bottom: 30px;
+}
+
+.table-inverse {
+  color: #dddddd;
+}
+
+.table-inverse th, .table-inverse td {
+  border-color: #dddddd !important;
 }
 
 body {

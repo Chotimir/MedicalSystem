@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FileUploader} from "ng2-file-upload";
+
+const URL = 'api/import/excel';
 
 @Component({
   selector: 'app-import',
@@ -7,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImportComponent implements OnInit {
 
-  constructor() { }
+  public uploader: FileUploader;
 
   ngOnInit() {
+    this.uploader = new FileUploader({url: URL});
   }
 
 }
