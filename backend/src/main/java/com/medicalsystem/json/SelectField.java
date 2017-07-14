@@ -1,4 +1,4 @@
-package com.medicalsystem.json.serializer;
+package com.medicalsystem.json;
 
 import lombok.Getter;
 import lombok.Setter;

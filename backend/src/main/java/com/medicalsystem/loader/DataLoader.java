@@ -161,6 +161,7 @@ public class DataLoader implements ApplicationRunner {
         medicamentService.saveOrUpdate(new Medicament(12, "fibrat"));
 
         // powiklania_s
+        // DO NOT CHANGE THE ORDER - needed in RowImporter
         Complication[] complications = {
                 new Complication(1, "MINS"),
                 new Complication(2, "MI"),

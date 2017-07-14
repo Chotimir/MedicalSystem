@@ -92,7 +92,7 @@ public class OperationBuilder {
         operation.setVentilatorDays(ventilatorDays);
 
         /* Complications */
-        List<Complication> complications = complicationBuilder.build(row);
+        List<ComplicationDescription> complications = complicationBuilder.build(row);
         operation.setComplications(complications);
 
         return operation;

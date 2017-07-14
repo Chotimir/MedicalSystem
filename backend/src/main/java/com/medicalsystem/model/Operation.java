@@ -90,9 +90,9 @@ public class Operation extends IdComparableEntity {
     @JoinTable(
             name = "powiklania_operacja",
             joinColumns = @JoinColumn(name = "id_operacji", referencedColumnName = "id_operacji"),
-            inverseJoinColumns = @JoinColumn(name = "id_powiklania", referencedColumnName = "id_powiklania")
+            inverseJoinColumns = @JoinColumn(name = "id_opis_powiklania", referencedColumnName = "id_opis_powiklania")
     )
     @Getter @Setter
-    private List<Complication> complications;
+    private List<ComplicationDescription> complications;
 
 }

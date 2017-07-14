@@ -1,4 +1,4 @@
-package com.medicalsystem.json.serializer;
+package com.medicalsystem.json;
 
 import com.medicalsystem.model.Complication;
 import com.medicalsystem.model.ComplicationDescription;
@@ -41,15 +41,8 @@ public class SelectFieldBuilder {
     }
 
     public List<SelectField> fromDiseases(List<DiseaseDescription> diseases) {
-        // TODO: pisane godzinę przed spotkaniem, oczywiście do przepisania
         return diseases.stream()
-                .map(disease -> {
-                    SelectField selectField = new SelectField();
-                    selectField.setName(disease.getDisease().getName());
-                    selectField.setValues(disease.getDisease().getDescriptions().stream().map(DiseaseDescription::getDescription).collect(Collectors.toList()));
-                    selectField.setSelected(disease.getDescription());
-                    return selectField;
-                })
+                .map(this::fromDisease)
                 .collect(Collectors.toList());
     }
 
@@ -68,6 +61,21 @@ public class SelectFieldBuilder {
         }
 
         return selectFields;
+    }
+
+    private SelectField fromDisease(DiseaseDescription disease) {
+        SelectField selectField = new SelectField();
+
+        /* Name */
+        selectField.setName(disease.getDisease().getName());
+
+        /* Values */
+        selectField.setValues(disease.getDisease().getDescriptions().stream().map(DiseaseDescription::getDescription).collect(Collectors.toList()));
+
+        /* Selected */
+        selectField.setSelected(disease.getDescription());
+
+        return selectField;
     }
 
 }

@@ -1,6 +1,8 @@
 package com.medicalsystem.service.impl;
 
+import com.medicalsystem.model.Complication;
 import com.medicalsystem.model.ComplicationDescription;
+import com.medicalsystem.model.DiseaseDescription;
 import com.medicalsystem.repository.ComplicationDescriptionRepository;
 import com.medicalsystem.service.ComplicationDescriptionService;
 import lombok.AllArgsConstructor;
@@ -33,5 +35,15 @@ public class ComplicationDescriptionServiceImpl implements ComplicationDescripti
     @Override
     public void delete(Integer id) {
         complicationDescriptionRepository.delete(id);
+    }
+
+    @Override
+    public ComplicationDescription getByComplicationAndExcelValue(Complication complication, int excelValue) {
+        for (ComplicationDescription cd : complicationDescriptionRepository.findAll()) {
+            if (cd.getExcelValue() == excelValue && cd.getComplication().equals(complication)){
+                return cd;
+            }
+        }
+        return null;
     }
 }

@@ -3,6 +3,7 @@ package com.medicalsystem.json.serializer;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import com.medicalsystem.json.SelectFieldBuilder;
 import com.medicalsystem.model.Admission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;

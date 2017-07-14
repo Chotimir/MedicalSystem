@@ -2,8 +2,8 @@ package com.medicalsystem.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.medicalsystem.json.serializer.SelectField;
-import com.medicalsystem.json.serializer.SelectFieldBuilder;
+import com.medicalsystem.json.SelectField;
+import com.medicalsystem.json.SelectFieldBuilder;
 import com.medicalsystem.model.DiseaseDescription;
 import com.medicalsystem.model.Patient;
 import com.medicalsystem.service.PatientService;
