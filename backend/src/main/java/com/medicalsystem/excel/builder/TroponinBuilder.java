@@ -34,20 +34,20 @@ public class TroponinBuilder {
         troponin.setTnt(tnt);
 
         /* Tni ultra */
-        double tniUltra = formatter.init(row, "troponin.tniUltra.number").getAsDouble();
-        troponin.setTniUltra(tniUltra);
+        double tniUltra = formatter.init(row, "troponin.tnlUltra.number").getAsDouble();
+        troponin.setTnlUltra(tniUltra);
 
         /* Tni */
-        double tni = formatter.init(row, "troponin.tni.number").getAsDouble();
-        troponin.setTni(tni);
+        double tni = formatter.init(row, "troponin.tnl.number").getAsDouble();
+        troponin.setTnl(tni);
 
         /* Tnt day */
-        double tntDay = formatter.init(row, "troponin.tntDay.number").getAsDouble();
-        troponin.setTntDay(tntDay);
+        double tntDay = formatter.init(row, "troponin.tntAfter24h.number").getAsDouble();
+        troponin.setTntAfter24h(tntDay);
 
         /* Tni day */
-        double tniDay = formatter.init(row, "troponin.tniDay.number").getAsDouble();
-        troponin.setTniDay(tniDay);
+        double tniDay = formatter.init(row, "troponin.tnlAfter24h.number").getAsDouble();
+        troponin.setTnlAfter24h(tniDay);
 
         /* Add troponin object to list */
         troponins.add(troponin);

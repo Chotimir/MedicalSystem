@@ -3,7 +3,7 @@ package com.medicalsystem.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.medicalsystem.serialization.ExaminationDescriptionSerializer;
+import com.medicalsystem.json.serializer.ExaminationDescriptionSerializer;
 import lombok.Getter;
 import lombok.Setter;
 

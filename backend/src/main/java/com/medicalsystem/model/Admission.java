@@ -2,7 +2,7 @@ package com.medicalsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.medicalsystem.serialization.AdmissionSerializer;
+import com.medicalsystem.json.serializer.AdmissionSerializer;
 import lombok.Getter;
 import lombok.Setter;
 

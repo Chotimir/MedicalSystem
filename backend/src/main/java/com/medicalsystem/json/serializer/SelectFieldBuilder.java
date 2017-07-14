@@ -1,4 +1,4 @@
-package com.medicalsystem.serialization;
+package com.medicalsystem.json.serializer;
 
 import com.medicalsystem.model.Complication;
 import com.medicalsystem.model.ComplicationDescription;

@@ -17,7 +17,7 @@ public class AdmissionController {
 
     @GetMapping("api/patients/{id}/admission")
     public ResponseEntity<Admission> getAdmission(@PathVariable int id) {
-        Admission admission = admissionService.getById(id);
+        Admission admission = admissionService.getByPatientId(id);
 
         if (admission == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

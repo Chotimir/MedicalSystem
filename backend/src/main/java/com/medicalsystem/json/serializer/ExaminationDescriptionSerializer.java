@@ -1,4 +1,4 @@
-package com.medicalsystem.serialization;
+package com.medicalsystem.json.serializer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

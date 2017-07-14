@@ -34,4 +34,9 @@ public class TroponinServiceImpl implements TroponinService {
     public void delete(Integer id) {
         troponinRepository.delete(id);
     }
+
+    @Override
+    public Troponin getByPatientId(int id) {
+        return troponinRepository.findByPatientId(id);
+    }
 }
