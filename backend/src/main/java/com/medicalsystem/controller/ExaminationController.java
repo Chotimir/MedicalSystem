@@ -18,7 +18,7 @@ public class ExaminationController {
 
     private AdmissionService admissionService;
 
-    @GetMapping("api/admission/{id}/examinations")
+    @GetMapping("api/patients/{id}/examinations")
     public ResponseEntity<List<Examination>> getExaminations(@PathVariable int id) {
         Admission admission = admissionService.getById(id);
 
@@ -29,7 +29,7 @@ public class ExaminationController {
     }
 
 
-    @PutMapping("api/admission/{id}/examinations")
+    @PutMapping("api/patients/{id}/examinations")
     public ResponseEntity<List<Examination>> updateExaminations(@RequestBody Examination examination, @PathVariable int id) {
         Admission admission = admissionService.getById(id);
 

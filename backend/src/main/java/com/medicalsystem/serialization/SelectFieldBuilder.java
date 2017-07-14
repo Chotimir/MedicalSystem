@@ -1,5 +1,6 @@
 package com.medicalsystem.serialization;
 
+import com.medicalsystem.model.DiseaseDescription;
 import com.medicalsystem.model.OperationType;
 import com.medicalsystem.service.OperationTypeService;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,19 @@ public class SelectFieldBuilder {
         selectField.setSelected(operationType.getName());
 
         return selectField;
+    }
+
+    public List<SelectField> build(List<DiseaseDescription> diseases) {
+        // TODO: pisane godzinę przed spotkaniem, oczywiście do przepisania
+        return diseases.stream()
+                .map(disease -> {
+                    SelectField selectField = new SelectField();
+                    selectField.setName(disease.getDisease().getName());
+                    selectField.setValues(disease.getDisease().getDescriptions().stream().map(DiseaseDescription::getDescription).collect(Collectors.toList()));
+                    selectField.setSelected(disease.getDescription());
+                    return selectField;
+                })
+                .collect(Collectors.toList());
     }
 
 }
