@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {FormService} from "../form-service.service";
+import {FormService} from "./form-service.service";
 import {PersonalData} from "../../model/personal-data";
 
 @Injectable()

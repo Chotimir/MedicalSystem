@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {FileUploader} from "ng2-file-upload";
+import {AuthService} from "../../services/auth.service";
 
 const URL = 'api/import/excel';
 
@@ -14,6 +15,7 @@ export class ImportComponent implements OnInit {
 
   ngOnInit() {
     this.uploader = new FileUploader({url: URL});
+    this.uploader.authToken = AuthService.getToken();
   }
 
 }

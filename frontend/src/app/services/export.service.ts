@@ -5,7 +5,7 @@ import {AuthService} from "./auth.service";
 @Injectable()
 export class ExportService {
 
-  private headers = new Headers({'Content-Type': 'application/json', 'Authorization': AuthService.getToken()});
+  private headers = new Headers({'Authorization': AuthService.getToken()});
   private exportUrl = 'api/export';
 
   constructor(private http: Http) { }

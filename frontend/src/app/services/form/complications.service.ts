@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import {SelectField} from "../../model/select-field";
-import {FormService} from "../form-service.service";
+import {FormService} from "./form-service.service";
 
 @Injectable()
 export class ComplicationsService extends FormService<SelectField[]> {
