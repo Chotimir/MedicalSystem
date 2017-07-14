@@ -7,6 +7,9 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+/**
+ * Base class for handling properties, feel free to extend
+ */
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @PropertySources({
@@ -15,7 +18,7 @@ import org.springframework.stereotype.Component;
 })
 public class Properties {
 
-    private final Environment env;
+    protected final Environment env;
 
     public String get(String key) {
         return env.getProperty(key);
