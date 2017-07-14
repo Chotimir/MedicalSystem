@@ -6,8 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 @Component({
   selector: 'app-admission',
   templateUrl: './admission.component.html',
-  styleUrls: ['./admission.component.css'],
-  providers: [AdmissionService]
+  styleUrls: ['./admission.component.css']
 })
 export class AdmissionComponent implements OnInit, OnDestroy {
 
@@ -16,13 +15,9 @@ export class AdmissionComponent implements OnInit, OnDestroy {
 
   constructor(private admissionService: AdmissionService, private route: ActivatedRoute) { }
 
-  getAdmission() {
-    this.admissionService.getAdmission(this.patientId).then(admission => this.admission = admission);
-  }
-
   ngOnInit() {
     this.patientId = this.route.parent.snapshot.params['id'];
-    this.getAdmission();
+    this.admission = this.route.snapshot.data['admission'];
   }
 
   ngOnDestroy() {

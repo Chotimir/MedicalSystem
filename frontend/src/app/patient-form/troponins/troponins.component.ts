@@ -15,13 +15,9 @@ export class TroponinsComponent implements OnInit, OnDestroy {
 
   constructor(private troponinsService: TroponinsService, private route: ActivatedRoute) { }
 
-  getTroponins() {
-    this.troponinsService.getTroponins(this.patientId).then(troponins => this.troponins = troponins);
-  }
-
   ngOnInit() {
     this.patientId = this.route.parent.snapshot.params['id'];
-    this.getTroponins();
+    this.troponins = this.route.snapshot.data['troponins'];
   }
 
   ngOnDestroy() {

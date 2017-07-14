@@ -7,8 +7,7 @@ import {SelectField} from "../../model/select-field";
 @Component({
   selector: 'app-comorbidities',
   templateUrl: './comorbidities.component.html',
-  styleUrls: ['./comorbidities.component.css'],
-  providers: [ComorbiditiesService]
+  styleUrls: ['./comorbidities.component.css']
 })
 export class ComorbiditiesComponent implements OnInit, OnDestroy {
 

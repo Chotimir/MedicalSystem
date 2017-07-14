@@ -13,6 +13,14 @@ import { ComplicationsComponent } from './complications/complications.component'
 import { ExaminationsComponent } from './examinations/examinations.component';
 import { FollowUpVisitComponent } from './follow-up-visit/follow-up-visit.component';
 import { TroponinsComponent } from './troponins/troponins.component';
+import {AdmissionService} from "../services/form/admission.service";
+import {ComorbiditiesService} from "../services/form/comorbidities.service";
+import {ComplicationsService} from "../services/form/complications.service";
+import {ExaminationsService} from "../services/form/examinations.service";
+import {FollowUpVisitService} from "../services/form/follow-up-visit.service";
+import {OperationService} from "../services/form/operation.service";
+import {PersonalDataService} from "../services/form/personal-data.service";
+import {TroponinsService} from "../services/form/troponins.service";
 
 
 @NgModule({
@@ -32,6 +40,16 @@ import { TroponinsComponent } from './troponins/troponins.component';
     ExaminationsComponent,
     FollowUpVisitComponent,
     TroponinsComponent
+  ],
+  providers: [
+    AdmissionService,
+    ComorbiditiesService,
+    ComplicationsService,
+    ExaminationsService,
+    FollowUpVisitService,
+    OperationService,
+    PersonalDataService,
+    TroponinsService
   ]
 })
 export class PatientFormModule { }

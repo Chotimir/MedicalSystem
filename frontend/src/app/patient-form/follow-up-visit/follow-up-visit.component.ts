@@ -16,13 +16,9 @@ export class FollowUpVisitComponent implements OnInit, OnDestroy {
 
   constructor(private followUpVisitService: FollowUpVisitService, private route: ActivatedRoute) { }
 
-  getFollowUpVisit() {
-    this.followUpVisitService.getFollowUpVisit(this.patientId).then(followUpVisit => this.followUpVisit = followUpVisit);
-  }
-
   ngOnInit() {
     this.patientId = this.route.parent.snapshot.params['id'];
-    this.getFollowUpVisit();
+    this.followUpVisit = this.route.snapshot.data['followUpVisit'];
   }
 
   ngOnDestroy() {

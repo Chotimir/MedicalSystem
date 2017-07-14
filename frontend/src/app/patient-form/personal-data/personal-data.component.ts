@@ -6,8 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 @Component({
   selector: 'app-personal-data',
   templateUrl: './personal-data.component.html',
-  styleUrls: ['./personal-data.component.css'],
-  providers: [PersonalDataService]
+  styleUrls: ['./personal-data.component.css']
 })
 export class PersonalDataComponent implements OnInit, OnDestroy {
 
@@ -16,13 +15,9 @@ export class PersonalDataComponent implements OnInit, OnDestroy {
 
   constructor(private personalDataService: PersonalDataService, private route: ActivatedRoute) { }
 
-  getPersonalData() {
-    this.personalDataService.getPersonalData(this.patientId).then(personalData => this.personalData = personalData);
-  }
-
   ngOnInit() {
     this.patientId = this.route.parent.snapshot.params['id'];
-    this.getPersonalData();
+    this.personalData = this.route.snapshot.data['personalData'];
   }
 
   ngOnDestroy() {

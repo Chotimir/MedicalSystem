@@ -6,8 +6,7 @@ import {OperationService} from "../../services/form/operation.service";
 @Component({
   selector: 'app-operation',
   templateUrl: './operation.component.html',
-  styleUrls: ['./operation.component.css'],
-  providers: [OperationService]
+  styleUrls: ['./operation.component.css']
 })
 export class OperationComponent implements OnInit, OnDestroy {
 
@@ -16,13 +15,9 @@ export class OperationComponent implements OnInit, OnDestroy {
 
   constructor(private operationService: OperationService, private route: ActivatedRoute) { }
 
-  getOperation() {
-    this.operationService.getOperation(this.patientId).then(operation => this.operation = operation);
-  }
-
   ngOnInit() {
     this.patientId = this.route.parent.snapshot.params['id'];
-    this.getOperation();
+    this.operation = this.route.snapshot.data['operation'];
   }
 
   ngOnDestroy() {
