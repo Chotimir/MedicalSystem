@@ -1,7 +1,6 @@
 package com.medicalsystem.excel.builder;
 
 import com.medicalsystem.excel.CellFormatter;
-import com.medicalsystem.excel.CellValue;
 import com.medicalsystem.model.OperationType;
 import com.medicalsystem.service.OperationTypeService;
 import lombok.AllArgsConstructor;

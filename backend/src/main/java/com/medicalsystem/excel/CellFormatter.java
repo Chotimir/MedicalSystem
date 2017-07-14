@@ -1,18 +1,17 @@
 package com.medicalsystem.excel;
 
 import com.medicalsystem.properties.Properties;
+import com.medicalsystem.util.DateUtils;
 import lombok.extern.java.Log;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 
 @Component
-@PropertySource("classpath:excelColumns.properties")
 @Log
 public class CellFormatter {
 
@@ -27,12 +26,18 @@ public class CellFormatter {
         this.formatter = formatter;
     }
 
+    /**
+     * Sets this.value, acts as a replacement for constructor, so we can use autowiring in this class
+     */
     public CellFormatter init(Row row, String columnProperty) {
         int column = props.getAsInt(columnProperty);
         setValue(row, column);
         return this;
     }
 
+    /**
+     * Sets this.value, acts as a replacement for constructor, so we can use autowiring in this class
+     */
     public CellFormatter init(Row row, int column) {
         setValue(row, column);
         return this;
