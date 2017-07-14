@@ -1,5 +1,6 @@
 package com.medicalsystem.excel.builder;
 
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.excel.CellValue;
 import com.medicalsystem.model.OperationType;
 import com.medicalsystem.service.OperationTypeService;
@@ -15,6 +16,8 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class OperationTypeBuilder {
 
+    private final CellFormatter formatter;
+
     private final OperationTypeService operationTypeService;
 
     /**
@@ -25,8 +28,7 @@ public class OperationTypeBuilder {
         List<OperationType> operationTypes = new ArrayList<>();
 
         /* Operation type */
-        CellValue operationTypeCell = new CellValue(row, "operationType.number");
-        String value = operationTypeCell.getAsString();
+        String value = formatter.init(row, "operationType.number").getAsString();
 
         for (char c : value.toCharArray()) {
             int id = Character.getNumericValue(c);

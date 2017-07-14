@@ -1,17 +1,20 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.*;
 import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.util.List;
 
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AdmissionBuilder {
+
+    private final CellFormatter formatter;
 
     private final SmokingBuilder smokingBuilder;
     private final ReoperationBuilder reoperationBuilder;
@@ -31,60 +34,60 @@ public class AdmissionBuilder {
         admission.setOperation(operation);
 
         /* Admission date */
-        CellValue admissionDate = new CellValue(row, "admissionDate.number");
-        admission.setAdmissionDate(admissionDate.getAsDate());
+        Date admissionDate = formatter.init(row, "admissionDate.number").getAsDate();
+        admission.setAdmissionDate(admissionDate);
 
         /* Operation date */
-        CellValue operationDate = new CellValue(row, "operationDate.number");
-        admission.setOperationDate(operationDate.getAsDate());
+        Date operationDate = formatter.init(row, "operationDate.number").getAsDate();
+        admission.setOperationDate(operationDate);
 
         /* AA symptoms */
-        CellValue aaSymptoms = new CellValue(row, "aaSymptoms.number");
-        admission.setAaSymptoms(aaSymptoms.getAsInt());
+        int aaSymptoms = formatter.init(row, "aaSymptoms.number").getAsInt();
+        admission.setAaSymptoms(aaSymptoms);
 
         /* AA size */
-        CellValue aaSize = new CellValue(row, "aaSize.number");
-        admission.setAaSize(aaSize.getAsInt());
+        int aaSize = formatter.init(row, "aaSize.number").getAsInt();
+        admission.setAaSize(aaSize);
 
         /* Max aneurysm size */
-        CellValue maxAneurysmSize = new CellValue(row, "maxAneurysmSize.number");
-        admission.setMaxAneurysmSize(maxAneurysmSize.getAsInt());
+        int maxAneurysmSize = formatter.init(row, "maxAneurysmSize.number").getAsInt();
+        admission.setMaxAneurysmSize(maxAneurysmSize);
 
         /* Image examination */
-        CellValue imageExamination = new CellValue(row, "imageExamination.number");
-        admission.setImageExamination(imageExamination.getAsInt());
+        int imageExamination = formatter.init(row, "imageExamination.number").getAsInt();
+        admission.setImageExamination(imageExamination);
 
         /* Aneurysm location */
-        CellValue aneurysmLocation = new CellValue(row, "aneurysmLocation.number");
-        admission.setAneurysmLocation(aneurysmLocation.getAsInt());
+        int aneurysmLocation = formatter.init(row, "aneurysmLocation.number").getAsInt();
+        admission.setAneurysmLocation(aneurysmLocation);
 
         /* Smoking */
         Smoking smoking = smokingBuilder.build(row);
         admission.setSmoking(smoking);
 
         /* ASA scale */
-        CellValue asaScale = new CellValue(row, "asaScale.number");
-        admission.setAsaScale(asaScale.getAsInt());
+        int asaScale = formatter.init(row, "asaScale.number").getAsInt();
+        admission.setAsaScale(asaScale);
 
         /* Lee RCRI */
-        CellValue leeRcri = new CellValue(row, "leeRcri.number");
-        admission.setLeeRcri(leeRcri.getAsInt());
+        int leeRcri = formatter.init(row, "leeRcri.number").getAsInt();
+        admission.setLeeRcri(leeRcri);
 
         /* P-POSSUM */
-        CellValue pPossum = new CellValue(row, "pPossum.number");
-        admission.setPPossum(pPossum.getAsDouble());
+        double pPossum = formatter.init(row, "pPossum.number").getAsDouble();
+        admission.setPPossum(pPossum);
 
         /* Faint */
-        CellValue faint = new CellValue(row, "faint.number");
-        admission.setFaint(faint.getAsInt());
+        int faint = formatter.init(row, "faint.number").getAsInt();
+        admission.setFaint(faint);
 
         /* Reoperations */
         List<Reoperation> reoperations = reoperationBuilder.build(row);
         admission.setReoperations(reoperations);
 
         /* Comments */
-        CellValue comments = new CellValue(row, "comments.number");
-        admission.setComments(comments.getAsString());
+        String comments = formatter.init(row, "comments.number").getAsString();
+        admission.setComments(comments);
 
         /* Examinations */
         List<Examination> examinations = examinationBuilder.build(row, admission);

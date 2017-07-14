@@ -1,6 +1,6 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.Smoking;
 import com.medicalsystem.service.SmokingService;
 import lombok.AllArgsConstructor;
@@ -12,11 +12,13 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SmokingBuilder {
 
+    private final CellFormatter formatter;
+
     private final SmokingService smokingService;
 
     public Smoking build(Row row) {
-        CellValue smokingId = new CellValue(row, "smoking.number");
-        return smokingService.getById(smokingId.getAsInt());
+        int smokingId = formatter.init(row, "smoking.number").getAsInt();
+        return smokingService.getById(smokingId);
     }
 
 }

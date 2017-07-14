@@ -1,6 +1,6 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.Reoperation;
 import com.medicalsystem.service.ReoperationService;
 import lombok.AllArgsConstructor;
@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ReoperationBuilder {
 
+    private final CellFormatter formatter;
     private final ReoperationService reoperationService;
 
     /**
@@ -25,8 +26,7 @@ public class ReoperationBuilder {
         List<Reoperation> reoperations = new ArrayList<>();
 
         /* Reoperation */
-        CellValue reoperationCell = new CellValue(row, "reoperation.number");
-        String value = reoperationCell.getAsString();
+        String value = formatter.init(row, "reoperation.number").getAsString();
 
         for (char c : value.toCharArray()) {
             int id = Character.getNumericValue(c);

@@ -1,6 +1,6 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.*;
 import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
@@ -12,6 +12,8 @@ import java.util.List;
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class OperationBuilder {
+
+    private final CellFormatter formatter;
 
     private final OperationModeBuilder operationModeBuilder;
     private final AnesthesiaBuilder anesthesiaBuilder;
@@ -34,60 +36,60 @@ public class OperationBuilder {
         operation.setAnesthetic(anesthetic);
 
         /* Duration */
-        CellValue duration = new CellValue(row, "operation.duration.number");
-        operation.setDuration(duration.getAsInt());
+        int duration = formatter.init(row, "operation.duration.number").getAsInt();
+        operation.setDuration(duration);
 
         /* Aorta clotting time */
-        CellValue aortaClottingTime = new CellValue(row, "operation.aortaClottingTime.number");
-        operation.setAortaClottingTime(aortaClottingTime.getAsInt());
+        int aortaClottingTime = formatter.init(row, "operation.aortaClottingTime.number").getAsInt();
+        operation.setAortaClottingTime(aortaClottingTime);
 
         /* Noradrenaline */
-        CellValue noradrenaline = new CellValue(row, "operation.noradrenaline.number");
-        operation.setNoradrenaline(noradrenaline.getAsBoolean());
+        boolean noradrenaline = formatter.init(row, "operation.noradrenaline.number").getAsBoolean();
+        operation.setNoradrenaline(noradrenaline);
 
         /* Adrenaline*/
-        CellValue adrenaline = new CellValue(row, "operation.adrenaline.number");
-        operation.setAdrenaline(adrenaline.getAsBoolean());
+        boolean adrenaline = formatter.init(row, "operation.adrenaline.number").getAsBoolean();
+        operation.setAdrenaline(adrenaline);
 
         /* Dopamine */
-        CellValue dopamine = new CellValue(row, "operation.dopamine.number");
-        operation.setDopamine(dopamine.getAsBoolean());
+        boolean dopamine = formatter.init(row, "operation.dopamine.number").getAsBoolean();
+        operation.setDopamine(dopamine);
 
         /* Dobutamine */
-        CellValue dobutamine = new CellValue(row, "operation.dobutamine.number");
-        operation.setDobutamine(dobutamine.getAsBoolean());
+        boolean dobutamine = formatter.init(row, "operation.dobutamine.number").getAsBoolean();
+        operation.setDobutamine(dobutamine);
 
         /* Ephedrine */
-        CellValue ephedrine = new CellValue(row, "operation.ephedrine.number");
-        operation.setEphedrine(ephedrine.getAsBoolean());
+        boolean ephedrine = formatter.init(row, "operation.ephedrine.number").getAsBoolean();
+        operation.setEphedrine(ephedrine);
 
         /* Blood lost */
-        CellValue bloodLost = new CellValue(row, "operation.bloodLost.number");
-        operation.setBloodLost(bloodLost.getAsInt());
+        int bloodLost = formatter.init(row, "operation.bloodLost.number").getAsInt();
+        operation.setBloodLost(bloodLost);
 
         /* Urine expelled */
-        CellValue urineExpelled = new CellValue(row, "operation.urineExpelled.number");
-        operation.setUrineExpelled(urineExpelled.getAsInt());
+        int urineExpelled = formatter.init(row, "operation.urineExpelled.number").getAsInt();
+        operation.setUrineExpelled(urineExpelled);
 
         /* Packed cells transfused */
-        CellValue packedCellsTransfused = new CellValue(row, "operation.packedCellsTransfused.number");
-        operation.setPackedCellsTransfused(packedCellsTransfused.getAsInt());
+        int packedCellsTransfused = formatter.init(row, "operation.packedCellsTransfused.number").getAsInt();
+        operation.setPackedCellsTransfused(packedCellsTransfused);
 
         /* ICU time */
-        CellValue icuTime = new CellValue(row, "operation.icuTime.number");
-        operation.setIcuTime(icuTime.getAsInt());
+        int icuTime = formatter.init(row, "operation.icuTime.number").getAsInt();
+        operation.setIcuTime(icuTime);
 
         /* Hospital time */
-        CellValue hospitalTime = new CellValue(row, "operation.hospitalTime.number");
-        operation.setHospitalTime(hospitalTime.getAsInt());
+        int hospitalTime = formatter.init(row, "operation.hospitalTime.number").getAsInt();
+        operation.setHospitalTime(hospitalTime);
 
         /* Extended ventilation */
-        CellValue extendedVentilation = new CellValue(row, "operation.extendedVentilation.number");
-        operation.setExtendedVentilation(extendedVentilation.getAsBoolean());
+        boolean extendedVentilation = formatter.init(row, "operation.extendedVentilation.number").getAsBoolean();
+        operation.setExtendedVentilation(extendedVentilation);
 
         /* Ventilator days */
-        CellValue ventilatorDays = new CellValue(row, "operation.ventilatorDays.number");
-        operation.setVentilatorDays(ventilatorDays.getAsInt());
+        int ventilatorDays = formatter.init(row, "operation.ventilatorDays.number").getAsInt();
+        operation.setVentilatorDays(ventilatorDays);
 
         /* Complications */
         List<Complication> complications = complicationBuilder.build(row);

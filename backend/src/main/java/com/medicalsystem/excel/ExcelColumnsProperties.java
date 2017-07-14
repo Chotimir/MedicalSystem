@@ -7,6 +7,11 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * DEPRECATED
+ * Polecam używać com.medicalsystem.properties.Properties - zachęcam do extendowania go i dodawania potrzebnych metod
+ */
+@Deprecated
 @Component
 public class ExcelColumnsProperties {
 

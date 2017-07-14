@@ -1,6 +1,6 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.OperationMode;
 import com.medicalsystem.service.OperationModeService;
 import lombok.AllArgsConstructor;
@@ -12,11 +12,12 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class OperationModeBuilder {
 
+    private final CellFormatter formatter;
+
     private final OperationModeService operationModeService;
 
     public OperationMode build(Row row) {
-        CellValue operationModeCell = new CellValue(row, "operationMode.number");
-        int operationModeId = operationModeCell.getAsInt();
+        int operationModeId = formatter.init(row, "operationMode.number").getAsInt();
         return operationModeService.getById(operationModeId);
     }
 

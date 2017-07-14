@@ -1,6 +1,6 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.Anesthetic;
 import com.medicalsystem.service.AnestheticService;
 import lombok.AllArgsConstructor;
@@ -12,11 +12,12 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AnestheticBuilder {
 
+    private final CellFormatter formatter;
+
     private final AnestheticService anestheticService;
 
     public Anesthetic build(Row row) {
-        CellValue anestheticCell = new CellValue(row, "anesthetic.number");
-        int anestheticId = anestheticCell.getAsInt();
+        int anestheticId = formatter.init(row, "anesthetic.number").getAsInt();
         return anestheticService.getById(anestheticId);
     }
 

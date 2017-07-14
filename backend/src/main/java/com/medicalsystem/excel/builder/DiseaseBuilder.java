@@ -1,9 +1,9 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
-import com.medicalsystem.excel.ExcelColumnsProperties;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.Disease;
 import com.medicalsystem.model.DiseaseDescription;
+import com.medicalsystem.properties.Properties;
 import com.medicalsystem.service.DiseaseDescriptionService;
 import com.medicalsystem.service.DiseaseService;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,9 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DiseaseBuilder {
 
-    private final ExcelColumnsProperties columnsProperties;
+    private final CellFormatter formatter;
+    private final Properties props;
+
     private final DiseaseService diseaseService;
     private final DiseaseDescriptionService diseaseDescriptionService;
 
@@ -26,10 +28,10 @@ public class DiseaseBuilder {
         List<DiseaseDescription> diseaseDescriptions = new ArrayList<>();
 
         /* Get index of the column of the first disease */
-        int firstDiseaseIndex = columnsProperties.getColumnPropertyAsInt("disease.shock.number");
+        int firstDiseaseIndex = props.getAsInt("disease.shock.number");
 
         /* Get index of the column of the last disease */
-        int lastDiseaseIndex = columnsProperties.getColumnPropertyAsInt("disease.ekg.number");
+        int lastDiseaseIndex = props.getAsInt("disease.ekg.number");
 
         /* Iterate over diseases - assumes that disease description ids are in proper order */
         int descriptionId = 1;
@@ -37,8 +39,7 @@ public class DiseaseBuilder {
         for (int i = firstDiseaseIndex; i <= lastDiseaseIndex; i++, descriptionId++) {
 
             /* Get disease result */
-            CellValue resultCell = new CellValue(row, i);
-            int result = resultCell.getAsInt();
+            int result = formatter.init(row, i).getAsInt();
 
             if (result > 0) {
                 Disease disease = diseaseService.getById(descriptionId);

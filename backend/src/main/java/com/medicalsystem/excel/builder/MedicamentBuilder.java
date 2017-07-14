@@ -1,8 +1,8 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
-import com.medicalsystem.excel.ExcelColumnsProperties;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.Medicament;
+import com.medicalsystem.properties.Properties;
 import com.medicalsystem.service.MedicamentService;
 import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
@@ -16,7 +16,9 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class MedicamentBuilder {
 
-    private final ExcelColumnsProperties columnsProperties;
+    private final Properties props;
+    private final CellFormatter formatter;
+
     private final MedicamentService medicamentService;
 
     /**
@@ -28,23 +30,23 @@ public class MedicamentBuilder {
         List<Medicament> medicaments = new ArrayList<>();
 
         /* Get index of the column of the first medicament */
-        int firstMedIndex = columnsProperties.getColumnPropertyAsInt("medicament.aspirin.number");
+        int firstMedIndex = props.getAsInt("medicament.aspirin.number");
 
         /* Get index of the column of the last medicament */
-        int lastMedIndex = columnsProperties.getColumnPropertyAsInt("medicament.fibrate.number");
+        int lastMedIndex = props.getAsInt("medicament.fibrate.number");
 
         /* Iterate over medicaments - assumes that medicament ids are in proper order */
         int medicamentId = 1;
 
-        for (int i = firstMedIndex; i <= lastMedIndex; i++) {
+        for (int i = firstMedIndex; i <= lastMedIndex; i++, medicamentId++) {
 
             /* Check if given medicament was applied */
-            CellValue value = new CellValue(row, i);
-            if (value.getAsInt() != 1)
+            int value = formatter.init(row, i).getAsInt();
+            if (value != 1)
                 continue;
 
             /* Get medicament from DB */
-            Medicament medicament = medicamentService.getById(medicamentId++);
+            Medicament medicament = medicamentService.getById(medicamentId);
 
             /* Add medicament to the list */
             medicaments.add(medicament);

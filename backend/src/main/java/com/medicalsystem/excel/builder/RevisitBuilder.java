@@ -1,6 +1,6 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.Admission;
 import com.medicalsystem.model.Revisit;
 import com.medicalsystem.model.RevisitCause;
@@ -9,12 +9,15 @@ import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RevisitBuilder {
+
+    private final CellFormatter formatter;
 
     private final RevisitCauseBuilder revisitCauseBuilder;
 
@@ -25,8 +28,8 @@ public class RevisitBuilder {
         List<Revisit> revisits = new ArrayList<>();
 
         /* Check if there was a revisit */
-        CellValue revisitCell = new CellValue(row, "revisit.number");
-        if (revisitCell.getAsInt() != 1)
+        int revisitValue = formatter.init(row, "revisit.number").getAsInt();
+        if (revisitValue != 1)
             return revisits;
 
         /* Create revisit object */
@@ -36,12 +39,12 @@ public class RevisitBuilder {
         revisit.setAdmission(admission);
 
         /* Control visit */
-        CellValue controlVisit = new CellValue(row, "controlVisit.number");
-        revisit.setControlVisit(controlVisit.getAsInt());
+        int controlVisit = formatter.init(row, "controlVisit.number").getAsInt();
+        revisit.setControlVisit(controlVisit);
 
         /* Revisit date */
-        CellValue revisitDate = new CellValue(row, "revisit.date.number");
-        revisit.setDate(revisitDate.getAsDate());
+        Date revisitDate = formatter.init(row, "revisit.date.number").getAsDate();
+        revisit.setDate(revisitDate);
 
         /* Revisit cause */
         RevisitCause revisitCause = revisitCauseBuilder.build(row);

@@ -1,16 +1,21 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.Admission;
 import com.medicalsystem.model.Troponin;
+import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class TroponinBuilder {
+
+    private final CellFormatter formatter;
 
     /**
      * W sumie nie wiem czemu tu jest lista ~MS
@@ -25,24 +30,24 @@ public class TroponinBuilder {
         troponin.setAdmission(admission);
 
         /* Tnt */
-        CellValue tnt = new CellValue(row, "troponin.tnt.number");
-        troponin.setTnt(tnt.getAsDouble());
+        double tnt = formatter.init(row, "troponin.tnt.number").getAsDouble();
+        troponin.setTnt(tnt);
 
         /* Tni ultra */
-        CellValue tniUltra = new CellValue(row, "troponin.tniUltra.number");
-        troponin.setTniUltra(tniUltra.getAsDouble());
+        double tniUltra = formatter.init(row, "troponin.tniUltra.number").getAsDouble();
+        troponin.setTniUltra(tniUltra);
 
         /* Tni */
-        CellValue tni = new CellValue(row, "troponin.tni.number");
-        troponin.setTni(tni.getAsDouble());
+        double tni = formatter.init(row, "troponin.tni.number").getAsDouble();
+        troponin.setTni(tni);
 
         /* Tnt day */
-        CellValue tntDay = new CellValue(row, "troponin.tntDay.number");
-        troponin.setTntDay(tntDay.getAsDouble());
+        double tntDay = formatter.init(row, "troponin.tntDay.number").getAsDouble();
+        troponin.setTntDay(tntDay);
 
         /* Tni day */
-        CellValue tniDay = new CellValue(row, "troponin.tniDay.number");
-        troponin.setTniDay(tniDay.getAsDouble());
+        double tniDay = formatter.init(row, "troponin.tniDay.number").getAsDouble();
+        troponin.setTniDay(tniDay);
 
         /* Add troponin object to list */
         troponins.add(troponin);

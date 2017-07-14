@@ -1,6 +1,6 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.DiseaseDescription;
 import com.medicalsystem.model.Patient;
 import lombok.AllArgsConstructor;
@@ -14,36 +14,48 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PatientBuilder {
 
+    private final CellFormatter formatter;
+
     private final DiseaseBuilder diseaseBuilder;
 
     public Patient build(Row row) {
         Patient patient = new Patient();
 
         /* ID */
-        CellValue id = new CellValue(row, "id.number");
-        patient.setId(id.getAsInt());
+        int id = formatter.init(row, "id.number").getAsInt();
+        patient.setId(id);
 
         /* Last name */
-        CellValue lastName = new CellValue(row, "lastName.number");
-        patient.setLastName(lastName.getAsString());
+        String lastName = formatter.init(row, "lastName.number").getAsString();
+        patient.setLastName(lastName);
 
         /* First name */
-        CellValue firstName = new CellValue(row, "firstName.number");
-        patient.setFirstName(firstName.getAsString());
+        String firstName = formatter.init(row, "firstName.number").getAsString();
+        patient.setFirstName(firstName);
 
         /* Sex */
-        CellValue sex = new CellValue(row, "sex.number");
-        patient.setSex(sex.getAsSexString());
+        String sex = formatter.init(row, "sex.number").getAsString();
+        sex = validateSexValue(sex);
+        patient.setSex(sex);
 
         /* Age */
-        CellValue age = new CellValue(row, "age.number");
-        patient.setAge(age.getAsInt());
+        int age = formatter.init(row, "age.number").getAsInt();
+        patient.setAge(age);
 
         /* Diseases */
         List<DiseaseDescription> diseaseDescriptions = diseaseBuilder.build(row);
         patient.setDiseaseDescriptions(diseaseDescriptions);
 
         return patient;
+    }
+
+    private String validateSexValue(String sex) {
+        if (sex.startsWith("M"))
+            return "M";
+        else if (sex.startsWith("K"))
+            return "K";
+        else
+            return "-";
     }
 
 }

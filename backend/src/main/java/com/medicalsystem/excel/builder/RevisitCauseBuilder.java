@@ -1,6 +1,6 @@
 package com.medicalsystem.excel.builder;
 
-import com.medicalsystem.excel.CellValue;
+import com.medicalsystem.excel.CellFormatter;
 import com.medicalsystem.model.RevisitCause;
 import com.medicalsystem.service.RevisitCauseService;
 import lombok.AllArgsConstructor;
@@ -12,11 +12,12 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RevisitCauseBuilder {
 
+    private final CellFormatter formatter;
+
     private final RevisitCauseService revisitCauseService;
 
     public RevisitCause build(Row row) {
-        CellValue revisitCauseCell = new CellValue(row, "revisit.cause.number");
-        int revisitCauseId = revisitCauseCell.getAsInt();
+        int revisitCauseId = formatter.init(row, "revisit.cause.number").getAsInt();
         return revisitCauseService.getById(revisitCauseId);
     }
 
