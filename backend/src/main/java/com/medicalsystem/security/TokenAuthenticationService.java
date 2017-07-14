@@ -22,6 +22,7 @@ public class TokenAuthenticationService {
         String JWT = Jwts.builder()
                 .setSubject(username)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .claim("admin", true)
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
 
