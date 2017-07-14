@@ -36,7 +36,7 @@ public class AdmissionServiceImpl implements AdmissionService {
     }
 
     @Override
-    public boolean exists(int id) {
-        return admissionRepository.exists(id);
+    public Admission getByPatientId(int id) {
+        return admissionRepository.findAdmissionByPatientId(id);
     }
 }

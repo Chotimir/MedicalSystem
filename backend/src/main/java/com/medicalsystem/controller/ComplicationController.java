@@ -1,7 +1,13 @@
 package com.medicalsystem.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.medicalsystem.model.Admission;
 import com.medicalsystem.model.Complication;
 import com.medicalsystem.model.Operation;
+import com.medicalsystem.serialization.SelectField;
+import com.medicalsystem.serialization.SelectFieldBuilder;
+import com.medicalsystem.service.AdmissionService;
 import com.medicalsystem.service.ComplicationService;
 import com.medicalsystem.service.OperationService;
 import lombok.AllArgsConstructor;
@@ -16,19 +22,26 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ComplicationController {
 
-    private OperationService operationService;
+    private final AdmissionService admissionService;
+    private final OperationService operationService;
 
-    @GetMapping("api/operation/{id}/complicatons")
-    public ResponseEntity<List<Complication>> getComplications(@PathVariable int id) {
-        Operation operation = operationService.getById(id);
+    private final SelectFieldBuilder selectFieldBuilder;
 
-        if (operation == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    // TODO: do przepisania metoda bo brzydko
+    @GetMapping("api/patients/{id}/complications")
+    public String getComplications(@PathVariable int id) throws JsonProcessingException {
+        Admission admission = admissionService.getByPatientId(id);
 
-        return new ResponseEntity<>(operation.getComplications(), HttpStatus.OK);
+        if (admission == null)
+            return "NOT FOUND";
+
+        List<Complication> complications = admission.getOperation().getComplications();
+        List<SelectField> selectFields = selectFieldBuilder.fromComplications(complications);
+
+        return new ObjectMapper().writeValueAsString(selectFields);
     }
 
-    @PutMapping("api/operation/{id}/complications")
+    @PutMapping("api/patients/{id}/complications")
     public ResponseEntity<List<Complication>> updateComplications(@RequestBody Complication complication, @PathVariable int id) {
         Operation operation = operationService.getById(id);
 

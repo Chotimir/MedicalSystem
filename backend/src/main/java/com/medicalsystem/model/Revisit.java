@@ -1,6 +1,7 @@
 package com.medicalsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ public class Revisit extends IdComparableEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ponownej_wizyty")
     @Getter @Setter
+    @JsonIgnore
     private int id;
 
     @ManyToOne
