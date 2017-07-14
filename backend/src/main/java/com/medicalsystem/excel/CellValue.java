@@ -1,11 +1,13 @@
 package com.medicalsystem.excel;
 
+import lombok.extern.java.Log;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.sql.Date;
 
+@Log
 public class CellValue {
 
     // Autowiring not possible - CellValue is created using 'new' keyword in builders
@@ -34,7 +36,7 @@ public class CellValue {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            System.out.println("Error parsing value as integer: " + value);
+            log.info("Error parsing value as integer: " + value);
             return -1;
         }
     }
@@ -44,7 +46,7 @@ public class CellValue {
         try {
             return Double.parseDouble(value.replaceAll(",", "\\."));
         } catch (NumberFormatException e) {
-            System.out.println("Error parsing value as double: " + value);
+            log.info("Error parsing value as double: " + value);
             return -1;
         }
     }

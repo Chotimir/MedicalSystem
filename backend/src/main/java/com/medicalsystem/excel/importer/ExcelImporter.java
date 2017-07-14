@@ -1,5 +1,6 @@
 package com.medicalsystem.excel.importer;
 
+import lombok.extern.java.Log;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -17,6 +18,7 @@ TODO: EVARy różnią się kilkoma kolumnami, trzeba to rozkminić
  */
 
 @Component
+@Log
 public class ExcelImporter {
 
     // Temporary for testing purposes
@@ -39,8 +41,12 @@ public class ExcelImporter {
      * Imports data from the spreadsheet.
      */
     public void importToDB() {
+        log.info("IMPORTING DATA...");
+
         importOpenSheet();
         importEvarSheet();
+
+        log.info("IMPORT COMPLETE");
     }
 
     /**

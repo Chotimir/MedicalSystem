@@ -8,12 +8,14 @@ import com.medicalsystem.service.AdmissionService;
 import com.medicalsystem.service.OperationService;
 import com.medicalsystem.service.PatientService;
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
+@Log
 public class RowImporter {
 
     private final PatientBuilder patientBuilder;
@@ -34,6 +36,7 @@ public class RowImporter {
 
         /* Patient */
         Patient patient = patientBuilder.build(row);
+        //TODO: czy istnieje
         patientService.saveOrUpdate(patient);
 
         /* Operation */
@@ -44,7 +47,7 @@ public class RowImporter {
         Admission admission = admissionBuilder.build(row, patient, operation);
         admissionService.saveOrUpdate(admission);
 
-        System.out.println("ROW PERSISTED");
+        log.info("ROW PERSISTED: " + row.getRowNum());
     }
 
 
