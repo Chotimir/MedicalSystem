@@ -39,4 +39,9 @@ public class PatientServiceImpl implements PatientService {
     public boolean exists(int id) {
         return patientRepository.exists(id);
     }
+
+    @Override
+    public boolean exists(Patient patient) {
+        return patient != null && patientRepository.exists(patient.getId());
+    }
 }

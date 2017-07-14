@@ -34,17 +34,23 @@ public class RowImporter {
      */
     public void importToDB(Row row) {
 
-        /* Patient */
+        /* Build patient */
         Patient patient = patientBuilder.build(row);
-        //TODO: czy istnieje
-        patientService.saveOrUpdate(patient);
 
-        /* Operation */
+        if (patientService.exists(patient)) {
+            log.info(String.format("Patient exists with id: %d. Skipping row...", patient.getId()));
+            return;
+        }
+
+        /* Build operation */
         Operation operation = operationBuilder.build(row);
-        operationService.saveOrUpdate(operation);
 
-        /* Admission */
+        /* Build admission */
         Admission admission = admissionBuilder.build(row, patient, operation);
+
+        /* Persist entities */
+        patientService.saveOrUpdate(patient);
+        operationService.saveOrUpdate(operation);
         admissionService.saveOrUpdate(admission);
 
         log.info("ROW PERSISTED: " + row.getRowNum());

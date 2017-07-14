@@ -6,4 +6,6 @@ public interface PatientService extends CRUDService<Patient> {
 
     boolean exists(int id);
 
+    boolean exists(Patient patient);
+
 }
