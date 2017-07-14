@@ -41,13 +41,14 @@ public class DiseaseBuilder {
             /* Get disease result */
             int result = formatter.init(row, i).getAsInt();
 
-            if (result > 0) {
-                Disease disease = diseaseService.getById(descriptionId);
-                DiseaseDescription diseaseDescription = diseaseDescriptionService.getByDiseaseAndExcelValue(disease, result);
+            //if (result <= 0)
+            //    continue;
 
-                if (diseaseDescription != null) {
-                    diseaseDescriptions.add(diseaseDescription);
-                }
+            Disease disease = diseaseService.getById(descriptionId);
+            DiseaseDescription diseaseDescription = diseaseDescriptionService.getByDiseaseAndExcelValue(disease, result);
+
+            if (diseaseDescription != null) {
+                diseaseDescriptions.add(diseaseDescription);
             }
 
         }

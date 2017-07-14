@@ -43,8 +43,8 @@ public class PatientBuilder {
         patient.setAge(age);
 
         /* Diseases */
-        List<DiseaseDescription> diseaseDescriptions = diseaseBuilder.build(row);
-        patient.setDiseaseDescriptions(diseaseDescriptions);
+        List<DiseaseDescription> diseases = diseaseBuilder.build(row);
+        patient.setDiseaseDescriptions(diseases);
 
         return patient;
     }

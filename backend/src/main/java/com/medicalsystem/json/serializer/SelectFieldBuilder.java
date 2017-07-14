@@ -40,7 +40,7 @@ public class SelectFieldBuilder {
         return selectField;
     }
 
-    public List<SelectField> build(List<DiseaseDescription> diseases) {
+    public List<SelectField> fromDiseases(List<DiseaseDescription> diseases) {
         // TODO: pisane godzinę przed spotkaniem, oczywiście do przepisania
         return diseases.stream()
                 .map(disease -> {
