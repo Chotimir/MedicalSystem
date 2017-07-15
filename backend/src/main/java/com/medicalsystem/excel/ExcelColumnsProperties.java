@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
  * DEPRECATED
  * Polecam używać com.medicalsystem.properties.Properties - zachęcam do extendowania go i dodawania potrzebnych metod
  */
-@Deprecated
 @Component
 public class ExcelColumnsProperties {
 
@@ -20,15 +19,17 @@ public class ExcelColumnsProperties {
     private final Properties columnsProperties;
     private final Properties groupTitlesProperties;
 
-
     public ExcelColumnsProperties() {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         this.columnsProperties = new Properties();
         this.groupTitlesProperties = new Properties();
+
         try (InputStream input = loader.getResourceAsStream(columnsFileName);
              InputStream input2 = loader.getResourceAsStream(groupTitlesFileName)) {
+
             this.columnsProperties.load(input);
             this.groupTitlesProperties.load(input2);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
