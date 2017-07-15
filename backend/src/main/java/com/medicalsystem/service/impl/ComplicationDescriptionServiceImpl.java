@@ -39,11 +39,6 @@ public class ComplicationDescriptionServiceImpl implements ComplicationDescripti
 
     @Override
     public ComplicationDescription getByComplicationAndExcelValue(Complication complication, int excelValue) {
-        for (ComplicationDescription cd : complicationDescriptionRepository.findAll()) {
-            if (cd.getExcelValue() == excelValue && cd.getComplication().equals(complication)){
-                return cd;
-            }
-        }
-        return null;
+        return complicationDescriptionRepository.findByComplicationAndExcelValue(complication, excelValue);
     }
 }

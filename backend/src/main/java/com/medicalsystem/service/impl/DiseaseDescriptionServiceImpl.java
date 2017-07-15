@@ -36,12 +36,8 @@ public class DiseaseDescriptionServiceImpl implements DiseaseDescriptionService 
         diseaseDescriptionRepository.delete(id);
     }
 
-    public DiseaseDescription getByDiseaseAndExcelValue(Disease disease, Integer excelValue){
-        for (DiseaseDescription x : diseaseDescriptionRepository.findAll()) {
-            if (x.getExcelValue() == excelValue && x.getDisease().equals(disease)){
-                return x;
-            }
-        }
-        return null;
+    @Override
+    public DiseaseDescription getByDiseaseAndExcelValue(Disease disease, int excelValue){
+        return diseaseDescriptionRepository.findByDiseaseAndExcelValue(disease, excelValue);
     }
 }

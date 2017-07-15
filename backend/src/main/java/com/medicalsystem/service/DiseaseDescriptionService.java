@@ -5,6 +5,6 @@ import com.medicalsystem.model.DiseaseDescription;
 
 public interface DiseaseDescriptionService extends CRUDService<DiseaseDescription> {
 
-    DiseaseDescription getByDiseaseAndExcelValue(Disease disease, Integer excelValue);
+    DiseaseDescription getByDiseaseAndExcelValue(Disease disease, int excelValue);
 
 }
