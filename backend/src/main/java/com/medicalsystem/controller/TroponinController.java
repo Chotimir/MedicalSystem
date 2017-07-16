@@ -26,7 +26,20 @@ public class TroponinController {
 
     @PutMapping("api/patients/{id}/troponins")
     public ResponseEntity<?> updateTroponins(@PathVariable int id, @RequestBody Troponin troponin) {
-        return null;
+        Troponin currentTroponin = troponinService.getByPatientId(id);
+
+        if (currentTroponin == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        currentTroponin.setTnt(troponin.getTnt());
+        currentTroponin.setTnlUltra(troponin.getTnlUltra());
+        currentTroponin.setTnl(troponin.getTnl());
+        currentTroponin.setTnlAfter24h(troponin.getTnlAfter24h());
+        currentTroponin.setTntAfter24h(troponin.getTntAfter24h());
+
+        currentTroponin = troponinService.saveOrUpdate(currentTroponin);
+
+        return new ResponseEntity<>(currentTroponin, HttpStatus.OK);
     }
 
 }
