@@ -4,6 +4,8 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 
 @Component
 public class CellBuilder {
@@ -22,4 +24,18 @@ public class CellBuilder {
         cell.setCellValue(data);
     }
 
+    public void saveDateInRow(Row row, int excelIndex, Date data) {
+        Cell cell = row.createCell(excelIndex, Cell.CELL_TYPE_STRING);
+        cell.setCellValue(data.toString());
+    }
+
+    public void saveDoubleInRow(Row row, int excelIndex, double data) {
+        Cell cell = row.createCell(excelIndex, Cell.CELL_TYPE_NUMERIC);
+        cell.setCellValue(data);
+    }
+
+    public void saveBooleanInRow(Row row, int excelIndex, boolean data) {
+        Cell cell = row.createCell(excelIndex, Cell.CELL_TYPE_BOOLEAN);
+        cell.setCellValue(data);
+    }
 }
