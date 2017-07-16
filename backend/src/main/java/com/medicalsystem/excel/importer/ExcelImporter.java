@@ -60,8 +60,13 @@ public class ExcelImporter {
         rowIterator.next();
         rowIterator.next();
 
+        int rows = 0;
+
         /* Iterate over rows and put each to the DB */
         while (rowIterator.hasNext()) {
+            /* TODO: remove for production */
+            if (rows++ > 20)
+                break;
             Row row = rowIterator.next();
             rowImporter.importToDB(row);
         }

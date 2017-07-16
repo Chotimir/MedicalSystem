@@ -63,4 +63,17 @@ public class PatientController {
         return new ResponseEntity<>(patient, HttpStatus.OK);
     }
 
+    @PutMapping("api/patients/{id}/personalData")
+    public ResponseEntity<?> updatePatient(@PathVariable int id, @RequestBody Patient patient) {
+
+        patient.setId(id);
+
+        patient = patientService.saveOrUpdate(patient);
+
+        if (patient == null)
+            return new ResponseEntity<>("Error saving patient: " + id, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return new ResponseEntity<>(patient, HttpStatus.OK);
+    }
+
 }
