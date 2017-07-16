@@ -34,4 +34,9 @@ public class ExaminationDescriptionServiceImpl implements ExaminationDescription
     public void delete(Integer id) {
         examinationDescriptionRepository.delete(id);
     }
+
+    @Override
+    public ExaminationDescription getByName(String name) {
+        return examinationDescriptionRepository.findByName(name);
+    }
 }

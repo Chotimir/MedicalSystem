@@ -16,7 +16,8 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ExaminationController {
 
-    private AdmissionService admissionService;
+    private final AdmissionService admissionService;
+    private final ExaminationService examinationService;
 
     @GetMapping("api/patients/{id}/examinations")
     public ResponseEntity<List<Examination>> getExaminations(@PathVariable int id) {
@@ -30,15 +31,20 @@ public class ExaminationController {
 
 
     @PutMapping("api/patients/{id}/examinations")
-    public ResponseEntity<List<Examination>> updateExaminations(@RequestBody Examination examination, @PathVariable int id) {
-        Admission admission = admissionService.getById(id);
+    public ResponseEntity<?> updateExaminations(@PathVariable int id, @RequestBody List<Examination> examinations) {
+        Admission admission = admissionService.getByPatientId(id);
 
         if (admission == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        List<Examination> examinations = admission.getExaminations();
-        examinations.add(examination);
+        /* Delete old examinations */
+        admission.getExaminations().forEach(examinationService::delete);
 
+        /* Set up new examinations */
+        admission.setExaminations(examinations);
+        examinations.forEach(e -> e.setAdmission(admission));
+
+        /* Update admission */
         admissionService.saveOrUpdate(admission);
 
         return new ResponseEntity<>(examinations, HttpStatus.OK);
