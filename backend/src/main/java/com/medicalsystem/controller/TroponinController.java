@@ -26,6 +26,7 @@ public class TroponinController {
 
     @PutMapping("api/patients/{id}/troponins")
     public ResponseEntity<?> updateTroponins(@PathVariable int id, @RequestBody Troponin troponin) {
+        // TODO: trzeba rozkminić w JPA czy da się to ładniej zrobić
         Troponin currentTroponin = troponinService.getByPatientId(id);
 
         if (currentTroponin == null)

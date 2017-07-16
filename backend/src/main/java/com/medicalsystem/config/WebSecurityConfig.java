@@ -1,5 +1,7 @@
-package com.medicalsystem.security;
+package com.medicalsystem.config;
 
+import com.medicalsystem.security.JWTAuthenticationFilter;
+import com.medicalsystem.security.JWTLoginFilter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -21,9 +22,6 @@ TODO: EVARy różnią się kilkoma kolumnami, trzeba to rozkminić
 @Log
 public class ExcelImporter {
 
-    // Temporary for testing purposes
-    private final String excelFile = "baza2.xlsx";
-
     private XSSFSheet openSheet;
     private XSSFSheet evarSheet;
 
@@ -31,22 +29,31 @@ public class ExcelImporter {
 
     @Autowired
     public ExcelImporter(RowImporter rowImporter) throws IOException {
-        XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(new File(excelFile)));
-        this.openSheet = workbook.getSheetAt(0);
-        this.evarSheet = workbook.getSheetAt(1);
         this.rowImporter = rowImporter;
     }
 
     /**
      * Imports data from the spreadsheet.
      */
-    public void importToDB() {
+    public void importToDB(String fileName) {
         log.info("IMPORTING DATA...");
+
+        init(fileName);
 
         importOpenSheet();
         importEvarSheet();
 
         log.info("IMPORT COMPLETE");
+    }
+
+    private void init(String fileName) {
+        try {
+            XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(new File(fileName)));
+            this.openSheet = workbook.getSheetAt(0);
+            this.evarSheet = workbook.getSheetAt(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
