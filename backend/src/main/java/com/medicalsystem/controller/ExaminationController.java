@@ -20,7 +20,7 @@ public class ExaminationController {
 
     @GetMapping("api/patients/{id}/examinations")
     public ResponseEntity<List<Examination>> getExaminations(@PathVariable int id) {
-        Admission admission = admissionService.getById(id);
+        Admission admission = admissionService.getByPatientId(id);
 
         if (admission == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

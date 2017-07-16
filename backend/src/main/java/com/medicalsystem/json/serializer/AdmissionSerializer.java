@@ -28,12 +28,11 @@ public class AdmissionSerializer extends JsonSerializer<Admission> {
         jgen.writeStringField("operationDate", admission.getOperationDate().toString().replaceAll("00", "20"));
         // TODO: tworzę jsona na wzór SelectField z frontu z tylko jedną wybraną wartością, a może być ich wiele
         jgen.writeObjectField("operationType", builder.fromOperationType(admission.getOperationTypes().get(0)));
-        // TODO: no need to create SelectField
         jgen.writeObjectField("aorticAneurysmSymptoms", builder.fromAASymptoms(admission.getAaSymptoms()));
         jgen.writeNumberField("aorticAneurysmSize", admission.getAaSize());
         jgen.writeNumberField("maxIliacAneurysmSize", admission.getMaxAneurysmSize());
 
-        jgen.writeObjectField("imagingExamination", "");
+        jgen.writeObjectField("imagingExamination", builder.fromImageExamination(admission.getImageExamination()));
         jgen.writeObjectField("aneurysmLocation", "");
         jgen.writeObjectField("smoking", "");
         jgen.writeObjectField("asaScale", "");

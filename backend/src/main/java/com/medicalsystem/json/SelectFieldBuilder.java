@@ -78,8 +78,26 @@ public class SelectFieldBuilder {
     public SelectField fromAASymptoms(int aaSymptoms) {
         SelectField selectField = new SelectField();
         selectField.setName("AA Symptoms");
-        selectField.setValues(Arrays.asList("x", "0", "1", "2"));
-        selectField.setSelected(aaSymptoms == -1 ? "x" : String.valueOf(aaSymptoms));
+
+        // TODO: zamienić na cywilizowaną tabelę w bazie danych
+        Map<Integer, String> dictionary = new HashMap<>();
+        dictionary.put(-1, "nie dotyczy");
+        dictionary.put(0, "bezobjawowy");
+        dictionary.put(1, "objawowy");
+        dictionary.put(2, "pęknięty");
+        selectField.setValues(new ArrayList<>(dictionary.values()));
+
+        selectField.setSelected(dictionary.get(aaSymptoms));
+
+        return selectField;
+    }
+
+    public SelectField fromImageExamination(int imageExamination) {
+        SelectField selectField = new SelectField();
+        selectField.setName("Image examination");
+        // TODO: skonsultować i poprawić
+        selectField.setValues(Arrays.asList("-1", "0", "1", "2", "3"));
+        selectField.setSelected(String.valueOf(imageExamination));
         return selectField;
     }
 
