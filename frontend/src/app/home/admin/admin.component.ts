@@ -10,11 +10,20 @@ import {User} from "../../model/user";
 })
 export class AdminComponent implements OnInit {
 
-  private users: User[];
+  protected users: User[];
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.usersService.getUsers().then(users => this.users = users);
+  }
+
+  deactivate(user: User) {
+
   }
 
 }

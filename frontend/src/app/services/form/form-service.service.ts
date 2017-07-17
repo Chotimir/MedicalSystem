@@ -6,7 +6,7 @@ import {AuthService} from "app/services/auth.service";
 export abstract class FormService<T> {
 
   private headers = new Headers({'Content-Type': 'application/json', 'Authorization': AuthService.getToken()});
-  private patientsUrl = 'api/patient-search/';
+  private patientsUrl = 'api/patients/';
 
   constructor(private http: Http) { }
 
