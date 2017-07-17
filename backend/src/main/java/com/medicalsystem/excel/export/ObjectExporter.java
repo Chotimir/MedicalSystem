@@ -108,10 +108,10 @@ public class ObjectExporter {
         }
         Troponin troponin = troponins.get(0);
         cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tnt.number"), troponin.getTnt());
-        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tniUltra.number"), troponin.getTniUltra());
-        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tni.number"), troponin.getTni());
-        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tntDay.number"), troponin.getTntDay());
-        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tniDay.number"), troponin.getTniDay());
+        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tnlUltra.number"), troponin.getTnlUltra());
+        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tnl.number"), troponin.getTnl());
+        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tntAfter24h.number"), troponin.getTntAfter24h());
+        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tnlAfter24h.number"), troponin.getTnlAfter24h());
     }
 
 
@@ -189,24 +189,12 @@ public class ObjectExporter {
 
     }
 
-    private void saveComplication(List<Complication> complications) {
-        Set<Complication> complicationSet = complications.stream().collect(Collectors.toSet());
-        for (int i = 3; i <= 30; i++) {
-            addComplication(row, "complication." + i + ".number", i, complicationSet);
-        }
-        addComplication(row, "complication.mins.number", 1, complicationSet);
-        addComplication(row, "complication.mi.number", 2, complicationSet);
-
-
-    }
-    private void addComplication(Row row, String propName, int complicationsId, Set<Complication> operationComplications) {
-        Complication complication = complicationService.getById(complicationsId);
-        if (operationComplications.contains(complication)) {
-            cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt(propName), 1);
-        } else {
-            cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt(propName), 0);
+    private void saveComplication(List<ComplicationDescription> complications) {
+        for (int i = 0; i < complications.size(); i++) {
+            cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("excel.complications[" + i + "].number"), complications.get(i).getExcelValue());
         }
     }
+
 
     private void saveAnesthetic(Anesthetic anesthetic) {
         if (anesthetic == null) {
@@ -242,16 +230,16 @@ public class ObjectExporter {
     }
 
     private void saveDiseaseDescription(List<DiseaseDescription> diseaseDescriptions) {
-        Set<Disease> diseaseSet = diseaseDescriptions.stream().map(DiseaseDescription::getDisease).collect(Collectors.toSet());
-        int index = prop.getColumnPropertyAsInt("disease.shock.number");
-        List<Disease> diseases = diseaseService.listAll();
-        for (int i = 0; i < diseases.size(); i++, index++) {
-            if (diseaseSet.contains(diseases.get(i))) {
-                cellBuilder.saveIntInRow(row, index, 1);
-            } else {
-                cellBuilder.saveIntInRow(row, index, 0);
-            }
-        }
+//        Set<Disease> diseaseSet = diseaseDescriptions.stream().map(DiseaseDescription::getDisease).collect(Collectors.toSet());
+//        int index = prop.getColumnPropertyAsInt("disease.shock.number");
+//        List<Disease> diseases = diseaseService.listAll();
+//        for (int i = 0; i < diseases.size(); i++, index++) {
+//            if (diseaseSet.contains(diseases.get(i))) {
+//                cellBuilder.saveIntInRow(row, index, 1);
+//            } else {
+//                cellBuilder.saveIntInRow(row, index, 0);
+//            }
+//        }
     }
 
 
