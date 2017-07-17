@@ -95,20 +95,20 @@ public class ObjectExporter {
 
     private void saveTroponins(List<Troponin> troponins) {
         if (troponins.isEmpty()) {
-            return;
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("troponin.tnt.number"), "x");
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("troponin.tniUltra.number"), "x");
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("troponin.tni.number"), "x");
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("troponin.tntDay.number"), "x");
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("troponin.tniDay.number"), "x");
         }
         Troponin troponin = troponins.get(0);
-        saveTroponin(row, prop.getColumnPropertyAsInt("troponin.tnt.number"), troponin.getTnt());
-        saveTroponin(row, prop.getColumnPropertyAsInt("troponin.tniUltra.number"), troponin.getTniUltra());
-        saveTroponin(row, prop.getColumnPropertyAsInt("troponin.tni.number"), troponin.getTni());
-        saveTroponin(row, prop.getColumnPropertyAsInt("troponin.tntDay.number"), troponin.getTntDay());
-        saveTroponin(row, prop.getColumnPropertyAsInt("troponin.tniDay.number"), troponin.getTniDay());
+        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tnt.number"), troponin.getTnt());
+        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tniUltra.number"), troponin.getTniUltra());
+        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tni.number"), troponin.getTni());
+        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tntDay.number"), troponin.getTntDay());
+        cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("troponin.tniDay.number"), troponin.getTniDay());
     }
 
-    private void saveTroponin(Row row, int index, double result) {
-        cellBuilder.saveDoubleInRow(row, index, result);
-        cellBuilder.saveStringInRow(row, index, "x");
-    }
 
     private void saveRevisits(List<Revisit> revisits) {
         if (revisits.isEmpty()) {
