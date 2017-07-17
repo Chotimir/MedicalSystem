@@ -1,6 +1,8 @@
 package com.medicalsystem.controller;
 
+import com.medicalsystem.model.Admission;
 import com.medicalsystem.model.Patient;
+import com.medicalsystem.service.AdmissionService;
 import com.medicalsystem.service.PatientService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public class PatientController {
 
     private final PatientService patientService;
+    private final AdmissionService admissionService;
 
     /**
      * Checks if entity exists.
@@ -67,6 +70,10 @@ public class PatientController {
     public ResponseEntity<?> updatePatient(@PathVariable int id, @RequestBody Patient patient) {
 
         patient.setId(id);
+
+        /* Preserve patient's diseases */
+        Patient currentPatient = patientService.getById(id);
+        patient.setDiseaseDescriptions(currentPatient.getDiseaseDescriptions());
 
         patient = patientService.saveOrUpdate(patient);
 

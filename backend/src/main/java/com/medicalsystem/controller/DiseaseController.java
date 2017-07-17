@@ -11,9 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,8 +30,12 @@ public class DiseaseController {
         if (patient == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
+        System.out.println(patient.getLastName());
+
         /* Extract diseases */
         List<DiseaseDescription> diseases = patient.getDiseaseDescriptions();
+
+        System.out.println("DISEASES: " + diseases.size());
 
         /* Map diseases to SelectFields */
         List<SelectField> selectFields = builder.fromDiseases(diseases);
@@ -41,7 +43,19 @@ public class DiseaseController {
         /* Create json string */
         String json = objectMapper.writeValueAsString(selectFields);
 
+        System.out.println(json);
+
         return new ResponseEntity<>(json, HttpStatus.OK);
+    }
+
+    @PutMapping("api/patients/{id}/comorbidities")
+    public ResponseEntity<?> updateComorbidities(@PathVariable int id, @RequestBody List<DiseaseDescription> diseases) {
+        Patient patient = patientService.getById(id);
+
+        if (patient == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
