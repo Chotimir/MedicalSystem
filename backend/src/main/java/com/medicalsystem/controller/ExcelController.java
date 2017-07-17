@@ -1,5 +1,6 @@
 package com.medicalsystem.controller;
 
+import com.medicalsystem.excel.export.ExcelExporter;
 import com.medicalsystem.excel.importer.ExcelImporter;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,11 @@ public class ExcelController {
     private final String FILE_NAME = "data.xlsx";
 
     private final ExcelImporter importer;
-
+    private final ExcelExporter exporter;
     @Autowired
-    public ExcelController(ExcelImporter importer) {
+    public ExcelController(ExcelImporter importer, ExcelExporter exporter) {
         this.importer = importer;
+        this.exporter = exporter;
     }
 
     /**
@@ -35,7 +37,8 @@ public class ExcelController {
      */
     @GetMapping("api/export")
     public ResponseEntity<?> exportToExcel() throws IOException {
-        File file = new File("baza2.xlsx");
+        exporter.exportToExcel();
+        File file = new File("bazaEskport.xlsx");
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
         return ResponseEntity.ok()
