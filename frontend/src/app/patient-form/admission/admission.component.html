@@ -104,11 +104,10 @@
   <div class="form-group row col-12">
     <label for="unconsciousness" class="col-form-label col-3 offset-1" translate>Unconsciousness</label>
     <div class="col-4">
-      <select [(ngModel)]="admission.unconsciousness.selected" class="form-control" id="unconsciousness" name="unconsciousness">
+      <select [(ngModel)]="admission.unconsciousness" class="form-control" id="unconsciousness" name="unconsciousness">
         <option hidden disabled selected value></option>
-        <option *ngFor="let value of admission.unconsciousness.values" [ngValue]="value">
-          {{value}}
-        </option>
+        <option [ngValue]="true" translate>Yes</option>
+        <option [ngValue]="false" translate>No</option>
       </select>
     </div>
   </div>

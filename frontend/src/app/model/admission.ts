@@ -12,7 +12,7 @@ export class Admission {
   asaScale: SelectField;
   leeRcri: SelectField;
   pPossum: SelectField;
-  unconsciousness: SelectField;
+  unconsciousness: boolean;
   reoperation: SelectField;
   comments: string;
 }
