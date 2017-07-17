@@ -49,8 +49,11 @@ public class ObjectExporter {
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("aaSymptoms.number"), admission.getAaSymptoms());
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("aaSize.number"), admission.getAaSize());
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("maxAneurysmSize.number"), admission.getMaxAneurysmSize());
+
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("imageExamination.number"), admission.getImageExamination());
+
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("aneurysmLocation.number"), admission.getAneurysmLocation());
+
         saveSmoking(admission.getSmoking());
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("asaScale.number"), admission.getAsaScale());
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("leeRcri.number"), admission.getLeeRcri());
@@ -77,14 +80,15 @@ public class ObjectExporter {
     private void saveMedicament(List<Medicament> medicaments) {
         Set<Medicament> medicamentsSet = medicaments.stream().collect(Collectors.toSet());
         int firstExamIndex = prop.getColumnPropertyAsInt("medicament.aspirin.number");
-        int lastExamIndex =  prop.getColumnPropertyAsInt("medicament.fibrate.number");
-        for(int index = firstExamIndex, examinationId = 1; index <= lastExamIndex; index++, examinationId++) {
+        int lastExamIndex = prop.getColumnPropertyAsInt("medicament.fibrate.number");
+        for (int index = firstExamIndex, examinationId = 1; index <= lastExamIndex; index++, examinationId++) {
             Medicament byId = medicamentService.getById(examinationId);
             if (medicamentsSet.contains(byId)) {
                 cellBuilder.saveIntInRow(row, index, 1);
             } else {
                 //TODO: lista powinna zawierac wszystkie elementy, nie tylko te z wartosci 1
-                cellBuilder.saveStringInRow(row, index, "bd");
+//                cellBuilder.saveStringInRow(row, index, "bd");
+                cellBuilder.saveIntInRow(row, index, 0);
             }
         }
     }
@@ -102,11 +106,8 @@ public class ObjectExporter {
     }
 
     private void saveTroponin(Row row, int index, double result) {
-        if (result != -1.0) {
-            cellBuilder.saveDoubleInRow(row, index, result);
-        } else {
-            cellBuilder.saveStringInRow(row, index, "x");
-        }
+        cellBuilder.saveDoubleInRow(row, index, result);
+        cellBuilder.saveStringInRow(row, index, "x");
     }
 
     private void saveRevisits(List<Revisit> revisits) {
@@ -120,22 +121,19 @@ public class ObjectExporter {
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("revisit.number"), revisits.get(0).getControlVisit());
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("controlVisit.number"), 1);
         cellBuilder.saveDateInRow(row, prop.getColumnPropertyAsInt("revisit.date.number"), revisits.get(0).getDate());
-        cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("revisit.cause.number"), revisits.get(0).getCause().getId());
-
+        RevisitCause cause = revisits.get(0).getCause();
+        if (cause != null) {
+            cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("revisit.cause.number"), revisits.get(0).getCause().getId());
+        }
 
 
     }
 
     private void saveExaminations(List<Examination> examinations) {
         int firstExamIndex = prop.getColumnPropertyAsInt("examination.pchn.number");
-        int lastExamIndex =  prop.getColumnPropertyAsInt("examination.fibrinogen.number");
-        for(int index = firstExamIndex, examinationId = 0; index <= lastExamIndex; index++, examinationId++) {
-            double result = examinations.get(examinationId).getResult();
-            if (result != -1.0) {
-                cellBuilder.saveDoubleInRow(row, index, result);
-            } else {
-                cellBuilder.saveStringInRow(row, index, "bd");
-            }
+        int lastExamIndex = prop.getColumnPropertyAsInt("examination.fibrinogen.number");
+        for (int index = firstExamIndex, examinationId = 0; index <= lastExamIndex; index++, examinationId++) {
+            cellBuilder.saveDoubleInRow(row, index, examinations.get(examinationId).getResult());
         }
     }
 
@@ -150,7 +148,7 @@ public class ObjectExporter {
 
     private void saveSmoking(Smoking smoking) {
         if (smoking == null) {
-            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("smoking.number"),"bd");
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("smoking.number"), "bd");
         } else {
             cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("smoking.number"), smoking.getId());
         }

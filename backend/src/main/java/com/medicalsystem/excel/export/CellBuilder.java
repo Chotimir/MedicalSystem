@@ -20,8 +20,12 @@ public class CellBuilder {
     }
 
     public void saveIntInRow(Row row, int excelIndex, int data) {
-        Cell cell = row.createCell(excelIndex, Cell.CELL_TYPE_NUMERIC);
-        cell.setCellValue(data);
+        if (data == -1) {
+            saveStringInRow(row, excelIndex, "x");
+        } else {
+            Cell cell = row.createCell(excelIndex, Cell.CELL_TYPE_NUMERIC);
+            cell.setCellValue(data);
+        }
     }
 
     public void saveDateInRow(Row row, int excelIndex, Date data) {
@@ -30,12 +34,17 @@ public class CellBuilder {
     }
 
     public void saveDoubleInRow(Row row, int excelIndex, double data) {
-        Cell cell = row.createCell(excelIndex, Cell.CELL_TYPE_NUMERIC);
-        cell.setCellValue(data);
+        if (data == -1) {
+            saveStringInRow(row, excelIndex, "x");
+        } else {
+            Cell cell = row.createCell(excelIndex, Cell.CELL_TYPE_NUMERIC);
+            cell.setCellValue(data);
+        }
     }
 
     public void saveBooleanInRow(Row row, int excelIndex, boolean data) {
-        Cell cell = row.createCell(excelIndex, Cell.CELL_TYPE_BOOLEAN);
-        cell.setCellValue(data);
+        Cell cell = row.createCell(excelIndex, Cell.CELL_TYPE_NUMERIC);
+        int value = (data == true) ? 1 : 0;
+        cell.setCellValue(value);
     }
 }
