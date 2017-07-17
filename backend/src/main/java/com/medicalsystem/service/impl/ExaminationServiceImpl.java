@@ -34,4 +34,9 @@ public class ExaminationServiceImpl implements ExaminationService {
     public void delete(Integer id) {
         examinationRepository.delete(id);
     }
+
+    @Override
+    public void delete(Examination examination) {
+        examinationRepository.delete(examination);
+    }
 }

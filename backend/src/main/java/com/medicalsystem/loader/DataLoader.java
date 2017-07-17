@@ -34,7 +34,7 @@ public class DataLoader implements ApplicationRunner {
 
     private void loadExcel() {
         if (LOAD_EXCEL_ON_STARTUP)
-            importer.importToDB();
+            importer.importToDB("baza2.xlsx");
     }
 
     @Override

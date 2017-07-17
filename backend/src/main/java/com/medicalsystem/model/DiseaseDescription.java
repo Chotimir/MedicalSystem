@@ -1,6 +1,8 @@
 package com.medicalsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.medicalsystem.json.deserializer.DiseaseDescriptionDeserializer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "opis_choroby_s")
+@JsonDeserialize(using = DiseaseDescriptionDeserializer.class)
 public class DiseaseDescription extends IdComparableEntity {
 
     @Id

@@ -34,4 +34,9 @@ public class DiseaseServiceImpl implements DiseaseService {
     public void delete(Integer id) {
         diseaseRepository.delete(id);
     }
+
+    @Override
+    public Disease getByName(String name) {
+        return diseaseRepository.findByName(name);
+    }
 }

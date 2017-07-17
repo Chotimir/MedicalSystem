@@ -1,7 +1,9 @@
 package com.medicalsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.medicalsystem.json.deserializer.SelectFieldDeserializer;
 import com.medicalsystem.json.serializer.PatientSexSerializer;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +32,7 @@ public class Patient extends IdComparableEntity {
     @Column(name = "plec", columnDefinition = "varchar(1)")
     @Getter @Setter
     @JsonSerialize(using = PatientSexSerializer.class)
+    @JsonDeserialize(using = SelectFieldDeserializer.class)
     private String sex;
 
     @Column(name = "wiek")

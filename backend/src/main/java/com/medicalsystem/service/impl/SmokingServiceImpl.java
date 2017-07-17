@@ -34,4 +34,5 @@ public class SmokingServiceImpl implements SmokingService {
     public void delete(Integer id) {
         smokingRepository.delete(id);
     }
+
 }

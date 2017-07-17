@@ -10,10 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -23,7 +20,7 @@ public class SelectFieldBuilder {
     private final OperationTypeService operationTypeService;
     private final ComplicationService complicationService;
 
-    public SelectField build(OperationType operationType) {
+    public SelectField fromOperationType(OperationType operationType) {
         SelectField selectField = new SelectField();
 
         /* Name */
@@ -75,6 +72,32 @@ public class SelectFieldBuilder {
         /* Selected */
         selectField.setSelected(disease.getDescription());
 
+        return selectField;
+    }
+
+    public SelectField fromAASymptoms(int aaSymptoms) {
+        SelectField selectField = new SelectField();
+        selectField.setName("AA Symptoms");
+
+        // TODO: zamienić na cywilizowaną tabelę w bazie danych
+        Map<Integer, String> dictionary = new HashMap<>();
+        dictionary.put(-1, "nie dotyczy");
+        dictionary.put(0, "bezobjawowy");
+        dictionary.put(1, "objawowy");
+        dictionary.put(2, "pęknięty");
+        selectField.setValues(new ArrayList<>(dictionary.values()));
+
+        selectField.setSelected(dictionary.get(aaSymptoms));
+
+        return selectField;
+    }
+
+    public SelectField fromImageExamination(int imageExamination) {
+        SelectField selectField = new SelectField();
+        selectField.setName("Image examination");
+        // TODO: skonsultować i poprawić
+        selectField.setValues(Arrays.asList("-1", "0", "1", "2", "3"));
+        selectField.setSelected(String.valueOf(imageExamination));
         return selectField;
     }
 
