@@ -4,23 +4,35 @@ package com.medicalsystem.excel.export;
 import com.medicalsystem.excel.ExcelColumnsProperties;
 import com.medicalsystem.model.*;
 import com.medicalsystem.service.AdmissionService;
+import com.medicalsystem.service.MedicamentService;
+import com.medicalsystem.service.ReoperationService;
+import com.medicalsystem.service.SmokingService;
 import org.apache.poi.ss.usermodel.Row;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class ObjectExporter {
 
     private AdmissionService admissionService;
+    private SmokingService smokingService;
+    private ReoperationService reoperationService;
+    private MedicamentService medicamentService;
     private ExcelColumnsProperties prop;
     private CellBuilder cellBuilder;
+
     private Row row;
 
-    @Autowired
-    public ObjectExporter(AdmissionService admissionService, ExcelColumnsProperties prop, CellBuilder cellBuilder) {
+    public ObjectExporter(AdmissionService admissionService, SmokingService smokingService,
+                          ReoperationService reoperationService, MedicamentService medicamentService,
+                          ExcelColumnsProperties prop, CellBuilder cellBuilder) {
         this.admissionService = admissionService;
+        this.smokingService = smokingService;
+        this.reoperationService = reoperationService;
+        this.medicamentService = medicamentService;
         this.prop = prop;
         this.cellBuilder = cellBuilder;
     }
@@ -45,39 +57,104 @@ public class ObjectExporter {
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("leeRcri.number"), admission.getLeeRcri());
         cellBuilder.saveDoubleInRow(row, prop.getColumnPropertyAsInt("pPossum.number"), admission.getPPossum());
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("faint.number"), admission.getFaint());
-        saveReoperation(admission.getReoperations());
+        saveReoperations(admission.getReoperations());
         cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("comments.number"), admission.getComments());
-        saveExamination(admission.getExaminations());
-        saveRevisit(admission.getRevisits());
-        saveTroponin(admission.getTroponins());
+        saveExaminations(admission.getExaminations());
+        saveRevisits(admission.getRevisits());
+        saveTroponins(admission.getTroponins());
         saveMedicament(admission.getMedicaments());
         saveOperationType(admission.getOperationTypes());
     }
 
     private void saveOperationType(List<OperationType> operationTypes) {
-
+        String operationTypeNumbers = "";
+        for (int i = 0; i < operationTypes.size(); i++) {
+            operationTypeNumbers += operationTypes.get(i).getId();
+        }
+        cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("operationType.number"),
+                Integer.valueOf(operationTypeNumbers));
     }
 
     private void saveMedicament(List<Medicament> medicaments) {
+        Set<Medicament> medicamentsSet = medicaments.stream().collect(Collectors.toSet());
+        int firstExamIndex = prop.getColumnPropertyAsInt("medicament.aspirin.number");
+        int lastExamIndex =  prop.getColumnPropertyAsInt("medicament.fibrate.number");
+        for(int index = firstExamIndex, examinationId = 1; index <= lastExamIndex; index++, examinationId++) {
+            Medicament byId = medicamentService.getById(examinationId);
+            if (medicamentsSet.contains(byId)) {
+                cellBuilder.saveIntInRow(row, index, 1);
+            } else {
+                //TODO: lista powinna zawierac wszystkie elementy, nie tylko te z wartosci 1
+                cellBuilder.saveStringInRow(row, index, "bd");
+            }
+        }
+    }
+
+    private void saveTroponins(List<Troponin> troponins) {
+        if (troponins.isEmpty()) {
+            return;
+        }
+        Troponin troponin = troponins.get(0);
+        saveTroponin(row, prop.getColumnPropertyAsInt("troponin.tnt.number"), troponin.getTnt());
+        saveTroponin(row, prop.getColumnPropertyAsInt("troponin.tniUltra.number"), troponin.getTniUltra());
+        saveTroponin(row, prop.getColumnPropertyAsInt("troponin.tni.number"), troponin.getTni());
+        saveTroponin(row, prop.getColumnPropertyAsInt("troponin.tntDay.number"), troponin.getTntDay());
+        saveTroponin(row, prop.getColumnPropertyAsInt("troponin.tniDay.number"), troponin.getTniDay());
+    }
+
+    private void saveTroponin(Row row, int index, double result) {
+        if (result != -1.0) {
+            cellBuilder.saveDoubleInRow(row, index, result);
+        } else {
+            cellBuilder.saveStringInRow(row, index, "x");
+        }
+    }
+
+    private void saveRevisits(List<Revisit> revisits) {
+        if (revisits.isEmpty()) {
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("revisit.number"), "x");
+//            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("controlVisit.number"), "x"); brak pola
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("revisit.date.number"), "x");
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("revisit.cause.number"), "x");
+            return;
+        }
+        cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("revisit.number"), revisits.get(0).getControlVisit());
+        cellBuilder.saveDateInRow(row, prop.getColumnPropertyAsInt("revisit.date.number"), revisits.get(0).getDate());
+        cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("revisit.cause.number"), revisits.get(0).getCause().getId());
+
+
 
     }
 
-    private void saveTroponin(List<Troponin> troponins) {
-
+    private void saveExaminations(List<Examination> examinations) {
+        int firstExamIndex = prop.getColumnPropertyAsInt("examination.pchn.number");
+        int lastExamIndex =  prop.getColumnPropertyAsInt("examination.fibrinogen.number");
+        for(int index = firstExamIndex, examinationId = 0; index <= lastExamIndex; index++, examinationId++) {
+            double result = examinations.get(examinationId).getResult();
+            if (result != -1.0) {
+                cellBuilder.saveDoubleInRow(row, index, result);
+            } else {
+                cellBuilder.saveStringInRow(row, index, "bd");
+            }
+        }
     }
 
-    private void saveRevisit(List<Revisit> revisits) {
-
-    }
-
-    private void saveExamination(List<Examination> examinations) {
-    }
-
-    private void saveReoperation(List<Reoperation> reoperations) {
-
+    private void saveReoperations(List<Reoperation> reoperations) {
+        String reoperationNumbers = "";
+        for (int i = 0; i < reoperations.size(); i++) {
+            reoperationNumbers += reoperations.get(i).getId();
+        }
+        cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("reoperation.number"),
+                Integer.valueOf(reoperationNumbers));
     }
 
     private void saveSmoking(Smoking smoking) {
+        if (smoking == null) {
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("smoking.number"),"bd");
+            return;
+        }
+        cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("smoking.number"),
+                smokingService.getSmokingIdByText(smoking.getText()));
 
     }
 

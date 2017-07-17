@@ -34,4 +34,10 @@ public class SmokingServiceImpl implements SmokingService {
     public void delete(Integer id) {
         smokingRepository.delete(id);
     }
+
+    @Override
+    public int getSmokingIdByText(String text) {
+        return smokingRepository.findByText(text).getId();
+    }
+
 }
