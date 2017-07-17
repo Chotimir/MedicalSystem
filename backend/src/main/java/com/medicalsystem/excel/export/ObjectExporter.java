@@ -230,6 +230,10 @@ public class ObjectExporter {
     }
 
     private void saveDiseaseDescription(List<DiseaseDescription> diseaseDescriptions) {
+        int index = prop.getColumnPropertyAsInt("disease.shock.number");
+        for (int i = 0; i < diseaseDescriptions.size(); i++, index++) {
+            cellBuilder.saveIntInRow(row, index , diseaseDescriptions.get(i).getExcelValue());
+        }
 //        Set<Disease> diseaseSet = diseaseDescriptions.stream().map(DiseaseDescription::getDisease).collect(Collectors.toSet());
 //        int index = prop.getColumnPropertyAsInt("disease.shock.number");
 //        List<Disease> diseases = diseaseService.listAll();
