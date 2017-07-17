@@ -38,7 +38,10 @@ public class ExaminationController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         /* Delete old examinations */
-        admission.getExaminations().forEach(examinationService::delete);
+        admission.getExaminations().forEach(e -> {
+            e.setAdmission(null);
+            examinationService.delete(e.getId());
+        });
 
         /* Set up new examinations */
         admission.setExaminations(examinations);
