@@ -39,4 +39,9 @@ public class AdmissionServiceImpl implements AdmissionService {
     public Admission getByPatientId(int id) {
         return admissionRepository.findAdmissionByPatientId(id);
     }
+
+    @Override
+    public long countEntities() {
+        return admissionRepository.count();
+    }
 }

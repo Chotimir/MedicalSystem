@@ -6,4 +6,5 @@ public interface AdmissionService extends CRUDService<Admission> {
 
     Admission getByPatientId(int id);
 
+    long countEntities();
 }
