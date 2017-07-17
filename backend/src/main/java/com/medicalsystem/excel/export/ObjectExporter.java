@@ -21,12 +21,14 @@ public class ObjectExporter {
     private OperationModeService operationModeService;
     private ExcelColumnsProperties prop;
     private CellBuilder cellBuilder;
+    private ComplicationService complicationService;
 
     private Row row;
 
     public ObjectExporter(AdmissionService admissionService, SmokingService smokingService,
                           ReoperationService reoperationService, MedicamentService medicamentService,
-                          ExcelColumnsProperties prop, CellBuilder cellBuilder, OperationModeService operationModeService) {
+                          ExcelColumnsProperties prop, CellBuilder cellBuilder, OperationModeService operationModeService,
+                          ComplicationService complicationService) {
         this.admissionService = admissionService;
         this.smokingService = smokingService;
         this.reoperationService = reoperationService;
@@ -34,6 +36,7 @@ public class ObjectExporter {
         this.prop = prop;
         this.cellBuilder = cellBuilder;
         this.operationModeService = operationModeService;
+        this.complicationService = complicationService;
     }
 
     public void saveDataIntoRow(Row row, int admissionId) {
@@ -185,7 +188,22 @@ public class ObjectExporter {
     }
 
     private void saveComplication(List<Complication> complications) {
-        //TODO: fix an issue
+        Set<Complication> complicationSet = complications.stream().collect(Collectors.toSet());
+        for (int i = 3; i <= 30; i++) {
+            addComplication(row, "complication." + i + ".number", i, complicationSet);
+        }
+        addComplication(row, "complication.mins.number", 1, complicationSet);
+        addComplication(row, "complication.mi.number", 2, complicationSet);
+
+
+    }
+    private void addComplication(Row row, String propName, int complicationsId, Set<Complication> operationComplications) {
+        Complication complication = complicationService.getById(complicationsId);
+        if (operationComplications.contains(complication)) {
+            cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt(propName), 1);
+        } else {
+            cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt(propName), 0);
+        }
     }
 
     private void saveAnesthetic(Anesthetic anesthetic) {
