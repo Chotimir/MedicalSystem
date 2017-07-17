@@ -6,7 +6,7 @@ import {AuthService} from "./auth.service";
 export class PatientsService {
 
   private headers = new Headers({'Content-Type': 'application/json', 'Authorization': AuthService.getToken()});
-  private patientsUrl = 'api/patients/';
+  private patientsUrl = 'api/patient-search/';
 
   constructor(private http: Http) { }
 
