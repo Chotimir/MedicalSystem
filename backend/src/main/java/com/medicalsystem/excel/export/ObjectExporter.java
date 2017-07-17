@@ -19,6 +19,7 @@ public class ObjectExporter {
     private ReoperationService reoperationService;
     private MedicamentService medicamentService;
     private OperationModeService operationModeService;
+    private DiseaseService diseaseService;
     private ExcelColumnsProperties prop;
     private CellBuilder cellBuilder;
     private ComplicationService complicationService;
@@ -28,7 +29,7 @@ public class ObjectExporter {
     public ObjectExporter(AdmissionService admissionService, SmokingService smokingService,
                           ReoperationService reoperationService, MedicamentService medicamentService,
                           ExcelColumnsProperties prop, CellBuilder cellBuilder, OperationModeService operationModeService,
-                          ComplicationService complicationService) {
+                          ComplicationService complicationService, DiseaseService diseaseService) {
         this.admissionService = admissionService;
         this.smokingService = smokingService;
         this.reoperationService = reoperationService;
@@ -37,6 +38,7 @@ public class ObjectExporter {
         this.cellBuilder = cellBuilder;
         this.operationModeService = operationModeService;
         this.complicationService = complicationService;
+        this.diseaseService = diseaseService;
     }
 
     public void saveDataIntoRow(Row row, int admissionId) {
@@ -240,7 +242,16 @@ public class ObjectExporter {
     }
 
     private void saveDiseaseDescription(List<DiseaseDescription> diseaseDescriptions) {
-        //TODO: fix an issue
+        Set<Disease> diseaseSet = diseaseDescriptions.stream().map(DiseaseDescription::getDisease).collect(Collectors.toSet());
+        int index = prop.getColumnPropertyAsInt("disease.shock.number");
+        List<Disease> diseases = diseaseService.listAll();
+        for (int i = 0; i < diseases.size(); i++, index++) {
+            if (diseaseSet.contains(diseases.get(i))) {
+                cellBuilder.saveIntInRow(row, index, 1);
+            } else {
+                cellBuilder.saveIntInRow(row, index, 0);
+            }
+        }
     }
 
 
