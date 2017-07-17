@@ -3,10 +3,7 @@ package com.medicalsystem.excel.export;
 
 import com.medicalsystem.excel.ExcelColumnsProperties;
 import com.medicalsystem.model.*;
-import com.medicalsystem.service.AdmissionService;
-import com.medicalsystem.service.MedicamentService;
-import com.medicalsystem.service.ReoperationService;
-import com.medicalsystem.service.SmokingService;
+import com.medicalsystem.service.*;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +18,7 @@ public class ObjectExporter {
     private SmokingService smokingService;
     private ReoperationService reoperationService;
     private MedicamentService medicamentService;
+    private OperationModeService operationModeService;
     private ExcelColumnsProperties prop;
     private CellBuilder cellBuilder;
 
@@ -28,13 +26,14 @@ public class ObjectExporter {
 
     public ObjectExporter(AdmissionService admissionService, SmokingService smokingService,
                           ReoperationService reoperationService, MedicamentService medicamentService,
-                          ExcelColumnsProperties prop, CellBuilder cellBuilder) {
+                          ExcelColumnsProperties prop, CellBuilder cellBuilder, OperationModeService operationModeService) {
         this.admissionService = admissionService;
         this.smokingService = smokingService;
         this.reoperationService = reoperationService;
         this.medicamentService = medicamentService;
         this.prop = prop;
         this.cellBuilder = cellBuilder;
+        this.operationModeService = operationModeService;
     }
 
     public void saveDataIntoRow(Row row, int admissionId) {
@@ -113,12 +112,13 @@ public class ObjectExporter {
     private void saveRevisits(List<Revisit> revisits) {
         if (revisits.isEmpty()) {
             cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("revisit.number"), "x");
-//            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("controlVisit.number"), "x"); brak pola
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("controlVisit.number"), "x");
             cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("revisit.date.number"), "x");
             cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("revisit.cause.number"), "x");
             return;
         }
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("revisit.number"), revisits.get(0).getControlVisit());
+        cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("controlVisit.number"), 1);
         cellBuilder.saveDateInRow(row, prop.getColumnPropertyAsInt("revisit.date.number"), revisits.get(0).getDate());
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("revisit.cause.number"), revisits.get(0).getCause().getId());
 
@@ -151,17 +151,15 @@ public class ObjectExporter {
     private void saveSmoking(Smoking smoking) {
         if (smoking == null) {
             cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("smoking.number"),"bd");
-            return;
+        } else {
+            cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("smoking.number"), smoking.getId());
         }
-        cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("smoking.number"),
-                smokingService.getSmokingIdByText(smoking.getText()));
-
     }
 
     private void saveOperation(Operation operation) {
         saveOperationMode(operation.getOperationMode());
         saveAnetshesia(operation.getAnesthesia());
-        saveAnesthetic(operation.getAnesthesia());
+        saveAnesthetic(operation.getAnesthetic());
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("operation.duration.number"), operation.getDuration());
         cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("operation.aortaClottingTime.number"),
                 operation.getAortaClottingTime());
@@ -189,19 +187,31 @@ public class ObjectExporter {
     }
 
     private void saveComplication(List<Complication> complications) {
-
+        //TODO: fix an issue
     }
 
-    private void saveAnesthetic(Anesthesia anesthesia) {
-
+    private void saveAnesthetic(Anesthetic anesthetic) {
+        if (anesthetic == null) {
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("anesthetic.number"), "bd");
+        } else {
+            cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("anesthetic.number"), anesthetic.getId());
+        }
     }
 
     private void saveAnetshesia(Anesthesia anesthesia) {
-
+        if (anesthesia == null) {
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("anesthesia.number"), "bd");
+        } else {
+            cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("anesthesia.number"), anesthesia.getId());
+        }
     }
 
     private void saveOperationMode(OperationMode operationMode) {
-
+        if (operationMode == null) {
+            cellBuilder.saveStringInRow(row, prop.getColumnPropertyAsInt("operationMode.number"), "bd");
+        } else {
+            cellBuilder.saveIntInRow(row, prop.getColumnPropertyAsInt("operationMode.number"), operationMode.getId());
+        }
     }
 
     private void savePatient(Patient patient) {
@@ -214,7 +224,7 @@ public class ObjectExporter {
     }
 
     private void saveDiseaseDescription(List<DiseaseDescription> diseaseDescriptions) {
-        //TODO:
+        //TODO: fix an issue
     }
 
 
