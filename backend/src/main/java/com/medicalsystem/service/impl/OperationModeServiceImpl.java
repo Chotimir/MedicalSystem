@@ -34,4 +34,5 @@ public class OperationModeServiceImpl implements OperationModeService {
     public void delete(Integer id) {
         operationModeRepository.delete(id);
     }
+
 }
