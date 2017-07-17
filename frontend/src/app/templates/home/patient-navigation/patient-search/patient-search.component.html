@@ -1,0 +1,13 @@
+<div class="container-fluid" style="margin-top: 60px">
+  <div class="col-centered center-text">
+    <a translate>Provide the patients ID and click enter</a>
+  </div>
+  <div class="col-2 col-centered">
+    <input [(ngModel)]="patientID" (keyup.enter)="navigateToPatient()" type="text" class="form-control top-margin" placeholder="ID">
+  </div>
+  <div class="col-centered">
+    <div class="container-fluid flex center top-margin">
+      <button (click)="navigateToPatient()" class="btn" translate>Search</button>
+    </div>
+  </div>
+</div>

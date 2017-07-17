@@ -1,0 +1,20 @@
+<form>
+  <div class="form-group row col-12">
+    <label for="username" class="col-form-label col-3 offset-1" translate>Username or email</label>
+    <div class="col-4">
+      <input [(ngModel)]="username" type="text" class="form-control" id="username" name="username" required>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="password" class="col-form-label col-3 offset-1" translate>Password</label>
+    <div class="col-4">
+      <input [(ngModel)]="password" type="password" class="form-control" id="password" name="password">
+    </div>
+  </div>
+
+  <div class="offset-4 col-4">
+    <div class="container-fluid flex center">
+      <button (click)="login()" [disabled]="pending" class="btn" translate>Login</button>
+    </div>
+  </div>
+</form>

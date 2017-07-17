@@ -8,9 +8,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { PatientFormModule } from './patient-form/patient-form.module';
-import {AuthGuard} from "./auth/auth-guard/auth.guard";
-import {AdminAuthGuard} from "./auth/auth-guard/admin-auth.guard";
+import { PatientFormModule } from './templates/patient-form/patient-form.module';
+import {AuthGuard} from "./templates/auth/auth-guard/auth.guard";
+import {AdminAuthGuard} from "./templates/auth/auth-guard/admin-auth.guard";
+import { ErrorComponent } from './components/error/error.component';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -19,6 +20,7 @@ export function HttpLoaderFactory(http: Http) {
 @NgModule({
   declarations: [
     AppComponent,
+    ErrorComponent,
   ],
   imports: [
     AppRoutingModule,
