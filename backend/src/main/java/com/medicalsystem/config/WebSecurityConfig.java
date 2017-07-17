@@ -22,6 +22,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
                 .antMatchers(HttpMethod.POST, REGISTER_URL).permitAll()
+                // Temporarly permit /export
+                .antMatchers(HttpMethod.GET, "/export").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // Filter the api/auth/login requests
