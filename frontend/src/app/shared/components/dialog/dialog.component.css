@@ -1,0 +1,16 @@
+.dialog {
+  border: solid 1px #292b2c;
+  border-radius: 12px;
+  color: #292b2c;
+  margin: 30px;
+  padding: 10px;
+  text-align: center;
+}
+
+.error {
+  background-color: #ffb3b3;
+}
+
+.info {
+  background-color: #b3ffb3;
+}

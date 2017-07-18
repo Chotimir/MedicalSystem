@@ -1,0 +1,40 @@
+<form>
+  <div class="form-group row col-12">
+    <label for="fullName" class="col-form-label col-3 offset-1" translate>Full name</label>
+    <div class="col-4">
+      <input [(ngModel)]="fullName" type="text" class="form-control" id="fullName" name="fullName" required>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="email" class="col-form-label col-3 offset-1" translate>Email</label>
+    <div class="col-4">
+      <input [(ngModel)]="email" type="email" class="form-control" id="email" name="email" required>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="username" class="col-form-label col-3 offset-1" translate>Username</label>
+    <div class="col-4">
+      <input [(ngModel)]="username" type="text" class="form-control" id="username" name="username" required>
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="password" class="col-form-label col-3 offset-1" translate>Password</label>
+    <div class="col-4">
+      <input [(ngModel)]="password" type="password" class="form-control" id="password" name="password">
+    </div>
+  </div>
+  <div class="form-group row col-12">
+    <label for="repeatPassword" class="col-form-label col-3 offset-1" translate>Repeat password</label>
+    <div class="col-4">
+      <input [(ngModel)]="repeated" type="password" class="form-control" id="repeatPassword" name="repeated">
+    </div>
+  </div>
+
+  <div class="col-2 col-centered">
+    <button (click)="register()" [disabled]="pending" class="btn" translate>Register</button>
+  </div>
+  <div class="col-6 col-centered">
+    <app-dialog [type]="'error'" [message]="error"></app-dialog>
+    <app-dialog [type]="'info'" [message]="info"></app-dialog>
+  </div>
+</form>
